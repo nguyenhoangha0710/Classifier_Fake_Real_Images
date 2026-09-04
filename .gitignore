@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Notebook cache
+.ipynb_checkpoints/
+
+# Experiment outputs
+outputs/
+runs/
+wandb/
+mlruns/
+tensorboard/
+
+# Model checkpoints and weights
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# Local datasets and caches
+dataset/*
+!dataset/README.md
+!dataset/.gitkeep
+.cache/
+cache/
+hf_cache/
+huggingface/
+
+# Kaggle / Colab temporary files
+kaggle.json
+/working/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
