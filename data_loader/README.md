@@ -1,33 +1,136 @@
-# Data Loader Chung Cho Tiny-GenImage
+# Data Loader Cho Tiny-GenImage
 
-Folder này chứa code load dữ liệu dùng chung cho các phase của dự án fake image detection:
+Tài liệu này mô tả dataloader dùng cho các thí nghiệm phân loại ảnh thật/giả trong dự án. Mục tiêu chính là chuẩn hóa cách đọc dữ liệu, cách chia train/eval, và cách trả metadata để các phase sau có thể dùng lại cùng một format.
 
-- Stage 1: train classifier `real/fake`.
-- Stage 2: train projector/alignment để MLLM dự đoán token `real/fake`.
-- Stage 3 sau này: có thể mở rộng cùng schema để load dữ liệu SFT có `prompt/response/explanation`.
+## 1. Mục Tiêu Thiết Kế
 
-Hiện tại loader mới hỗ trợ Tiny-GenImage từ Hugging Face:
+Data loader được xây dựng để phục vụ nhiều phase:
+
+```text
+Stage 1: image -> classifier -> real/fake
+Stage 2: image -> visual encoder/projector -> MLLM token real/fake
+Stage 3: image + prompt -> MLLM -> explanation/answer
+```
+
+Vì vậy mỗi sample được normalize về cùng một schema, gồm ảnh, nhãn, generator, split, eval case và metadata. Cách này giúp baseline CLIP, ResNet-50, CNNSpot, hoặc các mô hình VLLM/MLLM sau này dùng chung một interface dữ liệu.
+
+## 2. Nguồn Dữ Liệu Hỗ Trợ
+
+Hiện tại hỗ trợ Tiny-GenImage theo hai dạng.
+
+### Hugging Face Dataset
+
+File chính:
+
+```text
+data_loader/tiny_genimage.py
+data_loader/splits.py
+```
+
+Dataset:
 
 ```text
 TheKernel01/Tiny-GenImage
 ```
 
-Dữ liệu gốc vẫn nằm trên Hugging Face. Repo chỉ lưu code loader, split, transform.
+Dạng này đọc bằng `datasets.load_dataset`. Có hai chế độ:
 
-Có hai cách load:
+```python
+streaming=True
+```
 
-- `streaming=True`: đọc trực tiếp/lazy từ Hugging Face khi iterate, không tải toàn bộ dataset về local cache trước.
-- `streaming=False`: tải/cache dataset về máy đang chạy để train nhanh và ổn định hơn.
+Đọc lazy từ Hugging Face khi iterate. Không tải toàn bộ dataset trước, nhưng tốc độ phụ thuộc mạng và khó dùng một số thao tác random access.
 
-Nếu muốn tránh tải full dataset về local, dùng `streaming=True`.
+```python
+streaming=False
+```
 
-## 1. Cấu Trúc File
+Tải/cache dataset về máy chạy. Train ổn định hơn nhưng tốn dung lượng local.
+
+### Kaggle Folder Dataset
+
+File chính:
+
+```text
+data_loader/tiny_genimage_kaggle.py
+```
+
+Dạng này dùng khi Tiny-GenImage đã được add vào Kaggle Input. Cấu trúc folder thực tế:
+
+```text
+tiny-genimage/
+  imagenet_ai_0419_biggan/
+    train/
+      ai/
+      nature/
+    val/
+      ai/
+      nature/
+  imagenet_ai_0419_vqdm/
+  imagenet_ai_0424_sdv5/
+  imagenet_ai_0424_wukong/
+  imagenet_ai_0508_adm/
+  imagenet_glide/
+  imagenet_midjourney/
+```
+
+Trong đó:
+
+```text
+nature -> real -> label 0
+ai     -> fake -> label 1
+```
+
+Loader Kaggle chỉ scan đường dẫn ảnh vào `DataFrame`, sau đó ảnh được mở lazy trong `__getitem__`. Điều này tránh giữ toàn bộ ảnh trong RAM.
+
+## 3. Schema Chung Của Một Sample
+
+File:
+
+```text
+data_loader/schemas.py
+```
+
+Class chính:
+
+```python
+UnifiedSample
+```
+
+Các field quan trọng:
+
+```text
+sample_id          ID duy nhất của sample
+label              0 hoặc 1
+label_name         real hoặc fake
+dataset_source     Tiny-GenImage hoặc Tiny-GenImage-Kaggle
+generator          tên generator, ví dụ BigGAN hoặc imagenet_ai_0419_biggan
+split              train hoặc validation
+eval_case          protocol thí nghiệm đang chạy
+generator_id       ID generator nếu dataset có ClassLabel
+image_path         đường dẫn ảnh nếu có
+prompt             dùng cho phase SFT/inference sau này
+response           câu trả lời target nếu có
+explanation        giải thích nếu có
+forensic_attributes thuộc tính forensic nếu có
+metadata           dict phụ để mở rộng
+```
+
+Quy ước nhãn:
+
+```python
+LABEL_ID_TO_NAME = {0: "real", 1: "fake"}
+LABEL_NAME_TO_ID = {"real": 0, "fake": 1}
+```
+
+## 4. Các File Và Chức Năng
 
 ```text
 data_loader/
   __init__.py
   schemas.py
   tiny_genimage.py
+  tiny_genimage_kaggle.py
   splits.py
   transforms.py
   README.md
@@ -35,98 +138,52 @@ data_loader/
 
 ### `schemas.py`
 
-Định nghĩa schema metadata chung.
-
-Các thành phần chính:
-
-- `LABEL_ID_TO_NAME`: map `{0: "real", 1: "fake"}`.
-- `LABEL_NAME_TO_ID`: map `{"real": 0, "fake": 1}`.
-- `UnifiedSample`: dataclass mô tả metadata chuẩn cho một sample.
-
-`UnifiedSample` có các field quan trọng:
-
-```python
-sample_id
-label
-label_name
-dataset_source
-generator
-split
-eval_case
-generator_id
-image_path
-prompt
-response
-explanation
-forensic_attributes
-metadata
-```
-
-Ý tưởng là mọi dataset sau này, kể cả Holmes SFT, đều nên được normalize về format này.
+Định nghĩa schema chuẩn `UnifiedSample`. Đây là hợp đồng dữ liệu chung giữa dataloader và model.
 
 ### `tiny_genimage.py`
 
-Adapter chính cho Tiny-GenImage.
+Đọc Tiny-GenImage từ Hugging Face.
 
-Các hàm/lớp chính:
-
-- `load_tiny_genimage(cache_dir=None, streaming=False)`: gọi `datasets.load_dataset("TheKernel01/Tiny-GenImage", streaming=streaming)`.
-- `TinyGenImageDataset`: wrapper PyTorch Dataset, chuyển sample Hugging Face thành dict thống nhất.
-- `collate_unified_batch(batch)`: gom batch để dùng với `torch.utils.data.DataLoader`.
-
-`TinyGenImageDataset` hỗ trợ `task_type`:
-
-```text
-classification
-alignment
-sft
-inference
-```
-
-Trong hiện tại nên dùng:
-
-- `classification` cho Stage 1.
-- `alignment` cho Stage 2.
-
-Khi `task_type="alignment"`, dataset sẽ thêm:
+Hàm/lớp chính:
 
 ```python
-target_text = "real" hoặc "fake"
-label_token = "real" hoặc "fake"
+load_tiny_genimage(cache_dir=None, streaming=False)
+TinyGenImageDataset
+TinyGenImageIterableDataset
+collate_unified_batch
 ```
+
+`TinyGenImageDataset` dùng cho map-style dataset. `TinyGenImageIterableDataset` dùng cho streaming dataset.
 
 ### `splits.py`
 
-Tạo các split evaluation cho Tiny-GenImage.
+Tạo các split thí nghiệm cho Tiny-GenImage Hugging Face.
 
-Các thành phần chính:
-
-- `TinyGenImageSplitConfig`: config chọn evaluation case.
-- `build_tiny_genimage_splits(config)`: trả về dict gồm `train`, `eval`, tên split, tên case và ghi chú.
-
-Các `eval_case` đang hỗ trợ:
-
-```text
-combined
-in_domain
-cross_generator
-train_one_generator
-```
-
-Mặc định split builder dùng:
+Hàm/lớp chính:
 
 ```python
-balance_real=True
-seed=42
+TinyGenImageSplitConfig
+build_tiny_genimage_splits(config)
 ```
 
-Nghĩa là mỗi split sẽ lấy số ảnh `real` bằng số ảnh `fake`. Cách này tránh bias do class imbalance, đặc biệt trong `in_domain` và `cross_generator`.
+### `tiny_genimage_kaggle.py`
 
-Lưu ý quan trọng: bản Hugging Face của Tiny-GenImage là bản flattened, trong đó ảnh real có `generator = Real`. Nó không còn giữ thông tin real thuộc folder generator nào như bản Kaggle/folder. Vì vậy loader sẽ chọn một tập real cân bằng từ toàn bộ real pool bằng seed cố định.
+Đọc Tiny-GenImage dạng folder trên Kaggle.
+
+Hàm/lớp chính:
+
+```python
+TinyGenImageKaggleConfig
+find_tiny_genimage_root
+build_kaggle_tiny_index
+build_kaggle_tiny_splits
+TinyGenImageKaggleDataset
+summarize_index
+```
 
 ### `transforms.py`
 
-Tạo transform ảnh cho training/evaluation.
+Tạo transform ảnh cho train/eval và robustness test.
 
 Hàm chính:
 
@@ -134,205 +191,304 @@ Hàm chính:
 build_image_transform(...)
 ```
 
-Các perturbation cho robustness:
+## 5. Bốn Trường Hợp Train/Test
+
+Dataloader hỗ trợ 4 protocol chính.
+
+### 5.1. `combined`
+
+Train trên tất cả generator trong train split, test trên tất cả generator trong validation split.
 
 ```text
-none
-jpeg
-resize
-center_crop
-blur
+train = real + fake từ tất cả generator/train
+test  = real + fake từ tất cả generator/val
 ```
 
-Các class phụ:
-
-- `JpegCompression`
-- `ResizeRoundTrip`
-- `CenterCropRatio`
-- `GaussianBlur`
-
-## 2. Cài Đặt Thư Viện
-
-Nếu chạy trong notebook:
-
-```python
-%pip install -q datasets torchvision matplotlib
-```
-
-Nếu chạy script:
-
-```bash
-pip install datasets torchvision matplotlib
-```
-
-## 3. Load Split Cơ Bản
-
-Ví dụ load case `combined`:
-
-```python
-from data_loader import TinyGenImageSplitConfig, build_tiny_genimage_splits
-
-config = TinyGenImageSplitConfig(eval_case="combined")
-splits = build_tiny_genimage_splits(config)
-
-print(splits["notes"])
-print(len(splits["train"]))
-print(len(splits["eval"]))
-```
-
-Muốn stream từ Hugging Face, bật:
-
-```python
-config = TinyGenImageSplitConfig(
-    eval_case="combined",
-    streaming=True,
-    balance_real=True,
-    seed=42,
-)
-splits = build_tiny_genimage_splits(config)
-```
-
-Output `splits` có dạng:
-
-```python
-{
-    "train": ...,
-    "eval": ...,
-    "train_split_name": "train",
-    "eval_split_name": "validation",
-    "eval_case": "combined",
-    "dataset_name": "TheKernel01/Tiny-GenImage",
-    "streaming": True hoặc False,
-    "balance_real": True,
-    "train_real_count": 14000,
-    "train_fake_count": 14000,
-    "eval_real_count": 3500,
-    "eval_fake_count": 3500,
-    "train_rows": 28000,
-    "eval_rows": 7000,
-    "notes": "..."
-}
-```
-
-## 4. Các Trường Hợp Evaluation
-
-### Case 1: `combined`
-
-Train trên toàn bộ generator trong split train, test trên toàn bộ generator trong split validation.
-
-```python
-config = TinyGenImageSplitConfig(
-    eval_case="combined",
-    balance_real=True,
-    seed=42,
-)
-splits = build_tiny_genimage_splits(config)
-```
-
-Số lượng:
+Số lượng expected với Tiny-GenImage full:
 
 ```text
-train = 14,000 real + 14,000 fake = 28,000
-eval  = 3,500 real + 3,500 fake = 7,000
+train: 14,000 real + 14,000 fake = 28,000
+test:   3,500 real +  3,500 fake =  7,000
 ```
 
-Dùng cho:
+Mục đích: baseline tổng quát khi train/test cùng toàn bộ distribution Tiny-GenImage.
 
-- baseline chính Stage 1,
-- Stage 2 alignment clean,
-- so sánh model tổng quát trên Tiny-GenImage.
+### 5.2. `in_domain`
 
-### Case 2: `in_domain`
+Train và test trên cùng một generator.
 
-Train và test cùng một fake generator, cộng với ảnh real.
+Ví dụ:
 
 ```python
-config = TinyGenImageSplitConfig(
-    eval_case="in_domain",
-    generator="BigGAN",
-    balance_real=True,
-    seed=42,
-)
-splits = build_tiny_genimage_splits(config)
+eval_case = "in_domain"
+generator = "BigGAN"
 ```
 
 Ý nghĩa:
 
 ```text
 train = real + fake BigGAN từ train split
-eval  = real + fake BigGAN từ validation split
+test  = real + fake BigGAN từ validation split
 ```
 
-Số lượng dự kiến:
+Số lượng expected:
 
 ```text
-train = 2,000 real + 2,000 fake BigGAN = 4,000
-eval  = 500 real + 500 fake BigGAN = 1,000
+train: 2,000 real + 2,000 fake = 4,000
+test:    500 real +   500 fake = 1,000
 ```
 
-Dùng để kiểm tra model học tốt trên generator đã thấy chưa.
+Mục đích: kiểm tra model học tốt generator đã thấy hay không.
 
-### Case 3: `cross_generator`
+### 5.3. `cross_generator`
 
-Leave-one-generator-out. Train loại bỏ fake của generator held-out, test trên fake generator đó.
+Leave-one-generator-out. Train trên các generator còn lại, test trên generator bị giữ lại.
+
+Ví dụ:
 
 ```python
-config = TinyGenImageSplitConfig(
-    eval_case="cross_generator",
-    heldout_generator="GLIDE",
-    balance_real=True,
-    seed=42,
-)
-splits = build_tiny_genimage_splits(config)
+eval_case = "cross_generator"
+heldout_generator = "GLIDE"
 ```
 
 Ý nghĩa:
 
 ```text
 train = real + fake từ tất cả generator trừ GLIDE
-eval  = real + fake GLIDE
+test  = real + fake GLIDE
 ```
 
-Số lượng dự kiến:
+Số lượng expected:
 
 ```text
-train = 12,000 real + 12,000 fake non-GLIDE = 24,000
-eval  = 500 real + 500 fake GLIDE = 1,000
+train: 12,000 real + 12,000 fake = 24,000
+test:     500 real +    500 fake =  1,000
 ```
 
-Dùng cho main cross-generator evaluation vì nó đo khả năng generalize sang generator chưa thấy.
+Mục đích: đo khả năng generalize sang generator chưa thấy khi train.
 
-### Case 4: `train_one_generator`
+### 5.4. `train_one_generator`
 
-Train trên một fake generator, test trên toàn bộ validation.
+Train trên một generator, test trên tất cả generator.
+
+Ví dụ:
 
 ```python
-config = TinyGenImageSplitConfig(
-    eval_case="train_one_generator",
-    base_generator="BigGAN",
-    balance_real=True,
-    seed=42,
-)
-splits = build_tiny_genimage_splits(config)
+eval_case = "train_one_generator"
+base_generator = "BigGAN"
 ```
 
 Ý nghĩa:
 
 ```text
 train = real + fake BigGAN
-eval  = real + fake từ tất cả generator validation
+test  = real + fake từ tất cả generator validation
 ```
 
-Số lượng dự kiến:
+Số lượng expected:
 
 ```text
-train = 2,000 real + 2,000 fake BigGAN = 4,000
-eval  = 3,500 real + 3,500 fake all generators = 7,000
+train: 2,000 real + 2,000 fake = 4,000
+test:  3,500 real + 3,500 fake = 7,000
 ```
 
-Dùng như stress test. Nếu kết quả thấp trên generator khác thì chứng minh model đang học artifact riêng của generator.
+Mục đích: stress test xem model có bị phụ thuộc artifact của một generator hay không.
 
-## 5. Tạo PyTorch DataLoader Cho Stage 1
+## 6. Cân Bằng Real/Fake
+
+Config:
+
+```python
+balance_real=True
+```
+
+Khi bật, mỗi split sẽ lấy số ảnh real bằng số ảnh fake:
+
+```text
+num_real = num_fake
+```
+
+Việc này quan trọng vì nếu class bị lệch, model có thể đạt accuracy cao bằng cách đoán class chiếm đa số. Với bài toán fake image detection, cân bằng real/fake giúp các metric như accuracy, balanced accuracy, precision, recall phản ánh đúng hơn.
+
+Khi `balance_real=False`, loader giữ phân phối gốc của dataset. Chế độ này có thể dùng để kiểm tra model trong điều kiện phân phối tự nhiên, nhưng không nên dùng làm baseline chính nếu dataset lệch class.
+
+## 7. Khác Biệt Giữa Hugging Face Và Kaggle Folder
+
+Bản Hugging Face Tiny-GenImage là dạng flattened. Ảnh real có thể không còn giữ rõ thông tin real thuộc generator folder nào. Vì vậy trong các case như `in_domain`, loader Hugging Face cân bằng real bằng cách lấy từ real pool chung với seed cố định.
+
+Bản Kaggle folder giữ cấu trúc real/fake theo từng generator:
+
+```text
+imagenet_ai_0419_biggan/train/nature
+imagenet_ai_0419_biggan/train/ai
+```
+
+Do đó `in_domain` và `train_one_generator` trên Kaggle folder công bằng hơn, vì real và fake cùng nằm trong folder generator tương ứng.
+
+## 8. Config Quan Trọng
+
+### `TinyGenImageSplitConfig`
+
+Dùng cho Hugging Face loader.
+
+```python
+TinyGenImageSplitConfig(
+    eval_case="combined",
+    generator=None,
+    heldout_generator=None,
+    base_generator=None,
+    train_split="train",
+    validation_split="validation",
+    cache_dir=None,
+    streaming=False,
+    balance_real=True,
+    seed=42,
+    streaming_shuffle_buffer_size=10000,
+)
+```
+
+Ý nghĩa:
+
+```text
+eval_case       chọn protocol: combined, in_domain, cross_generator, train_one_generator
+generator       generator dùng cho in_domain
+heldout_generator generator bị giữ lại cho cross_generator
+base_generator  generator dùng để train trong train_one_generator
+train_split     tên split train
+validation_split tên split eval/test
+cache_dir       nơi cache dataset nếu streaming=False
+streaming       True thì đọc lazy từ Hugging Face
+balance_real    True thì cân bằng real/fake
+seed            seed để shuffle/sampling tái lập được
+streaming_shuffle_buffer_size kích thước buffer shuffle khi streaming
+```
+
+### `TinyGenImageKaggleConfig`
+
+Dùng cho Kaggle folder loader.
+
+```python
+TinyGenImageKaggleConfig(
+    dataset_root=None,
+    kaggle_input_root="/kaggle/input",
+    eval_case="combined",
+    generator=None,
+    heldout_generator=None,
+    base_generator=None,
+    train_split="train",
+    validation_split="validation",
+    balance_real=True,
+    seed=42,
+    max_train_samples=None,
+    max_eval_samples=None,
+)
+```
+
+Ý nghĩa:
+
+```text
+dataset_root     đường dẫn root Tiny-GenImage; None thì tự tìm trong /kaggle/input
+kaggle_input_root root input Kaggle
+eval_case        protocol thí nghiệm
+generator        generator cho in_domain
+heldout_generator generator bị giữ lại cho cross_generator
+base_generator   generator train chính cho train_one_generator
+train_split      mặc định train
+validation_split mặc định validation, có alias val/test
+balance_real     cân bằng real/fake
+seed             seed sampling
+max_train_samples giới hạn sample train để debug
+max_eval_samples  giới hạn sample eval/test để debug
+```
+
+Loader Kaggle hỗ trợ alias:
+
+```text
+split train: train, training
+split validation: val, valid, validation, test
+real folder: nature, real, 0_real, 0-real, 0
+fake folder: ai, fake, 1_fake, 1-fake, 1
+generator alias: BigGAN, GLIDE, ADM, VQDM, Wukong, Midjourney, SD15/sdv5, SD14/sdv4
+```
+
+## 9. Transform Ảnh
+
+File:
+
+```text
+data_loader/transforms.py
+```
+
+Hàm:
+
+```python
+build_image_transform(
+    image_size=224,
+    train=False,
+    normalize=True,
+    perturbation="none",
+    jpeg_quality=75,
+    resize_scale=0.5,
+    crop_ratio=0.8,
+    blur_radius=1.0,
+)
+```
+
+Khi `train=True`:
+
+```text
+RandomResizedCrop(image_size)
+RandomHorizontalFlip()
+ToTensor()
+Normalize(ImageNet mean/std)
+```
+
+Khi `train=False`:
+
+```text
+Resize(int(image_size * 1.15))
+CenterCrop(image_size)
+ToTensor()
+Normalize(ImageNet mean/std)
+```
+
+Robustness perturbation hỗ trợ:
+
+```text
+none          ảnh clean
+jpeg          nén JPEG với jpeg_quality
+resize        resize xuống rồi phóng lại với resize_scale
+center_crop   crop giữa với crop_ratio rồi resize lại
+blur          Gaussian blur với blur_radius
+```
+
+Trong báo cáo, robustness nên được đánh giá bằng cùng checkpoint clean, chỉ thay transform ở eval.
+
+## 10. Output Của Dataloader
+
+`collate_unified_batch` gom batch thành:
+
+```python
+{
+    "image": torch.Tensor,       # [B, 3, H, W] nếu transform trả tensor
+    "label": torch.LongTensor,   # [B]
+    "label_name": list[str],
+    "generator": list[str],
+    "sample_id": list[str],
+    "metadata": list[dict],
+}
+```
+
+Nếu `task_type="alignment"`, batch có thêm:
+
+```python
+target_text = ["real", "fake", ...]
+label_token = ["real", "fake", ...]
+```
+
+Trường này dùng cho Stage 2 khi cần target dạng text/token cho MLLM.
+
+## 11. Ví Dụ Sử Dụng Hugging Face Loader
 
 ```python
 from torch.utils.data import DataLoader
@@ -345,14 +501,13 @@ from data_loader import (
     collate_unified_batch,
 )
 
-splits = build_tiny_genimage_splits(
-    TinyGenImageSplitConfig(
-        eval_case="combined",
-        streaming=True,
-        balance_real=True,
-        seed=42,
-    )
+config = TinyGenImageSplitConfig(
+    eval_case="combined",
+    streaming=True,
+    balance_real=True,
+    seed=42,
 )
+splits = build_tiny_genimage_splits(config)
 
 DatasetClass = TinyGenImageIterableDataset if splits["streaming"] else TinyGenImageDataset
 
@@ -364,280 +519,97 @@ train_dataset = DatasetClass(
     task_type="classification",
 )
 
-eval_dataset = DatasetClass(
-    splits["eval"],
-    split_name=splits["eval_split_name"],
+train_loader = DataLoader(
+    train_dataset,
+    batch_size=32,
+    shuffle=False if splits["streaming"] else True,
+    num_workers=0,
+    collate_fn=collate_unified_batch,
+)
+```
+
+## 12. Ví Dụ Sử Dụng Kaggle Folder Loader
+
+```python
+from torch.utils.data import DataLoader
+from data_loader import (
+    TinyGenImageKaggleConfig,
+    TinyGenImageKaggleDataset,
+    build_image_transform,
+    build_kaggle_tiny_splits,
+    collate_unified_batch,
+    find_tiny_genimage_root,
+)
+
+root = find_tiny_genimage_root()
+
+config = TinyGenImageKaggleConfig(
+    dataset_root=str(root),
+    eval_case="combined",
+    balance_real=True,
+    seed=42,
+)
+splits = build_kaggle_tiny_splits(config)
+
+train_dataset = TinyGenImageKaggleDataset(
+    splits["train_df"],
     eval_case=splits["eval_case"],
-    transform=build_image_transform(image_size=224, train=False),
-    task_type="classification",
+    transform=build_image_transform(image_size=224, train=True),
 )
 
 train_loader = DataLoader(
     train_dataset,
     batch_size=32,
-    shuffle=False if splits["streaming"] else True,
-    num_workers=2,
-    collate_fn=collate_unified_batch,
-)
-
-batch = next(iter(train_loader))
-print(batch["image"].shape)
-print(batch["label"])
-print(batch["generator"])
-```
-
-Batch trả về:
-
-```python
-{
-    "image": torch.Tensor,       # [B, 3, H, W]
-    "label": torch.LongTensor,   # [B]
-    "label_name": list[str],
-    "generator": list[str],
-    "sample_id": list[str],
-    "metadata": list[dict],
-}
-```
-
-## 6. Dùng Cho Stage 2 Alignment
-
-Stage 2 cần target dạng text/token `real` hoặc `fake`.
-
-```python
-alignment_dataset = TinyGenImageDataset(
-    splits["train"],
-    split_name=splits["train_split_name"],
-    eval_case=splits["eval_case"],
-    transform=build_image_transform(image_size=224, train=False),
-    task_type="alignment",
-)
-
-alignment_loader = DataLoader(
-    alignment_dataset,
-    batch_size=16,
     shuffle=True,
+    num_workers=0,
     collate_fn=collate_unified_batch,
 )
-
-batch = next(iter(alignment_loader))
-print(batch["label_token"])
-print(batch["target_text"])
 ```
 
-Batch sẽ có thêm:
+## 13. Config Nên Ghi Trong Báo Cáo
 
-```python
-label_token: ["real", "fake", ...]
-target_text: ["real", "fake", ...]
-```
-
-Phần projector/MLLM sau này có thể dùng `target_text` để tạo loss dự đoán token.
-
-## 7. Test Robustness
-
-Robustness không nên trộn vào train. Nên train model trên clean data, sau đó chỉ đổi transform ở eval.
-
-JPEG compression:
-
-```python
-robust_transform = build_image_transform(
-    image_size=224,
-    train=False,
-    perturbation="jpeg",
-    jpeg_quality=50,
-)
-```
-
-Resize/downsample:
-
-```python
-robust_transform = build_image_transform(
-    image_size=224,
-    train=False,
-    perturbation="resize",
-    resize_scale=0.5,
-)
-```
-
-Center crop:
-
-```python
-robust_transform = build_image_transform(
-    image_size=224,
-    train=False,
-    perturbation="center_crop",
-    crop_ratio=0.8,
-)
-```
-
-Blur:
-
-```python
-robust_transform = build_image_transform(
-    image_size=224,
-    train=False,
-    perturbation="blur",
-    blur_radius=2.0,
-)
-```
-
-Tạo eval dataset robustness:
-
-```python
-robust_eval_dataset = TinyGenImageDataset(
-    splits["eval"],
-    split_name=splits["eval_split_name"],
-    eval_case=f'{splits["eval_case"]}:jpeg_q50',
-    transform=robust_transform,
-    task_type="classification",
-)
-```
-
-Metric nên báo:
+Khi báo cáo kết quả, cần ghi rõ:
 
 ```text
-clean_acc
-robust_acc
-accuracy_drop = clean_acc - robust_acc
-clean_f1
-robust_f1
-f1_drop = clean_f1 - robust_f1
+dataset source: Hugging Face hoặc Kaggle folder
+eval_case: combined/in_domain/cross_generator/train_one_generator
+generator: nếu dùng in_domain
+heldout_generator: nếu dùng cross_generator
+base_generator: nếu dùng train_one_generator
+balance_real: True/False
+seed: ví dụ 42
+train/eval sample count
+transform train/eval
+robustness perturbation nếu có
+batch_size
+num_workers
+model/backbone
+metric chính: balanced_accuracy
 ```
 
-## 8. Streaming Và Cache Dataset
-
-Nếu dùng:
-
-```python
-TinyGenImageSplitConfig(streaming=True)
-```
-
-loader sẽ dùng Hugging Face streaming. Nó không tải toàn bộ parquet dataset về local cache trước. Dữ liệu được đọc dần khi vòng lặp `DataLoader` chạy.
-
-Điểm đổi lại của streaming:
-
-- Không có `len()` chính xác cho split.
-- Không shuffle random toàn dataset như map-style dataset.
-- Training có thể chậm hơn vì phụ thuộc mạng.
-- Một số operation như `.select(...)` không dùng được; dùng `.take(n)` để test vài mẫu.
-
-Nếu dùng:
-
-```python
-TinyGenImageSplitConfig(streaming=False)
-```
-
-Hugging Face sẽ tải/cache dataset ở máy đang chạy. Cách này tốn dung lượng nhưng train lặp lại nhanh hơn.
-
-Nếu chạy Colab và muốn cache bền trong Google Drive:
-
-```python
-config = TinyGenImageSplitConfig(
-    eval_case="combined",
-    cache_dir="/content/drive/MyDrive/hf_cache",
-    streaming=False,
-)
-```
-
-Nếu không set `cache_dir`, Colab có thể phải tải lại sau khi runtime mất.
-
-## 9. Notebook Test
-
-Notebook test nằm ở:
+Với baseline có early stopping, nên ghi thêm:
 
 ```text
-notebooks/test_tiny_genimage_loader.ipynb
+train_inner: phần train dùng để học
+val_inner: phần train tách ra để chọn epoch
+test: validation split gốc dùng để báo cáo cuối
+MAX_EPOCHS
+PATIENCE
+MIN_DELTA
+best_epoch
 ```
 
-Notebook này kiểm tra:
+## 14. Ghi Chú Về Tính Công Bằng Thí Nghiệm
 
-- import module `data_loader`,
-- load Tiny-GenImage từ Hugging Face,
-- tạo split theo `EVAL_CASE`,
-- tạo PyTorch DataLoader,
-- hiển thị vài ảnh trong batch,
-- test robustness transform,
-- test `task_type="alignment"` cho Stage 2.
-
-## 10. Lưu Ý Khi Dùng Cho Train
-
-- Không lưu ảnh vào repo.
-- Chỉ lưu code, config split, metric, prediction, checkpoint.
-- Khi báo kết quả, luôn ghi rõ `eval_case`, generator train/heldout, split và perturbation.
-- Với `cross_generator`, nên chạy lần lượt nhiều `heldout_generator` rồi lấy trung bình.
-- Với robustness, phải dùng cùng checkpoint clean, chỉ thay eval transform.
-- Với Stage 2, trước mắt dùng target `real/fake`; sau này nếu có forensic attributes thì thêm target phụ để tránh projector thành classifier head đơn giản.
-
-## 11. Loader Cho Kaggle Folder Tiny-GenImage
-
-Nếu đã add dataset Tiny-GenImage vào Kaggle Input, dùng:
-
-```python
-from data_loader import (
-    TinyGenImageKaggleConfig,
-    TinyGenImageKaggleDataset,
-    build_kaggle_tiny_splits,
-    find_tiny_genimage_root,
-    summarize_index,
-)
-```
-
-File chính:
+Các nguyên tắc đang dùng:
 
 ```text
-data_loader/tiny_genimage_kaggle.py
+1. Không trộn validation/test vào train.
+2. Với early stopping, tách train_inner/val_inner từ train split gốc.
+3. Giữ validation split gốc làm test cuối nếu cần báo cáo kết quả.
+4. Cân bằng real/fake bằng seed cố định để kết quả tái lập được.
+5. Trong cross_generator, generator held-out không xuất hiện ở fake train set.
+6. Robustness chỉ áp dụng ở eval, không trộn vào train clean baseline.
 ```
 
-Loader này không dùng Hugging Face streaming. Nó scan cấu trúc folder trong `/kaggle/input`, lưu metadata đường dẫn ảnh vào `DataFrame`, rồi `TinyGenImageKaggleDataset` chỉ mở từng ảnh khi `DataLoader` gọi `__getitem__`.
-
-Cấu trúc folder được hỗ trợ:
-
-```text
-tiny-genimage-root/
-  BigGAN/
-    train/
-      ai/
-      nature/
-    val/
-      ai/
-      nature/
-  GLIDE/
-    train/
-      ai/
-      nature/
-    val/
-      ai/
-      nature/
-```
-
-Các alias cũng được hỗ trợ:
-
-```text
-split: train, training, val, valid, validation, test
-label real: nature, real, 0_real, 0-real, 0
-label fake: ai, fake, 1_fake, 1-fake, 1
-```
-
-Ví dụ kiểm tra cấu trúc dataset trên Kaggle:
-
-```python
-root = find_tiny_genimage_root()
-config = TinyGenImageKaggleConfig(dataset_root=str(root), eval_case="combined")
-splits = build_kaggle_tiny_splits(config)
-
-print(splits["dataset_root"])
-print(splits["notes"])
-print(splits["train_real_count"], splits["train_fake_count"])
-print(splits["eval_real_count"], splits["eval_fake_count"])
-```
-
-Các `eval_case` giữ cùng ý nghĩa với loader Hugging Face:
-
-```text
-combined
-in_domain
-cross_generator
-train_one_generator
-```
-
-Khác biệt quan trọng: bản Kaggle/folder giữ real ảnh theo từng generator folder (`BigGAN/train/nature`, `GLIDE/train/nature`, ...), nên case `in_domain` và `train_one_generator` công bằng hơn bản Hugging Face flattened.
+Điểm cần lưu ý: nếu dùng bản Hugging Face flattened, real images có thể đến từ real pool chung thay vì real theo từng generator folder. Vì vậy các kết quả cần ghi rõ nguồn loader để tránh so sánh lệch với bản Kaggle folder.

@@ -8,6 +8,7 @@ Mỗi thư mục con tương ứng với một baseline model riêng.
 - `swin_t`
 - `cnnspot`
 - `clip_linear_probe`
+- `npr_resnet18`
 - `fft`
 - `logistic_regression`
 - `linear_svm`
