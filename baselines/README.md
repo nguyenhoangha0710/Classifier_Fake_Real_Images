@@ -9,6 +9,8 @@ Mỗi thư mục con tương ứng với một baseline model riêng.
 - `cnnspot`
 - `clip_linear_probe`
 - `npr_resnet18`
+- `cross_dataset_eval`
+- `qwen25vl_lora_word_label`
 - `fft`
 - `logistic_regression`
 - `linear_svm`
