@@ -7,6 +7,7 @@ File chinh:
 ```text
 train_qwen25vl_lora_word_label_kaggle.ipynb
 train_qwen25vl_lora_word_label_modal.py
+infer_qwen25vl_lora_commfor_modal.py
 ```
 
 ## Protocol
@@ -276,6 +277,87 @@ Doi tan suat checkpoint:
 
 ```bash
 modal run baselines/qwen25vl_lora_word_label/train_qwen25vl_lora_word_label_modal.py --full-train --checkpoint-every-optimizer-steps 10
+```
+
+## Inference LLM Tren CommFor
+
+File inference rieng:
+
+```text
+infer_qwen25vl_lora_commfor_modal.py
+```
+
+File nay khong train. No chi:
+
+```text
+Load base Qwen2.5-VL-7B-Instruct
+Load LoRA adapter tu qwen25vl-lora-outputs
+Test 1000 anh CommunityForensics-Eval / CompEval
+Luu metrics, predictions va thong ke generator/architecture
+```
+
+Chay inference bang final adapter cua mot run:
+
+```bash
+modal run baselines/qwen25vl_lora_word_label/infer_qwen25vl_lora_commfor_modal.py --adapter-run-id 20260910_003026 --max-samples 1000
+```
+
+Chay inference 2000 anh, scan metadata truoc de tim generator, roi chia gan deu theo cac generator tim duoc:
+
+```bash
+modal run baselines/qwen25vl_lora_word_label/infer_qwen25vl_lora_commfor_modal.py --adapter-run-id 20260910_003026 --max-samples 2000 --sample-strategy discover_then_balance --discover-scan-limit 50000 --shuffle-buffer-size 1000
+```
+
+Lenh tren se luu them:
+
+```text
+metrics/discovered_generator_counts.csv
+metrics/discovered_generator_label_counts.csv
+```
+
+Neu muon tu chi dinh generator, dung `balanced_generator`.
+Danh sach generator mac dinh cho `balanced_generator`:
+
+```text
+IdeogramV1
+IdeogramV2
+kvikontent_midjourney_v6
+DeciDiffusionV2
+stable_cascade
+MidjourneyV5_2
+MidjourneyV6_1
+DFGAN
+Firefly_Image2
+```
+
+Chay inference bang checkpoint adapter moi nhat:
+
+```bash
+modal run baselines/qwen25vl_lora_word_label/infer_qwen25vl_lora_commfor_modal.py --adapter-run-id 20260910_003026 --adapter-subdir checkpoints/latest/adapter --max-samples 1000
+```
+
+Tren may Windows cua minh, nen chay bang Python 3.12:
+
+```powershell
+$env:PYTHONIOENCODING='utf-8'
+C:\Users\namth\AppData\Local\Programs\Python\Python312\python.exe -m modal run baselines/qwen25vl_lora_word_label/infer_qwen25vl_lora_commfor_modal.py --adapter-run-id 20260910_003026 --max-samples 1000
+```
+
+Output inference se nam trong:
+
+```text
+qwen25vl-lora-outputs:/qwen25vl_lora_word_label/<adapter_run_id>/inference_commfor_<inference_id>/
+```
+
+File chinh:
+
+```text
+metrics/community_forensics_eval_overall_metrics.json
+metrics/community_forensics_eval_generator_counts.csv
+metrics/community_forensics_eval_generator_label_counts.csv
+metrics/community_forensics_eval_architecture_counts.csv
+metrics/community_forensics_eval_architecture_label_counts.csv
+predictions/community_forensics_eval_predictions.csv
 ```
 
 ## Output

@@ -766,6 +766,51 @@ def train_qwen25vl_lora_word_label(config_overrides: dict | None = None) -> dict
             rows.append(metrics)
         return pd.DataFrame(rows).sort_values(column) if rows else pd.DataFrame(rows)
 
+    def save_count_tables(pred_df: pd.DataFrame, dataset_tag: str) -> None:
+        if "generator" in pred_df.columns:
+            generator_counts = (
+                pred_df.groupby(["generator", "label_name"], dropna=False)
+                .size()
+                .reset_index(name="num_samples")
+                .sort_values(["generator", "label_name"])
+            )
+            generator_counts.to_csv(
+                run_dir / "metrics" / f"{dataset_tag}_generator_label_counts.csv",
+                index=False,
+            )
+            generator_total_counts = (
+                pred_df.groupby("generator", dropna=False)
+                .size()
+                .reset_index(name="num_samples")
+                .sort_values("num_samples", ascending=False)
+            )
+            generator_total_counts.to_csv(
+                run_dir / "metrics" / f"{dataset_tag}_generator_counts.csv",
+                index=False,
+            )
+
+        if "architecture" in pred_df.columns:
+            architecture_counts = (
+                pred_df.groupby(["architecture", "label_name"], dropna=False)
+                .size()
+                .reset_index(name="num_samples")
+                .sort_values(["architecture", "label_name"])
+            )
+            architecture_counts.to_csv(
+                run_dir / "metrics" / f"{dataset_tag}_architecture_label_counts.csv",
+                index=False,
+            )
+            architecture_total_counts = (
+                pred_df.groupby("architecture", dropna=False)
+                .size()
+                .reset_index(name="num_samples")
+                .sort_values("num_samples", ascending=False)
+            )
+            architecture_total_counts.to_csv(
+                run_dir / "metrics" / f"{dataset_tag}_architecture_counts.csv",
+                index=False,
+            )
+
     @torch.no_grad()
     def predict_word_label(loader, dataset_tag: str):
         model.eval()
@@ -789,6 +834,7 @@ def train_qwen25vl_lora_word_label(config_overrides: dict | None = None) -> dict
         pred_df["fake_probability"] = y_prob
         pred_df["model_name"] = "qwen25vl_lora_word_label"
         pred_df["dataset_tag"] = dataset_tag
+        pred_df["label_name"] = pred_df["label"].map(label_id_to_text)
 
         metrics = compute_metrics(y_true, y_prob)
         metrics.update(
@@ -809,6 +855,7 @@ def train_qwen25vl_lora_word_label(config_overrides: dict | None = None) -> dict
         by_architecture = evaluate_by_column(pred_df, "architecture")
         if len(by_architecture):
             by_architecture.to_csv(run_dir / "metrics" / f"{dataset_tag}_architecture_metrics.csv", index=False)
+        save_count_tables(pred_df, dataset_tag)
         if config["save_predictions"]:
             pred_df.to_csv(run_dir / "predictions" / f"{dataset_tag}_predictions.csv", index=False)
         print(dataset_tag, json.dumps(metrics, ensure_ascii=False, indent=2))
