@@ -3,6 +3,22 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Local Python environments
+.venv/
+.venv*/
+venv/
+venv*/
+
+# Python tooling caches and build artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
 # Notebook cache
 .ipynb_checkpoints/
 
@@ -12,6 +28,13 @@ runs/
 wandb/
 mlruns/
 tensorboard/
+modal_results/
+
+# Runtime logs and partial downloads
+*.log
+*.tmp
+*.temp
+*.part
 
 # Model checkpoints and weights
 *.pt
