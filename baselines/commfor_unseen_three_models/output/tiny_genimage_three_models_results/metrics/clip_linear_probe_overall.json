@@ -1,0 +1,28 @@
+{
+  "model": "clip_linear_probe",
+  "num_samples": 7000,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "tn": 3035,
+  "fp": 465,
+  "fn": 493,
+  "tp": 3007,
+  "accuracy": 0.8631428571428571,
+  "balanced_accuracy": 0.8631428571428571,
+  "real_recall": 0.8671428571428571,
+  "fake_recall": 0.8591428571428571,
+  "fake_precision": 0.8660714285714286,
+  "fake_f1": 0.8625932300631096,
+  "roc_auc": 0.9340557142857143,
+  "average_precision": 0.9320361099802477,
+  "confusion_matrix": [
+    [
+      3035,
+      465
+    ],
+    [
+      493,
+      3007
+    ]
+  ]
+}

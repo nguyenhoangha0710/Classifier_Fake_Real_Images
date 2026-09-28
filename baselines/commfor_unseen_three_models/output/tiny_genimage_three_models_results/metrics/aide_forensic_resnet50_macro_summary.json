@@ -1,0 +1,14 @@
+{
+  "model": "aide_forensic_resnet50",
+  "macro_generator_accuracy": 0.9247142857142857,
+  "macro_generator_balanced_accuracy": 0.9247142857142857,
+  "macro_generator_real_recall": 0.9814285714285713,
+  "macro_generator_fake_recall": 0.8680000000000001,
+  "macro_generator_fake_precision": 0.9784007231001477,
+  "macro_generator_fake_f1": 0.916189861490018,
+  "macro_generator_roc_auc": 0.9758277142857141,
+  "macro_generator_average_precision": 0.9744394134147275,
+  "worst_generator_balanced_accuracy": 0.7989999999999999,
+  "best_generator_balanced_accuracy": 0.986,
+  "num_generators": 7
+}

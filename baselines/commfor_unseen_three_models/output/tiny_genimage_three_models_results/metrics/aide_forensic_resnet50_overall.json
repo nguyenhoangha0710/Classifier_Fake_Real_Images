@@ -1,0 +1,28 @@
+{
+  "model": "aide_forensic_resnet50",
+  "num_samples": 7000,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "tn": 3435,
+  "fp": 65,
+  "fn": 462,
+  "tp": 3038,
+  "accuracy": 0.9247142857142857,
+  "balanced_accuracy": 0.9247142857142857,
+  "real_recall": 0.9814285714285714,
+  "fake_recall": 0.868,
+  "fake_precision": 0.9790525298098615,
+  "fake_f1": 0.92018779342723,
+  "roc_auc": 0.9754697551020407,
+  "average_precision": 0.9755283967217914,
+  "confusion_matrix": [
+    [
+      3435,
+      65
+    ],
+    [
+      462,
+      3038
+    ]
+  ]
+}

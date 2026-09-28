@@ -1,0 +1,11 @@
+ {
+  "path": "/kaggle/working/aide_full_tiny_commfor/checkpoints/best/model_trainable.pt",
+  "sha256": "62848895b44255d6a0567754c503a05807ed0a29b8046f3c6956a049844e47c3",
+  "frozen_semantic_backbone_included": false,
+  "semantic_backbone": {
+    "model_name": "convnext_xxlarge",
+    "pretrained": "laion2b_s34b_b82k_augreg_soup",
+    "checkpoint_path": null,
+    "checkpoint_sha256": null
+  }
+}

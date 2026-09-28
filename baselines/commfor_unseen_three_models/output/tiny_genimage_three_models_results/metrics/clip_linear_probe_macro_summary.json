@@ -1,0 +1,14 @@
+{
+  "model": "clip_linear_probe",
+  "macro_generator_accuracy": 0.8631428571428571,
+  "macro_generator_balanced_accuracy": 0.863142857142857,
+  "macro_generator_real_recall": 0.8671428571428571,
+  "macro_generator_fake_recall": 0.8591428571428571,
+  "macro_generator_fake_precision": 0.8650184503105909,
+  "macro_generator_fake_f1": 0.8586378468851095,
+  "macro_generator_roc_auc": 0.9352137142857142,
+  "macro_generator_average_precision": 0.9255887399549421,
+  "worst_generator_balanced_accuracy": 0.763,
+  "best_generator_balanced_accuracy": 0.9339999999999999,
+  "num_generators": 7
+}

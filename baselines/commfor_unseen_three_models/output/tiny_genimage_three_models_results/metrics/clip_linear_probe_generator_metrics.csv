@@ -1,0 +1,8 @@
+model,generator,metric_cohort,num_samples,num_real,num_fake,tn,fp,fn,tp,accuracy,balanced_accuracy,real_recall,fake_recall,fake_precision,fake_f1,roc_auc,average_precision,confusion_matrix
+clip_linear_probe,ADM,tiny_validation_generator_own_real_and_fake,1000,500,500,425,75,74,426,0.851,0.851,0.85,0.852,0.8502994011976048,0.8511488511488512,0.9271199999999999,0.9232331921131155,"[[425, 75], [74, 426]]"
+clip_linear_probe,BigGAN,tiny_validation_generator_own_real_and_fake,1000,500,500,436,64,9,491,0.927,0.927,0.872,0.982,0.8846846846846846,0.9308056872037914,0.982658,0.9802368394485953,"[[436, 64], [9, 491]]"
+clip_linear_probe,GLIDE,tiny_validation_generator_own_real_and_fake,1000,500,500,434,66,0,500,0.934,0.9339999999999999,0.868,1.0,0.8833922261484098,0.9380863039399625,0.9936419999999999,0.9927487865983791,"[[434, 66], [0, 500]]"
+clip_linear_probe,Midjourney,tiny_validation_generator_own_real_and_fake,1000,500,500,436,64,59,441,0.877,0.877,0.872,0.882,0.8732673267326733,0.8776119402985074,0.938826,0.9366987175652838,"[[436, 64], [59, 441]]"
+clip_linear_probe,SD15,tiny_validation_generator_own_real_and_fake,1000,500,500,420,80,59,441,0.861,0.861,0.84,0.882,0.8464491362763915,0.8638589618021547,0.93794,0.9287065404619136,"[[420, 80], [59, 441]]"
+clip_linear_probe,VQDM,tiny_validation_generator_own_real_and_fake,1000,500,500,444,56,181,319,0.763,0.763,0.888,0.638,0.8506666666666667,0.7291428571428571,0.853982,0.8311420777815924,"[[444, 56], [181, 319]]"
+clip_linear_probe,Wukong,tiny_validation_generator_own_real_and_fake,1000,500,500,440,60,111,389,0.829,0.829,0.88,0.778,0.8663697104677061,0.8198103266596417,0.912328,0.886355025715714,"[[440, 60], [111, 389]]"

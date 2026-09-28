@@ -1,0 +1,20 @@
+{
+  "official_aide_repository": "https://github.com/shilinyan99/AIDE",
+  "semantic_backbone": {
+    "model_name": "convnext_xxlarge",
+    "pretrained": "laion2b_s34b_b82k_augreg_soup",
+    "checkpoint_path": null,
+    "checkpoint_sha256": null
+  },
+  "architecture": {
+    "patch_selector": "DCT 32x32 stride 16, six inclusive diagonal bands, min1/max1/min2/max2",
+    "forensic_branch": "30 fixed SRM filters + low/high ResNet50 + four-feature mean",
+    "semantic_branch": "frozen OpenCLIP ConvNeXt-XXLarge + trainable 3072->256 projection",
+    "fusion": "concat 2048 forensic + 256 semantic",
+    "classifier": "MLP 2304->1024->2 with GELU"
+  },
+  "implementation_note": "The official architecture is preserved. The semantic ConvNeXt trunk is frozen; the 3072->256 projection is trainable so the randomly initialized adapter can learn.",
+  "total_parameters": 893734732,
+  "trainable_parameters": 50334466,
+  "frozen_parameters": 843400266
+}

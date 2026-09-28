@@ -1,0 +1,28 @@
+{
+  "model": "npr_resnet18",
+  "num_samples": 7000,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "tn": 3360,
+  "fp": 140,
+  "fn": 98,
+  "tp": 3402,
+  "accuracy": 0.966,
+  "balanced_accuracy": 0.966,
+  "real_recall": 0.96,
+  "fake_recall": 0.972,
+  "fake_precision": 0.9604743083003953,
+  "fake_f1": 0.9662027833001988,
+  "roc_auc": 0.9952516326530613,
+  "average_precision": 0.9948040378727974,
+  "confusion_matrix": [
+    [
+      3360,
+      140
+    ],
+    [
+      98,
+      3402
+    ]
+  ]
+}

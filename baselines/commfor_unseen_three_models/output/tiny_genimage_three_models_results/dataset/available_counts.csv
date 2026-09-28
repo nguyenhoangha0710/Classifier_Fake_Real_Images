@@ -1,0 +1,15 @@
+generator,label_name,available_images
+ADM,fake,500
+ADM,real,500
+BigGAN,fake,500
+BigGAN,real,500
+GLIDE,fake,500
+GLIDE,real,500
+Midjourney,fake,500
+Midjourney,real,500
+SD15,fake,500
+SD15,real,500
+VQDM,fake,500
+VQDM,real,500
+Wukong,fake,500
+Wukong,real,500

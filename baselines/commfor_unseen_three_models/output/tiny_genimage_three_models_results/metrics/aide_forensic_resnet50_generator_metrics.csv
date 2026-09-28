@@ -1,0 +1,8 @@
+model,generator,metric_cohort,num_samples,num_real,num_fake,tn,fp,fn,tp,accuracy,balanced_accuracy,real_recall,fake_recall,fake_precision,fake_f1,roc_auc,average_precision,confusion_matrix
+aide_forensic_resnet50,ADM,tiny_validation_generator_own_real_and_fake,1000,500,500,496,4,40,460,0.956,0.956,0.992,0.92,0.9913793103448276,0.9543568464730291,0.9864539999999999,0.9894673475583494,"[[496, 4], [40, 460]]"
+aide_forensic_resnet50,BigGAN,tiny_validation_generator_own_real_and_fake,1000,500,500,486,14,42,458,0.944,0.944,0.972,0.916,0.9703389830508474,0.9423868312757202,0.985458,0.9831334060566823,"[[486, 14], [42, 458]]"
+aide_forensic_resnet50,GLIDE,tiny_validation_generator_own_real_and_fake,1000,500,500,494,6,8,492,0.986,0.986,0.988,0.984,0.9879518072289156,0.9859719438877755,0.995866,0.9840567620982901,"[[494, 6], [8, 492]]"
+aide_forensic_resnet50,Midjourney,tiny_validation_generator_own_real_and_fake,1000,500,500,489,11,190,310,0.799,0.7989999999999999,0.978,0.62,0.9657320872274143,0.7551766138855055,0.9157760000000001,0.9302841222648532,"[[489, 11], [190, 310]]"
+aide_forensic_resnet50,SD15,tiny_validation_generator_own_real_and_fake,1000,500,500,490,10,34,466,0.956,0.956,0.98,0.932,0.9789915966386554,0.9549180327868853,0.988376,0.9784012652372679,"[[490, 10], [34, 466]]"
+aide_forensic_resnet50,VQDM,tiny_validation_generator_own_real_and_fake,1000,500,500,494,6,77,423,0.917,0.917,0.988,0.846,0.986013986013986,0.9106566200215285,0.9797579999999999,0.9760013780930089,"[[494, 6], [77, 423]]"
+aide_forensic_resnet50,Wukong,tiny_validation_generator_own_real_and_fake,1000,500,500,486,14,71,429,0.915,0.915,0.972,0.858,0.9683972911963883,0.9098621420996819,0.979106,0.979731612594641,"[[486, 14], [71, 429]]"

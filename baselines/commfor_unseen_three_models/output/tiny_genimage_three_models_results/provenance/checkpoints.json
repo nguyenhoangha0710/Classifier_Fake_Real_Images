@@ -1,0 +1,14 @@
+{
+  "clip_linear_probe": {
+    "path": "/kaggle/input/datasets/hoangha071005/checkpoint-clip-npr-aide/checkpoints/clip_linear_head.pt",
+    "sha256": "788461421cb585bbf489aabc76f3537058cd7753eccf9432d3a792622f738057"
+  },
+  "npr_resnet18": {
+    "path": "/kaggle/input/datasets/hoangha071005/checkpoint-clip-npr-aide/checkpoints/npr_resnet18_from_scratch.pt",
+    "sha256": "328f9f431d378f9528c86966796e9f3ac604a5ce2bf3d307028062706c1537f0"
+  },
+  "aide_forensic_resnet50": {
+    "path": "/kaggle/input/datasets/hoangha071005/checkpoint-clip-npr-aide/checkpoints/aide/model.pt",
+    "sha256": "57024d5c0256869f8855a081abf27e6e882f5bb6de61659c5ef6a28afe8d5b39"
+  }
+}

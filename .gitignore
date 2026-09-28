@@ -42,6 +42,7 @@ modal_results/
 *.ckpt
 *.safetensors
 *.onnx
+*.rar
 
 # Local datasets and caches
 dataset/*
