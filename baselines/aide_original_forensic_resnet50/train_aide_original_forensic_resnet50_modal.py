@@ -27,7 +27,7 @@ from pathlib import Path
 import modal
 
 
-APP_NAME = "aide-forensic-resnet50"
+APP_NAME = "aide-original-forensic-resnet50"
 GPU_TYPE = "A100-40GB"
 
 TINY_VOLUME_NAME = "tiny-genimage-data"
@@ -36,7 +36,7 @@ HF_CACHE_VOLUME_NAME = "hf-cache"
 
 REMOTE_CODE_ROOT = "/root/HoangHa_Code"
 REMOTE_TINY_ROOT = "/data/tiny-genimage"
-REMOTE_OUTPUT_ROOT = "/outputs/aide_forensic_resnet50"
+REMOTE_OUTPUT_ROOT = "/outputs/aide_original_forensic_resnet50"
 REMOTE_HF_HOME = "/hf-cache"
 
 
@@ -51,7 +51,9 @@ def find_project_root() -> Path:
 
 LOCAL_PROJECT_ROOT = find_project_root()
 LOCAL_DATA_LOADER_DIR = LOCAL_PROJECT_ROOT / "data_loader"
-LOCAL_BASELINE_DIR = LOCAL_PROJECT_ROOT / "baselines" / "aide_forensic_resnet50"
+LOCAL_BASELINE_DIR = (
+    LOCAL_PROJECT_ROOT / "baselines" / "aide_original_forensic_resnet50"
+)
 
 image = (
     modal.Image.debian_slim(python_version="3.12")
@@ -81,14 +83,14 @@ if hasattr(image, "add_local_dir"):
     image = image.add_local_dir(str(LOCAL_DATA_LOADER_DIR), remote_path=f"{REMOTE_CODE_ROOT}/data_loader")
     image = image.add_local_dir(
         str(LOCAL_BASELINE_DIR),
-        remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_forensic_resnet50",
+        remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_original_forensic_resnet50",
     )
 elif hasattr(modal, "Mount"):
     function_mounts = [
         modal.Mount.from_local_dir(LOCAL_DATA_LOADER_DIR, remote_path=f"{REMOTE_CODE_ROOT}/data_loader"),
         modal.Mount.from_local_dir(
             LOCAL_BASELINE_DIR,
-            remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_forensic_resnet50",
+            remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_original_forensic_resnet50",
         ),
     ]
 else:

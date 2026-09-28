@@ -643,7 +643,11 @@ def predict_aide(
             logits = model(patches.unsqueeze(0).to(device))
         probability = float(torch.softmax(logits.float(), dim=-1)[0, 1].cpu())
         prediction = prediction_base(
-            row, "aide_forensic_resnet50", probability, image.width, image.height
+            row,
+            "aide_original_forensic_resnet50",
+            probability,
+            image.width,
+            image.height,
         )
         prediction.update(selection)
         rows.append(prediction)
@@ -819,7 +823,7 @@ def run_evaluation(config: dict[str, Any] | None = None) -> dict[str, Any]:
             device,
             int(config["npr_batch_size"]),
         ),
-        "aide_forensic_resnet50": lambda: predict_aide(
+        "aide_original_forensic_resnet50": lambda: predict_aide(
             manifest, cache_root, paths["aide_checkpoint"], device
         ),
     }

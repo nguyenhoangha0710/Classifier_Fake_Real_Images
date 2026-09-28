@@ -48,17 +48,19 @@ LOCAL_DATA_LOADER_DIR = LOCAL_PROJECT_ROOT / "data_loader"
 LOCAL_NPR_DIR = LOCAL_PROJECT_ROOT / "baselines" / "npr_resnet18"
 LOCAL_CHECKPOINT_PATH = (
     LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "tiny_combined_to_commfor_eval"
-    / "npr_resnet18_from_scratch"
-    / CHECKPOINT_SOURCE_RUN_ID
+    / "baselines"
+    / "npr_resnet18"
+    / "artifacts"
     / "checkpoints"
     / "npr_resnet18_from_scratch.pt"
 )
 LOCAL_AIDE_MANIFEST_PATH = (
     LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "aide_forensic_resnet50_download"
+    / "baselines"
+    / "aide_original_forensic_resnet50"
+    / "artifacts"
+    / "runs"
+    / "modal_download"
     / AIDE_SOURCE_RUN_ID
     / "commfor_combined"
     / "dataset"

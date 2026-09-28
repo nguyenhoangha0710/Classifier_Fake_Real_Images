@@ -39,7 +39,7 @@ REMOTE_OUTPUT_ROOT = "/outputs/commfor_unseen_three_models"
 REMOTE_HF_HOME = "/hf-cache"
 REMOTE_CLIP_CHECKPOINT = "/root/checkpoints/clip/clip_linear_head.pt"
 REMOTE_NPR_CHECKPOINT = "/root/checkpoints/npr/npr_resnet18_from_scratch.pt"
-REMOTE_AIDE_CHECKPOINT = "/root/checkpoints/aide/model.pt"
+REMOTE_AIDE_CHECKPOINT = "/root/checkpoints/aide_original_forensic/model.pt"
 
 CLIP_SOURCE_RUN_ID = "20260906_100207"
 NPR_SOURCE_RUN_ID = "20260906_122613"
@@ -97,30 +97,26 @@ LOCAL_DATA_LOADER_DIR = LOCAL_PROJECT_ROOT / "data_loader"
 LOCAL_NPR_DIR = LOCAL_PROJECT_ROOT / "baselines" / "npr_resnet18"
 LOCAL_CLIP_CHECKPOINT = (
     LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "tiny_combined_to_commfor_eval"
-    / "clip_linear_head"
-    / CLIP_SOURCE_RUN_ID
+    / "baselines"
+    / "clip_linear_probe"
+    / "artifacts"
     / "checkpoints"
     / "clip_linear_head.pt"
 )
 LOCAL_NPR_CHECKPOINT = (
     LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "tiny_combined_to_commfor_eval"
-    / "npr_resnet18_from_scratch"
-    / NPR_SOURCE_RUN_ID
+    / "baselines"
+    / "npr_resnet18"
+    / "artifacts"
     / "checkpoints"
     / "npr_resnet18_from_scratch.pt"
 )
 LOCAL_AIDE_CHECKPOINT = (
     LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "aide_forensic_resnet50_download"
-    / AIDE_SOURCE_RUN_ID
-    / "combined"
+    / "baselines"
+    / "aide_original_forensic_resnet50"
+    / "artifacts"
     / "checkpoints"
-    / "best"
     / "model.pt"
 )
 
@@ -503,7 +499,9 @@ def evaluate_three_models(inference_id: str, config_overrides: dict | None = Non
     prediction_paths = {
         "clip_linear_probe": run_dir / "predictions" / "clip_linear_probe_predictions.csv",
         "npr_resnet18": run_dir / "predictions" / "npr_resnet18_predictions.csv",
-        "aide_forensic_resnet50": run_dir / "predictions" / "aide_forensic_resnet50_predictions.csv",
+        "aide_original_forensic_resnet50": (
+            run_dir / "predictions" / "aide_original_forensic_resnet50_predictions.csv"
+        ),
     }
     final_outputs_ready = bool(config["resume"]) and final_summary_path.is_file() and all(
         path.is_file() for path in prediction_paths.values()
@@ -944,7 +942,7 @@ def evaluate_three_models(inference_id: str, config_overrides: dict | None = Non
             "sha256": sha256_file(Path(config["npr_checkpoint_path"])),
             "checkpoint_type": "full_model",
         },
-        "aide_forensic_resnet50": {
+        "aide_original_forensic_resnet50": {
             "source_run_id": AIDE_SOURCE_RUN_ID,
             "path": config["aide_checkpoint_path"],
             "sha256": sha256_file(Path(config["aide_checkpoint_path"])),
@@ -1154,7 +1152,7 @@ def evaluate_three_models(inference_id: str, config_overrides: dict | None = Non
                     "native_height": int(pil_image.height),
                     "fake_probability": probability,
                     "predicted_label": int(probability >= threshold),
-                    "model": "aide_forensic_resnet50",
+                    "model": "aide_original_forensic_resnet50",
                     **selection,
                 }
             )
@@ -1294,7 +1292,7 @@ def evaluate_three_models(inference_id: str, config_overrides: dict | None = Non
     predictors = {
         "clip_linear_probe": predict_clip,
         "npr_resnet18": predict_npr,
-        "aide_forensic_resnet50": predict_aide,
+        "aide_original_forensic_resnet50": predict_aide,
     }
     predictions_by_model: dict[str, pd.DataFrame] = {}
     results_by_model: dict[str, dict[str, Any]] = {}

@@ -382,7 +382,7 @@ def run_evaluation(user_config: dict[str, Any] | None = None) -> dict[str, Any]:
             "path": str(paths["npr_checkpoint"]),
             "sha256": COMMON.sha256_file(paths["npr_checkpoint"]),
         },
-        "aide_forensic_resnet50": {
+        "aide_original_forensic_resnet50": {
             "path": str(paths["aide_checkpoint"]),
             "sha256": COMMON.sha256_file(paths["aide_checkpoint"]),
         },
@@ -421,7 +421,7 @@ def run_evaluation(user_config: dict[str, Any] | None = None) -> dict[str, Any]:
             device,
             int(config["npr_batch_size"]),
         ),
-        "aide_forensic_resnet50": lambda: COMMON.predict_aide(
+        "aide_original_forensic_resnet50": lambda: COMMON.predict_aide(
             manifest, Path("/"), paths["aide_checkpoint"], device
         ),
     }
@@ -494,4 +494,3 @@ def run_evaluation(user_config: dict[str, Any] | None = None) -> dict[str, Any]:
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
     return payload
-

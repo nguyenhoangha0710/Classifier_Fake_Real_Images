@@ -8,12 +8,12 @@ NPR-ResNet18, and forensic-only AIDE results for the same manifest.
 Run from the repository root::
 
     .\.venv12\Scripts\python.exe -m modal run `
-      baselines/aide_full/test_aide_full_commfor_unseen_modal.py
+      baselines/aide_original_full/test_aide_original_full_commfor_unseen_modal.py
 
 Resume a named run::
 
     .\.venv12\Scripts\python.exe -m modal run `
-      baselines/aide_full/test_aide_full_commfor_unseen_modal.py `
+      baselines/aide_original_full/test_aide_original_full_commfor_unseen_modal.py `
       --inference-id 20260928_full_aide --batch-size 4
 
 The first run may download the frozen OpenCLIP ConvNeXt-XXLarge weights into the
@@ -30,7 +30,7 @@ from typing import Any
 import modal
 
 
-APP_NAME = "aide-full-commfor-unseen"
+APP_NAME = "aide-original-full-commfor-unseen"
 GPU_TYPE = "A100-40GB"
 
 OUTPUT_VOLUME_NAME = "aide-full-commfor-unseen-outputs"
@@ -38,9 +38,12 @@ COMMFOR_CACHE_VOLUME_NAME = "commfor-unseen-three-models-outputs"
 HF_CACHE_VOLUME_NAME = "hf-cache"
 
 REMOTE_CODE_ROOT = "/root/HoangHa_Code"
-REMOTE_TRAIN_MODULE = f"{REMOTE_CODE_ROOT}/baselines/aide_full/train_aide_full_tiny_commfor_kaggle.py"
-REMOTE_CHECKPOINT = "/root/checkpoints/aide_full/model_trainable.pt"
-REMOTE_OUTPUT_ROOT = "/outputs/aide_full_commfor_unseen"
+REMOTE_TRAIN_MODULE = (
+    f"{REMOTE_CODE_ROOT}/baselines/aide_original_full/"
+    "train_aide_original_full_tiny_commfor_kaggle.py"
+)
+REMOTE_CHECKPOINT = "/root/checkpoints/aide_original_full/model_trainable.pt"
+REMOTE_OUTPUT_ROOT = "/outputs/aide_original_full_commfor_unseen"
 REMOTE_HF_HOME = "/hf-cache"
 REMOTE_COMMFOR_RUN_ROOT = (
     "/commfor-cache/commfor_unseen_three_models/commfor_unseen_cache_20260927"
@@ -91,7 +94,12 @@ def find_project_root() -> Path:
         file_path.parent,
         *file_path.parents,
     ):
-        if (candidate / "baselines" / "aide_full" / "train_aide_full_tiny_commfor_kaggle.py").is_file():
+        if (
+            candidate
+            / "baselines"
+            / "aide_original_full"
+            / "train_aide_original_full_tiny_commfor_kaggle.py"
+        ).is_file():
             return candidate
     raise FileNotFoundError("Cannot locate the HoangHa_Code repository root.")
 
@@ -109,14 +117,15 @@ else:
     LOCAL_TRAIN_MODULE = (
         LOCAL_PROJECT_ROOT
         / "baselines"
-        / "aide_full"
-        / "train_aide_full_tiny_commfor_kaggle.py"
+        / "aide_original_full"
+        / "train_aide_original_full_tiny_commfor_kaggle.py"
     )
     LOCAL_CHECKPOINT = (
         LOCAL_PROJECT_ROOT
         / "baselines"
-        / "aide_full"
-        / "check_point"
+        / "aide_original_full"
+        / "artifacts"
+        / "checkpoints"
         / "model_trainable.pt"
     )
     if not LOCAL_TRAIN_MODULE.is_file():
@@ -158,11 +167,11 @@ else:
         function_mounts = [
             modal.Mount.from_local_dir(
                 LOCAL_TRAIN_MODULE.parent,
-                remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_full",
+                remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_original_full",
             ),
             modal.Mount.from_local_dir(
                 LOCAL_CHECKPOINT.parent,
-                remote_path="/root/checkpoints/aide_full",
+                remote_path="/root/checkpoints/aide_original_full",
             ),
         ]
 
@@ -248,7 +257,9 @@ def infer_full_aide_commfor_unseen(
         module_path = Path(REMOTE_TRAIN_MODULE)
         if not module_path.is_file():
             raise FileNotFoundError(f"Full AIDE runtime not mounted: {module_path}")
-        spec = importlib.util.spec_from_file_location("aide_full_runtime", module_path)
+        spec = importlib.util.spec_from_file_location(
+            "aide_original_full_runtime", module_path
+        )
         if spec is None or spec.loader is None:
             raise ImportError(f"Cannot import Full AIDE runtime: {module_path}")
         module = importlib.util.module_from_spec(spec)
@@ -686,7 +697,7 @@ def infer_full_aide_commfor_unseen(
     elapsed_seconds = float(time.time() - started_at)
     summary = {
         "inference_id": inference_id,
-        "model": "aide_full",
+        "model": "aide_original_full",
         "architecture": EXPECTED_ARCHITECTURE,
         "gpu": GPU_TYPE,
         "batch_size": int(config["batch_size"]),

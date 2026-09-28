@@ -1,4 +1,4 @@
-"""Train full AIDE on Tiny-GenImage and evaluate Tiny + CommFor on Kaggle.
+"""Train original Full AIDE on Tiny-GenImage and evaluate Tiny + CommFor on Kaggle.
 
 The architecture follows the official AIDE implementation:
 
@@ -106,7 +106,7 @@ CLIP_STD = torch.tensor([0.26862954, 0.26130258, 0.27577711], dtype=torch.float3
 DEFAULT_CONFIG: dict[str, Any] = {
     "input_root": "/kaggle/input",
     "tiny_dataset_root": None,
-    "output_root": "/kaggle/working/aide_full_tiny_commfor",
+    "output_root": "/kaggle/working/aide_original_full_tiny_commfor",
     "random_seed": 42,
     "val_fraction": 0.10,
     "balance_real": True,

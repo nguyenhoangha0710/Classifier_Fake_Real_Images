@@ -30,6 +30,23 @@ mlruns/
 tensorboard/
 modal_results/
 
+# Model-local experiment artifacts (canonical local organization)
+baselines/**/artifacts/
+benchmarks/**/artifacts/
+
+# Preserve the small, historically tracked Tiny three-model benchmark report.
+!benchmarks/commfor_unseen_three_models/artifacts/
+benchmarks/commfor_unseen_three_models/artifacts/*
+!benchmarks/commfor_unseen_three_models/artifacts/tiny_genimage_three_models_results/
+!benchmarks/commfor_unseen_three_models/artifacts/tiny_genimage_three_models_results/**
+
+# Keep the small Full AIDE checkpoint metadata tracked; weight files remain ignored.
+!baselines/aide_original_full/artifacts/
+baselines/aide_original_full/artifacts/*
+!baselines/aide_original_full/artifacts/checkpoints/
+baselines/aide_original_full/artifacts/checkpoints/*
+!baselines/aide_original_full/artifacts/checkpoints/*.json
+
 # Runtime logs and partial downloads
 *.log
 *.tmp

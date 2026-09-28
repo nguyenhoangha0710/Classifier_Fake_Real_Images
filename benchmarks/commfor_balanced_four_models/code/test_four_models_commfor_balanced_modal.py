@@ -14,12 +14,12 @@ small result files.  Every model writes resumable partial predictions.
 Run from the repository root (PowerShell)::
 
     .\.venv12\Scripts\python.exe -m modal run `
-      baselines/commfor_balanced_four_models/test_four_models_commfor_balanced_modal.py
+      benchmarks/commfor_balanced_four_models/code/test_four_models_commfor_balanced_modal.py
 
 Resume a named run by passing the same inference id::
 
     .\.venv12\Scripts\python.exe -m modal run `
-      baselines/commfor_balanced_four_models/test_four_models_commfor_balanced_modal.py `
+      benchmarks/commfor_balanced_four_models/code/test_four_models_commfor_balanced_modal.py `
       --inference-id balanced_2000_v1
 """
 
@@ -49,18 +49,19 @@ REMOTE_LEGACY_ROOT = (
 REMOTE_HF_HOME = "/hf-cache"
 REMOTE_CLIP_CHECKPOINT = "/root/checkpoints/clip/clip_linear_head.pt"
 REMOTE_NPR_CHECKPOINT = "/root/checkpoints/npr/npr_resnet18_from_scratch.pt"
-REMOTE_FORENSIC_CHECKPOINT = "/root/checkpoints/aide_forensic/model.pt"
-REMOTE_FULL_AIDE_CHECKPOINT = "/root/checkpoints/aide_full/model_trainable.pt"
+REMOTE_FORENSIC_CHECKPOINT = "/root/checkpoints/aide_original_forensic/model.pt"
+REMOTE_FULL_AIDE_CHECKPOINT = "/root/checkpoints/aide_original_full/model_trainable.pt"
 REMOTE_FULL_AIDE_RUNTIME = (
-    f"{REMOTE_CODE_ROOT}/baselines/aide_full/train_aide_full_tiny_commfor_kaggle.py"
+    f"{REMOTE_CODE_ROOT}/baselines/aide_original_full/"
+    "train_aide_original_full_tiny_commfor_kaggle.py"
 )
 REMOTE_LEGACY_RUNTIME = "/root/runtime/test_three_models_commfor_unseen_modal.py"
 
 EXPECTED_CHECKPOINT_SHA256 = {
     "clip_linear_probe": "788461421cb585bbf489aabc76f3537058cd7753eccf9432d3a792622f738057",
     "npr_resnet18": "328f9f431d378f9528c86966796e9f3ac604a5ce2bf3d307028062706c1537f0",
-    "aide_forensic_resnet50": "57024d5c0256869f8855a081abf27e6e882f5bb6de61659c5ef6a28afe8d5b39",
-    "aide_full": "62848895b44255d6a0567754c503a05807ed0a29b8046f3c6956a049844e47c3",
+    "aide_original_forensic_resnet50": "57024d5c0256869f8855a081abf27e6e882f5bb6de61659c5ef6a28afe8d5b39",
+    "aide_original_full": "62848895b44255d6a0567754c503a05807ed0a29b8046f3c6956a049844e47c3",
 }
 EXPECTED_LEGACY_MANIFEST_SHA256 = (
     "50ffc7d91fa8092e4282184cb823439b8784362264b3f2bc2593a608f97dd22f"
@@ -123,48 +124,49 @@ else:
 LOCAL_DATA_LOADER = LOCAL_PROJECT_ROOT / "data_loader"
 LOCAL_NPR_RUNTIME = LOCAL_PROJECT_ROOT / "baselines" / "npr_resnet18"
 LOCAL_FULL_AIDE_RUNTIME = (
-    LOCAL_PROJECT_ROOT / "baselines" / "aide_full" / "train_aide_full_tiny_commfor_kaggle.py"
+    LOCAL_PROJECT_ROOT
+    / "baselines"
+    / "aide_original_full"
+    / "train_aide_original_full_tiny_commfor_kaggle.py"
 )
 LOCAL_LEGACY_RUNTIME = (
     LOCAL_PROJECT_ROOT
-    / "baselines"
+    / "benchmarks"
     / "commfor_unseen_three_models"
+    / "code"
     / "test_three_models_commfor_unseen_modal.py"
 )
 LOCAL_CHECKPOINTS = {
     "clip_linear_probe": LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "tiny_combined_to_commfor_eval"
-    / "clip_linear_head"
-    / "20260906_100207"
+    / "baselines"
+    / "clip_linear_probe"
+    / "artifacts"
     / "checkpoints"
     / "clip_linear_head.pt",
     "npr_resnet18": LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "tiny_combined_to_commfor_eval"
-    / "npr_resnet18_from_scratch"
-    / "20260906_122613"
+    / "baselines"
+    / "npr_resnet18"
+    / "artifacts"
     / "checkpoints"
     / "npr_resnet18_from_scratch.pt",
-    "aide_forensic_resnet50": LOCAL_PROJECT_ROOT
-    / "modal_results"
-    / "aide_forensic_resnet50_download"
-    / "20260927_001615"
-    / "combined"
-    / "checkpoints"
-    / "best"
-    / "model.pt",
-    "aide_full": LOCAL_PROJECT_ROOT
+    "aide_original_forensic_resnet50": LOCAL_PROJECT_ROOT
     / "baselines"
-    / "aide_full"
-    / "check_point"
+    / "aide_original_forensic_resnet50"
+    / "artifacts"
+    / "checkpoints"
+    / "model.pt",
+    "aide_original_full": LOCAL_PROJECT_ROOT
+    / "baselines"
+    / "aide_original_full"
+    / "artifacts"
+    / "checkpoints"
     / "model_trainable.pt",
 }
 REMOTE_CHECKPOINTS = {
     "clip_linear_probe": REMOTE_CLIP_CHECKPOINT,
     "npr_resnet18": REMOTE_NPR_CHECKPOINT,
-    "aide_forensic_resnet50": REMOTE_FORENSIC_CHECKPOINT,
-    "aide_full": REMOTE_FULL_AIDE_CHECKPOINT,
+    "aide_original_forensic_resnet50": REMOTE_FORENSIC_CHECKPOINT,
+    "aide_original_full": REMOTE_FULL_AIDE_CHECKPOINT,
 }
 
 if not REMOTE_ASSETS_READY:
@@ -218,7 +220,7 @@ else:
             ),
             modal.Mount.from_local_dir(
                 LOCAL_FULL_AIDE_RUNTIME.parent,
-                remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_full",
+                remote_path=f"{REMOTE_CODE_ROOT}/baselines/aide_original_full",
             ),
             modal.Mount.from_local_dir(LOCAL_LEGACY_RUNTIME.parent, remote_path="/root/runtime"),
         ]
@@ -869,7 +871,11 @@ def evaluate_four_models(inference_id: str, config_overrides: dict[str, Any] | N
             output_size=int(config["image_size"]),
         )
         model = ForensicModel(imagenet_init=False)
-        payload = torch.load(checkpoint_paths["aide_forensic_resnet50"], map_location="cpu", weights_only=True)
+        payload = torch.load(
+            checkpoint_paths["aide_original_forensic_resnet50"],
+            map_location="cpu",
+            weights_only=True,
+        )
         model.load_state_dict(extract_state_dict(payload), strict=True)
         model = model.to(device).eval()
         batch_size = int(config["forensic_batch_size"])
@@ -886,7 +892,11 @@ def evaluate_four_models(inference_id: str, config_overrides: dict[str, Any] | N
                 logits = model(torch.stack(patches).to(device))
             probabilities = torch.softmax(logits.float(), dim=-1)[:, 1].cpu().numpy()
             for order, probability, selection in zip(orders, probabilities, selections):
-                row = base_prediction(order, float(probability), "aide_forensic_resnet50")
+                row = base_prediction(
+                    order,
+                    float(probability),
+                    "aide_original_forensic_resnet50",
+                )
                 row.update(selection)
                 existing.append(row)
             if len(existing) % int(config["save_every"]) < len(orders):
@@ -897,13 +907,19 @@ def evaluate_four_models(inference_id: str, config_overrides: dict[str, Any] | N
         return existing
 
     @torch.inference_mode()
-    def predict_full_aide(existing: list[dict[str, Any]], partial_path: Path) -> list[dict[str, Any]]:
-        aide = import_file("aide_full_runtime", REMOTE_FULL_AIDE_RUNTIME)
+    def predict_aide_original_full(
+        existing: list[dict[str, Any]], partial_path: Path
+    ) -> list[dict[str, Any]]:
+        aide = import_file("aide_original_full_runtime", REMOTE_FULL_AIDE_RUNTIME)
         done = {int(row["manifest_order"]) for row in existing}
         remaining = manifest[~manifest["manifest_order"].isin(done)].copy()
         if remaining.empty:
             return existing
-        checkpoint = torch.load(checkpoint_paths["aide_full"], map_location="cpu", weights_only=False)
+        checkpoint = torch.load(
+            checkpoint_paths["aide_original_full"],
+            map_location="cpu",
+            weights_only=False,
+        )
         if checkpoint.get("architecture") != EXPECTED_FULL_AIDE_ARCHITECTURE:
             raise ValueError(f"Unexpected Full AIDE architecture: {checkpoint.get('architecture')}")
         checkpoint_config = checkpoint.get("config", {})
@@ -933,7 +949,10 @@ def evaluate_four_models(inference_id: str, config_overrides: dict[str, Any] | N
         model, semantic_provenance = aide.build_model(model_config, device)
         aide.load_trainable_model_state(model, checkpoint["model_trainable_state_dict"])
         model.eval()
-        save_json(run_dir / "provenance" / "aide_full_semantic_backbone.json", semantic_provenance)
+        save_json(
+            run_dir / "provenance" / "aide_original_full_semantic_backbone.json",
+            semantic_provenance,
+        )
         del checkpoint
         hf_cache_volume.commit()
         loader = aide.make_loader(remaining, config=model_config, training=False)
@@ -946,7 +965,7 @@ def evaluate_four_models(inference_id: str, config_overrides: dict[str, Any] | N
             probabilities = torch.softmax(logits.float(), dim=-1)[:, 1].cpu().numpy()
             for index, probability in enumerate(probabilities):
                 order = int(batch["sample_id"][index])
-                row = base_prediction(order, float(probability), "aide_full")
+                row = base_prediction(order, float(probability), "aide_original_full")
                 for key in ("num_candidates", "low_1_score", "high_1_score", "low_2_score", "high_2_score"):
                     row[key] = float(batch[key][index]) if key != "num_candidates" else int(batch[key][index])
                 existing.append(row)
@@ -961,8 +980,8 @@ def evaluate_four_models(inference_id: str, config_overrides: dict[str, Any] | N
     predictors = {
         "clip_linear_probe": predict_clip,
         "npr_resnet18": predict_npr,
-        "aide_forensic_resnet50": predict_forensic,
-        "aide_full": predict_full_aide,
+        "aide_original_forensic_resnet50": predict_forensic,
+        "aide_original_full": predict_aide_original_full,
     }
 
     def compute_metrics(frame: pd.DataFrame) -> dict[str, Any]:

@@ -31,7 +31,7 @@ from datasets import load_dataset
 from PIL import Image, ImageFile
 from tqdm.auto import tqdm
 
-import train_aide_full_tiny_commfor_kaggle as aide
+import train_aide_original_full_tiny_commfor_kaggle as aide
 
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -57,7 +57,7 @@ EXPECTED_GENERATORS = (
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "input_root": "/kaggle/input",
-    "output_root": "/kaggle/working/aide_full_commfor_exact_eval",
+    "output_root": "/kaggle/working/aide_original_full_commfor_exact_eval",
     "checkpoint_path": None,
     "manifest_path": None,
     "semantic_checkpoint": None,

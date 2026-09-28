@@ -12,19 +12,22 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT_ROOT = HERE.parents[1]
-TRAIN_RUNTIME = HERE / "train_aide_full_tiny_commfor_kaggle.py"
-TEST_RUNTIME = HERE / "test_aide_full_commfor_exact_kaggle.py"
-CHECKPOINT = HERE / "check_point" / "model_trainable.pt"
+TRAIN_RUNTIME = HERE / "train_aide_original_full_tiny_commfor_kaggle.py"
+TEST_RUNTIME = HERE / "test_aide_original_full_commfor_exact_kaggle.py"
+CHECKPOINT = HERE / "artifacts" / "checkpoints" / "model_trainable.pt"
 MANIFEST = (
     PROJECT_ROOT
-    / "modal_results"
-    / "aide_forensic_resnet50_download"
+    / "baselines"
+    / "aide_original_forensic_resnet50"
+    / "artifacts"
+    / "runs"
+    / "modal_download"
     / "20260927_001615"
     / "commfor_combined"
     / "dataset"
     / "selected_samples.csv"
 )
-OUTPUT_NOTEBOOK = HERE / "test_aide_full_commfor_exact_kaggle.ipynb"
+OUTPUT_NOTEBOOK = HERE / "test_aide_original_full_commfor_exact_kaggle.ipynb"
 
 EXPECTED_CHECKPOINT_SHA256 = (
     "62848895b44255d6a0567754c503a05807ed0a29b8046f3c6956a049844e47c3"
@@ -96,11 +99,11 @@ Hai SHA-256 được khóa cứng để tránh test nhầm dữ liệu hoặc nh
 ## Chuẩn bị trên Kaggle
 
 1. Bật **GPU accelerator**.
-2. Tạo Kaggle Dataset từ thư mục `baselines/aide_full/check_point` và attach dataset đó vào notebook. Notebook tự tìm `model_trainable.pt` bằng checksum.
+2. Tạo Kaggle Dataset từ thư mục `baselines/aide_original_full/artifacts/checkpoints` và attach dataset đó vào notebook. Notebook tự tìm `model_trainable.pt` bằng checksum.
 3. Bật Internet để tải `OwensLab/CommunityForensics-Eval` và OpenCLIP ConvNeXt-XXLarge. Nếu đã upload `open_clip_pytorch_model.bin` vào Kaggle Input thì notebook sẽ dùng file local.
 4. Nếu dùng Hugging Face thường xuyên, nên tạo Kaggle Secret `HF_TOKEN`.
 
-Kết quả cuối nằm tại `/kaggle/working/aide_full_commfor_exact_eval` và file ZIP tải về nằm tại `/kaggle/working/aide_full_commfor_exact_eval.zip`."""
+Kết quả cuối nằm tại `/kaggle/working/aide_original_full_commfor_exact_eval` và file ZIP tải về nằm tại `/kaggle/working/aide_original_full_commfor_exact_eval.zip`."""
         ),
         code(
             '%pip install -q "open_clip_torch==2.26.1" "datasets>=2.19,<4" '
@@ -129,7 +132,7 @@ print("CUDA:", torch.version.cuda)"""
         code(
             """CONFIG = {
     "input_root": "/kaggle/input",
-    "output_root": "/kaggle/working/aide_full_commfor_exact_eval",
+    "output_root": "/kaggle/working/aide_original_full_commfor_exact_eval",
 
     # None = tự tìm đúng model_trainable.pt bằng SHA-256 trong /kaggle/input.
     "checkpoint_path": None,
@@ -166,10 +169,10 @@ TRAIN_RUNTIME_GZIP_BASE64 = """{train_blob}"""
 TEST_RUNTIME_GZIP_BASE64 = """{test_blob}"""
 MANIFEST_GZIP_BASE64 = """{manifest_blob}"""
 
-runtime_dir = Path("/kaggle/working/aide_full_commfor_runtime")
+runtime_dir = Path("/kaggle/working/aide_original_full_commfor_runtime")
 runtime_dir.mkdir(parents=True, exist_ok=True)
-train_runtime_path = runtime_dir / "train_aide_full_tiny_commfor_kaggle.py"
-test_runtime_path = runtime_dir / "test_aide_full_commfor_exact_kaggle.py"
+train_runtime_path = runtime_dir / "train_aide_original_full_tiny_commfor_kaggle.py"
+test_runtime_path = runtime_dir / "test_aide_original_full_commfor_exact_kaggle.py"
 manifest_path = runtime_dir / "selected_samples.csv"
 
 train_runtime_path.write_bytes(gzip.decompress(base64.b64decode(TRAIN_RUNTIME_GZIP_BASE64)))
@@ -177,7 +180,9 @@ test_runtime_path.write_bytes(gzip.decompress(base64.b64decode(TEST_RUNTIME_GZIP
 manifest_path.write_bytes(gzip.decompress(base64.b64decode(MANIFEST_GZIP_BASE64)))
 
 sys.path.insert(0, str(runtime_dir))
-spec = importlib.util.spec_from_file_location("aide_full_commfor_runner", test_runtime_path)
+spec = importlib.util.spec_from_file_location(
+    "aide_original_full_commfor_runner", test_runtime_path
+)
 runner = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runner)
 
@@ -215,7 +220,7 @@ print("Macro summary")
 display(pd.DataFrame([json.loads((run_dir / "metrics/commfor_macro_summary.json").read_text())]))
 
 print("Download:")
-display(FileLink("/kaggle/working/aide_full_commfor_exact_eval.zip"))"""
+display(FileLink("/kaggle/working/aide_original_full_commfor_exact_eval.zip"))"""
         ),
         markdown(
             """## Output quan trọng
@@ -226,7 +231,7 @@ display(FileLink("/kaggle/working/aide_full_commfor_exact_eval.zip"))"""
 - `predictions/commfor_predictions.csv`: xác suất và dự đoán từng ảnh.
 - `dataset/commfor_manifest_used.csv`: manifest chính xác đã sử dụng.
 - `provenance/checkpoint.json`: checksum và metadata checkpoint.
-- `aide_full_commfor_exact_eval.zip`: gói kết quả tải về."""
+- `aide_original_full_commfor_exact_eval.zip`: gói kết quả tải về."""
         ),
     ]
 
