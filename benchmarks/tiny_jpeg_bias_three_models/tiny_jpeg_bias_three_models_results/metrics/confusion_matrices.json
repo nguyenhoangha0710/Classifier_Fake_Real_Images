@@ -1,0 +1,182 @@
+{
+  "clip_linear_probe/raw": [
+    [
+      2786,
+      714
+    ],
+    [
+      281,
+      3219
+    ]
+  ],
+  "clip_linear_probe/png_roundtrip": [
+    [
+      2786,
+      714
+    ],
+    [
+      281,
+      3219
+    ]
+  ],
+  "clip_linear_probe/fake_jpeg96": [
+    [
+      2786,
+      714
+    ],
+    [
+      508,
+      2992
+    ]
+  ],
+  "clip_linear_probe/all_jpeg96": [
+    [
+      2795,
+      705
+    ],
+    [
+      508,
+      2992
+    ]
+  ],
+  "clip_linear_probe/raw_on_controlled_cohort": [
+    [
+      2330,
+      582
+    ],
+    [
+      227,
+      2685
+    ]
+  ],
+  "clip_linear_probe/controlled_jpeg96": [
+    [
+      2330,
+      582
+    ],
+    [
+      411,
+      2501
+    ]
+  ],
+  "npr_resnet18/raw": [
+    [
+      3360,
+      140
+    ],
+    [
+      98,
+      3402
+    ]
+  ],
+  "npr_resnet18/png_roundtrip": [
+    [
+      3360,
+      140
+    ],
+    [
+      98,
+      3402
+    ]
+  ],
+  "npr_resnet18/fake_jpeg96": [
+    [
+      3360,
+      140
+    ],
+    [
+      2797,
+      703
+    ]
+  ],
+  "npr_resnet18/all_jpeg96": [
+    [
+      3357,
+      143
+    ],
+    [
+      2797,
+      703
+    ]
+  ],
+  "npr_resnet18/raw_on_controlled_cohort": [
+    [
+      2801,
+      111
+    ],
+    [
+      81,
+      2831
+    ]
+  ],
+  "npr_resnet18/controlled_jpeg96": [
+    [
+      2801,
+      111
+    ],
+    [
+      2328,
+      584
+    ]
+  ],
+  "aide_original_full/raw": [
+    [
+      3383,
+      117
+    ],
+    [
+      422,
+      3078
+    ]
+  ],
+  "aide_original_full/png_roundtrip": [
+    [
+      3383,
+      117
+    ],
+    [
+      422,
+      3078
+    ]
+  ],
+  "aide_original_full/fake_jpeg96": [
+    [
+      3383,
+      117
+    ],
+    [
+      614,
+      2886
+    ]
+  ],
+  "aide_original_full/all_jpeg96": [
+    [
+      3385,
+      115
+    ],
+    [
+      614,
+      2886
+    ]
+  ],
+  "aide_original_full/raw_on_controlled_cohort": [
+    [
+      2812,
+      100
+    ],
+    [
+      338,
+      2574
+    ]
+  ],
+  "aide_original_full/controlled_jpeg96": [
+    [
+      2812,
+      100
+    ],
+    [
+      499,
+      2413
+    ]
+  ]
+}

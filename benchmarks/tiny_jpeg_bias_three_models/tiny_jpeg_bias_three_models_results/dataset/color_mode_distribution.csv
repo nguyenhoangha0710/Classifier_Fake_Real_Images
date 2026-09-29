@@ -1,0 +1,5 @@
+label_name,color_mode,has_alpha,count
+fake,RGB,False,3000
+fake,RGBA,True,500
+real,L,False,55
+real,RGB,False,3445

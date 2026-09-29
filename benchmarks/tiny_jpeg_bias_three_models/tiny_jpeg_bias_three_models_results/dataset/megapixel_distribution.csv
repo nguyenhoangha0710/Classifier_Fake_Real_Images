@@ -1,0 +1,9 @@
+label_name,megapixel_bin,count
+fake,0.25_1,1000
+fake,1_4,500
+fake,lt_0.1,2000
+real,0.1_0.25,3031
+real,0.25_1,326
+real,1_4,31
+real,gt_4,7
+real,lt_0.1,105

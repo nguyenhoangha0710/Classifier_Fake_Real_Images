@@ -1,0 +1,10 @@
+{
+  "jpeg_encoder": "Pillow/libjpeg",
+  "quality": 96,
+  "subsampling": 0,
+  "optimize": false,
+  "progressive": false,
+  "application_order": "native image -> codec roundtrip -> original model preprocessing",
+  "png_roundtrip_note": "Lossless pixel roundtrip; pre-existing JPEG artifacts remain.",
+  "all_jpeg96_note": "Native JPEG real images may be double-compressed."
+}

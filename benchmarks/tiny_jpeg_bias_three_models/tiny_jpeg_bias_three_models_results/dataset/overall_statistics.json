@@ -1,0 +1,72 @@
+{
+  "num_valid_images": 7000,
+  "num_invalid_images": 0,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "num_generators": 7,
+  "num_unique_exact_sizes": 777,
+  "num_formats": 2,
+  "num_square": 3645,
+  "num_non_square": 3355,
+  "min_width": 62,
+  "max_width": 3072,
+  "median_width": 500.0,
+  "min_height": 56,
+  "max_height": 3888,
+  "median_height": 375.0,
+  "full_membership_sha256": "a5ef7bd148df18c4b11b2c6d8ecf94e7aeb5bbc37ccca16a6729de8a862c5576",
+  "controlled_jpeg96": {
+    "quality_min": 94,
+    "quality_max": 98,
+    "balance_across_generators": true,
+    "common_per_class_per_generator": 416,
+    "num_samples": 5824,
+    "num_real": 2912,
+    "num_fake": 2912,
+    "availability": [
+      {
+        "generator": "imagenet_ai_0419_biggan",
+        "real_q96_candidates": 432,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 432
+      },
+      {
+        "generator": "imagenet_ai_0419_vqdm",
+        "real_q96_candidates": 420,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 420
+      },
+      {
+        "generator": "imagenet_ai_0424_sdv5",
+        "real_q96_candidates": 417,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 417
+      },
+      {
+        "generator": "imagenet_ai_0424_wukong",
+        "real_q96_candidates": 438,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 438
+      },
+      {
+        "generator": "imagenet_ai_0508_adm",
+        "real_q96_candidates": 428,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 428
+      },
+      {
+        "generator": "imagenet_glide",
+        "real_q96_candidates": 416,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 416
+      },
+      {
+        "generator": "imagenet_midjourney",
+        "real_q96_candidates": 420,
+        "lossless_fake_candidates": 500,
+        "usable_per_class": 420
+      }
+    ],
+    "membership_sha256": "c0243040daaf2ee5d05708d9abe0017c7b5433c782bf631a33790aedc0ec33c6"
+  }
+}

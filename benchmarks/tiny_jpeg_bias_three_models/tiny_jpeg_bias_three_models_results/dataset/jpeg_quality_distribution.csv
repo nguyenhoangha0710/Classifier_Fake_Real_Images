@@ -1,0 +1,7 @@
+label_name,pil_format,jpeg_quality_bin,count
+fake,PNG,not_jpeg_or_unknown,3500
+real,JPEG,50_69_or_lower,39
+real,JPEG,70_84,242
+real,JPEG,85_93,206
+real,JPEG,94_98_near_q96,2971
+real,JPEG,99_100,42

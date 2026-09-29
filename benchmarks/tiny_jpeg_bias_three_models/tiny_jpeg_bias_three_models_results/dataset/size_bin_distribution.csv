@@ -1,0 +1,10 @@
+label_name,size_bin,count
+fake,128_255,500
+fake,256_511,1500
+fake,512_1023,1000
+fake,ge_1024,500
+real,128_255,78
+real,256_511,3244
+real,512_1023,127
+real,ge_1024,32
+real,lt_128,19

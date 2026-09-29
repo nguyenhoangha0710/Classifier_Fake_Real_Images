@@ -1,0 +1,15 @@
+generator,label_name,count
+imagenet_ai_0419_biggan,fake,500
+imagenet_ai_0419_biggan,real,500
+imagenet_ai_0419_vqdm,fake,500
+imagenet_ai_0419_vqdm,real,500
+imagenet_ai_0424_sdv5,fake,500
+imagenet_ai_0424_sdv5,real,500
+imagenet_ai_0424_wukong,fake,500
+imagenet_ai_0424_wukong,real,500
+imagenet_ai_0508_adm,fake,500
+imagenet_ai_0508_adm,real,500
+imagenet_glide,fake,500
+imagenet_glide,real,500
+imagenet_midjourney,fake,500
+imagenet_midjourney,real,500

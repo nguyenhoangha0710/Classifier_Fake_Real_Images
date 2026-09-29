@@ -1,0 +1,6 @@
+{
+  "model_name": "convnext_xxlarge",
+  "pretrained": "laion2b_s34b_b82k_augreg_soup",
+  "checkpoint_path": null,
+  "checkpoint_sha256": null
+}

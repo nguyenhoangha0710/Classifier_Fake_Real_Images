@@ -1,0 +1,5 @@
+label_name,aspect_group,count
+fake,nearly_square,3500
+real,landscape,2293
+real,nearly_square,356
+real,portrait,851

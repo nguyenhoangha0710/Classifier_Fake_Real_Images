@@ -1,0 +1,26 @@
+{
+  "benchmark": "tiny_jpeg_bias_three_models",
+  "models": {
+    "clip_linear_probe": {
+      "file": "clip_linear_head.pt",
+      "source": "baselines/clip_linear_probe/artifacts/checkpoints/clip_linear_head.pt",
+      "sha256": "788461421cb585bbf489aabc76f3537058cd7753eccf9432d3a792622f738057",
+      "checkpoint_type": "linear_head_only",
+      "backbone": "OpenCLIP ViT-B-32 pretrained=openai"
+    },
+    "npr_resnet18": {
+      "file": "npr_resnet18_from_scratch.pt",
+      "source": "baselines/npr_resnet18/artifacts/checkpoints/npr_resnet18_from_scratch.pt",
+      "sha256": "328f9f431d378f9528c86966796e9f3ac604a5ce2bf3d307028062706c1537f0",
+      "checkpoint_type": "full_model_state_dict",
+      "backbone": "NPR front-end plus ResNet18"
+    },
+    "aide_original_full": {
+      "file": "aide_original_full_trainable.pt",
+      "source": "baselines/aide_original_full/artifacts/checkpoints/model_trainable.pt",
+      "sha256": "62848895b44255d6a0567754c503a05807ed0a29b8046f3c6956a049844e47c3",
+      "checkpoint_type": "trainable_weights_without_frozen_semantic_trunk",
+      "backbone": "OpenCLIP ConvNeXt-XXLarge pretrained=laion2b_s34b_b82k_augreg_soup"
+    }
+  }
+}
