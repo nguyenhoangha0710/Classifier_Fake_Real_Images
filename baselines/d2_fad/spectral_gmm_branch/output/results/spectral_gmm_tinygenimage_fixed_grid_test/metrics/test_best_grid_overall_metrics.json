@@ -1,0 +1,22 @@
+{
+  "threshold_name": "best_of_fixed_test_grid",
+  "num_samples": 7000,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "tn": 2202,
+  "fp": 1298,
+  "fn": 731,
+  "tp": 2769,
+  "accuracy": 0.7101428571428572,
+  "balanced_accuracy": 0.7101428571428572,
+  "real_recall": 0.6291428571428571,
+  "fake_recall": 0.7911428571428571,
+  "fake_precision": 0.6808458323088271,
+  "fake_f1": 0.731862032509581,
+  "real_fpr": 0.37085714285714283,
+  "roc_auc": 0.7744975510204081,
+  "average_precision": 0.7240617523453577,
+  "mean_real_nll": -167.93863101633798,
+  "mean_fake_nll": 225.40565485953286,
+  "threshold": -149.749
+}

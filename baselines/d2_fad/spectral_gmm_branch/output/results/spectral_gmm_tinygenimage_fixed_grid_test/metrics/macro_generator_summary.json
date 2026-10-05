@@ -1,0 +1,14 @@
+{
+  "macro_generator_accuracy": 0.7101428571428572,
+  "macro_generator_balanced_accuracy": 0.7101428571428572,
+  "macro_generator_real_recall": 0.6291428571428571,
+  "macro_generator_fake_recall": 0.791142857142857,
+  "macro_generator_fake_precision": 0.6731718624666652,
+  "macro_generator_fake_f1": 0.723537645911577,
+  "macro_generator_real_fpr": 0.3708571428571429,
+  "macro_generator_roc_auc": 0.7730754285714286,
+  "macro_generator_average_precision": 0.7092185996087179,
+  "num_generators": 7,
+  "worst_generator_balanced_accuracy": 0.577,
+  "best_generator_balanced_accuracy": 0.8360000000000001
+}

@@ -6,6 +6,8 @@ Tài liệu này mô tả hướng nghiên cứu, kiến trúc, workflow huấn 
 
 Thiết kế tensor, workflow chi tiết của từng nhánh và kích thước output được trình bày trong [ARCHITECTURE.md](./ARCHITECTURE.md).
 
+Kế hoạch triển khai độc lập nhánh học phân phối spectral-GMM được trình bày trong [spectral_gmm_branch/plan.md](./spectral_gmm_branch/plan.md).
+
 ## 1. Mục tiêu nghiên cứu
 
 D2-FAD hướng tới phát hiện ảnh do AI tạo hoặc chỉnh sửa trong điều kiện:

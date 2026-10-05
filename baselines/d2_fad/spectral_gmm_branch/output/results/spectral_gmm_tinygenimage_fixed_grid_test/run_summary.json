@@ -1,0 +1,256 @@
+{
+  "model": "spectral_gmm_mfm_scratch_imagenet100k_v1",
+  "score_direction": "higher NLL means more anomalous/fake",
+  "threshold_policy": "evaluate the 10 user-specified NLL thresholds on the full Tiny test; select maximum macro generator balanced accuracy",
+  "threshold_selection": {
+    "selection_cohort": "full_test_grid",
+    "selection_objective": "macro_generator_balanced_accuracy",
+    "tie_breakers": [
+      "worst_generator_balanced_accuracy_desc",
+      "real_fake_recall_gap_asc",
+      "threshold_asc"
+    ],
+    "num_test_samples": 7000,
+    "num_real": 3500,
+    "num_fake": 3500,
+    "num_generators": 7,
+    "num_grid_candidates": 10,
+    "threshold_grid": [
+      -334.892,
+      -241.577,
+      -149.749,
+      -57.235,
+      27.958,
+      133.346,
+      335.641,
+      614.874,
+      924.637,
+      1311.118
+    ],
+    "selected_threshold": -149.749,
+    "test_balanced_accuracy": 0.7101428571428572,
+    "test_macro_generator_balanced_accuracy": 0.7101428571428572,
+    "test_worst_generator_balanced_accuracy": 0.577,
+    "test_real_recall": 0.6291428571428571,
+    "test_fake_recall": 0.7911428571428571,
+    "test_real_fake_recall_gap": 0.16200000000000003,
+    "methodological_note": "Threshold selected on the test labels; report as test-grid/oracle, not as an independently calibrated deployment estimate."
+  },
+  "best_test_grid": {
+    "threshold_name": "best_of_fixed_test_grid",
+    "num_samples": 7000,
+    "num_real": 3500,
+    "num_fake": 3500,
+    "tn": 2202,
+    "fp": 1298,
+    "fn": 731,
+    "tp": 2769,
+    "accuracy": 0.7101428571428572,
+    "balanced_accuracy": 0.7101428571428572,
+    "real_recall": 0.6291428571428571,
+    "fake_recall": 0.7911428571428571,
+    "fake_precision": 0.6808458323088271,
+    "fake_f1": 0.731862032509581,
+    "real_fpr": 0.37085714285714283,
+    "roc_auc": 0.7744975510204081,
+    "average_precision": 0.7240617523453577,
+    "mean_real_nll": -167.93863101633798,
+    "mean_fake_nll": 225.40565485953286,
+    "threshold": -149.749
+  },
+  "macro": {
+    "macro_generator_accuracy": 0.7101428571428572,
+    "macro_generator_balanced_accuracy": 0.7101428571428572,
+    "macro_generator_real_recall": 0.6291428571428571,
+    "macro_generator_fake_recall": 0.791142857142857,
+    "macro_generator_fake_precision": 0.6731718624666652,
+    "macro_generator_fake_f1": 0.723537645911577,
+    "macro_generator_real_fpr": 0.3708571428571429,
+    "macro_generator_roc_auc": 0.7730754285714286,
+    "macro_generator_average_precision": 0.7092185996087179,
+    "num_generators": 7,
+    "worst_generator_balanced_accuracy": 0.577,
+    "best_generator_balanced_accuracy": 0.8360000000000001
+  },
+  "manifest": {
+    "tiny_dataset_root": "/kaggle/input/datasets/yangsangtai/tiny-genimage",
+    "actual_split_by_generator": {
+      "imagenet_ai_0419_biggan": "val",
+      "imagenet_ai_0419_vqdm": "val",
+      "imagenet_ai_0424_sdv5": "val",
+      "imagenet_ai_0424_wukong": "val",
+      "imagenet_ai_0508_adm": "val",
+      "imagenet_glide": "val",
+      "imagenet_midjourney": "val"
+    },
+    "num_generators": 7,
+    "num_samples": 7000,
+    "num_real": 3500,
+    "num_fake": 3500,
+    "evaluation_cohort": "test_grid",
+    "balance_per_generator": true,
+    "jpeg_policy": "all_to_deterministic_jpeg",
+    "jpeg_quality_range": [
+      70,
+      100
+    ],
+    "manifest_sha256": "6d94b4448cb466857ee37d760281a6106dda19e6ebc26400c160cda759a83a52"
+  },
+  "dataset_statistics": {
+    "num_decoded_images": 7000,
+    "cohort_counts": {
+      "test_grid": 7000
+    },
+    "num_unique_sizes": 777,
+    "width": {
+      "min": 62,
+      "median": 500.0,
+      "max": 3072
+    },
+    "height": {
+      "min": 56,
+      "median": 375.0,
+      "max": 3888
+    },
+    "num_tiles": {
+      "min": 1,
+      "median": 6.0,
+      "mean": 7.593,
+      "max": 216
+    },
+    "format_counts": [
+      {
+        "image_format": "JPEG",
+        "processed_format": "JPEG",
+        "extension": ".jpeg",
+        "jpeg_applied": true,
+        "count": 3500
+      },
+      {
+        "image_format": "PNG",
+        "processed_format": "JPEG",
+        "extension": ".png",
+        "jpeg_applied": true,
+        "count": 3500
+      }
+    ],
+    "jpeg_application_counts": {
+      "applied": 7000
+    },
+    "jpeg_quality": {
+      "min": 70,
+      "max": 100,
+      "num_unique": 31
+    },
+    "top_image_sizes": [
+      {
+        "width": 256,
+        "height": 256,
+        "count": 1500
+      },
+      {
+        "width": 500,
+        "height": 375,
+        "count": 1080
+      },
+      {
+        "width": 512,
+        "height": 512,
+        "count": 1001
+      },
+      {
+        "width": 1024,
+        "height": 1024,
+        "count": 501
+      },
+      {
+        "width": 128,
+        "height": 128,
+        "count": 500
+      },
+      {
+        "width": 375,
+        "height": 500,
+        "count": 361
+      },
+      {
+        "width": 500,
+        "height": 333,
+        "count": 189
+      },
+      {
+        "width": 500,
+        "height": 500,
+        "count": 119
+      },
+      {
+        "width": 500,
+        "height": 334,
+        "count": 76
+      },
+      {
+        "width": 333,
+        "height": 500,
+        "count": 75
+      },
+      {
+        "width": 500,
+        "height": 400,
+        "count": 38
+      },
+      {
+        "width": 500,
+        "height": 335,
+        "count": 26
+      },
+      {
+        "width": 500,
+        "height": 332,
+        "count": 23
+      },
+      {
+        "width": 334,
+        "height": 500,
+        "count": 20
+      },
+      {
+        "width": 500,
+        "height": 374,
+        "count": 18
+      },
+      {
+        "width": 500,
+        "height": 376,
+        "count": 18
+      },
+      {
+        "width": 640,
+        "height": 480,
+        "count": 17
+      },
+      {
+        "width": 500,
+        "height": 357,
+        "count": 16
+      },
+      {
+        "width": 400,
+        "height": 500,
+        "count": 15
+      },
+      {
+        "width": 500,
+        "height": 377,
+        "count": 13
+      }
+    ]
+  },
+  "provenance": {
+    "global_checkpoint_sha256": "2beb1df9020830f463a7b6ec942a5aedd87bcd98cc9117c991e6930719a20a23",
+    "local_checkpoint_sha256": "157342ea1485a34f32c9eeb494b45931c3a3ba379cdd299ddd4e852fd375f2ec",
+    "selected_gmm_components": 16,
+    "global_checkpoint_epoch": 10,
+    "global_best_validation_loss": 0.0007588070059282473
+  },
+  "output_root": "/kaggle/working/spectral_gmm_tinygenimage_fixed_grid_test"
+}

@@ -1,0 +1,34 @@
+{
+  "selection_cohort": "full_test_grid",
+  "selection_objective": "macro_generator_balanced_accuracy",
+  "tie_breakers": [
+    "worst_generator_balanced_accuracy_desc",
+    "real_fake_recall_gap_asc",
+    "threshold_asc"
+  ],
+  "num_test_samples": 7000,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "num_generators": 7,
+  "num_grid_candidates": 10,
+  "threshold_grid": [
+    -334.892,
+    -241.577,
+    -149.749,
+    -57.235,
+    27.958,
+    133.346,
+    335.641,
+    614.874,
+    924.637,
+    1311.118
+  ],
+  "selected_threshold": -149.749,
+  "test_balanced_accuracy": 0.7101428571428572,
+  "test_macro_generator_balanced_accuracy": 0.7101428571428572,
+  "test_worst_generator_balanced_accuracy": 0.577,
+  "test_real_recall": 0.6291428571428571,
+  "test_fake_recall": 0.7911428571428571,
+  "test_real_fake_recall_gap": 0.16200000000000003,
+  "methodological_note": "Threshold selected on the test labels; report as test-grid/oracle, not as an independently calibrated deployment estimate."
+}

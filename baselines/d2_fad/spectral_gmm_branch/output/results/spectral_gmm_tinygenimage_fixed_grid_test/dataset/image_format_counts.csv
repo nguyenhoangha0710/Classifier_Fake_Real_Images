@@ -1,0 +1,3 @@
+image_format,processed_format,extension,jpeg_applied,count
+JPEG,JPEG,.jpeg,True,3500
+PNG,JPEG,.png,True,3500

@@ -1,0 +1,24 @@
+{
+  "tiny_dataset_root": "/kaggle/input/datasets/yangsangtai/tiny-genimage",
+  "actual_split_by_generator": {
+    "imagenet_ai_0419_biggan": "val",
+    "imagenet_ai_0419_vqdm": "val",
+    "imagenet_ai_0424_sdv5": "val",
+    "imagenet_ai_0424_wukong": "val",
+    "imagenet_ai_0508_adm": "val",
+    "imagenet_glide": "val",
+    "imagenet_midjourney": "val"
+  },
+  "num_generators": 7,
+  "num_samples": 7000,
+  "num_real": 3500,
+  "num_fake": 3500,
+  "evaluation_cohort": "test_grid",
+  "balance_per_generator": true,
+  "jpeg_policy": "all_to_deterministic_jpeg",
+  "jpeg_quality_range": [
+    70,
+    100
+  ],
+  "manifest_sha256": "6d94b4448cb466857ee37d760281a6106dda19e6ebc26400c160cda759a83a52"
+}
