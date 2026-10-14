@@ -1,0 +1,25 @@
+{
+  "gmm_input": "one final-layernorm Image CLS 768-D per image",
+  "image_cls_shape_train": [
+    80000,
+    768
+  ],
+  "selected": {
+    "n_components": 16,
+    "converged": true,
+    "n_iter": 33,
+    "train_log_likelihood": -857.0040755851699,
+    "validation_log_likelihood": -856.7341032661004,
+    "train_bic": 137398279.1206659,
+    "min_soft_occupancy": 0.034231228226897704,
+    "valid_occupancy": true
+  },
+  "thresholds": {
+    "nll_q90": 1146.3205036429167,
+    "nll_q95": 1289.342423398505,
+    "nll_q99": 1555.304246287932,
+    "primary": "nll_q95"
+  },
+  "global_checkpoint_sha256": "628838eb909315889b6db7df4e0813be28073222d4a230a2160789dc7b75615d",
+  "feature_augmentation": "all images decoded RGB then seeded JPEG Q70-100"
+}

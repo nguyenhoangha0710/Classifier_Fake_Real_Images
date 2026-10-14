@@ -1,0 +1,75 @@
+{
+  "purpose": "diagnose whether Stage1-epoch5 plus Stage2-GMM separates Tiny real/fake",
+  "score_direction": "higher NLL means more anomalous/fake",
+  "manifest": {
+    "tiny_dataset_root": "/kaggle/input/datasets/yangsangtai/tiny-genimage",
+    "actual_split_by_generator": {
+      "imagenet_ai_0419_biggan": "val",
+      "imagenet_ai_0419_vqdm": "val",
+      "imagenet_ai_0424_sdv5": "val",
+      "imagenet_ai_0424_wukong": "val",
+      "imagenet_ai_0508_adm": "val",
+      "imagenet_glide": "val",
+      "imagenet_midjourney": "val"
+    },
+    "num_generators": 7,
+    "num_samples": 7000,
+    "num_real": 3500,
+    "num_fake": 3500,
+    "balance_per_generator": true,
+    "max_per_class_per_generator": null,
+    "manifest_sha256": "4ec2daa9eba0cc2de1d0f6843d2e34accea5fe8ea3bfdc1f16dcabcedead6003"
+  },
+  "stage1_checkpoint_sha256": "b3cb6af6c625cf439280e12d3f2dc107bc7b6b7a29b0ca3c3709e0d3903b5a93",
+  "stage2_checkpoint_sha256": "628838eb909315889b6db7df4e0813be28073222d4a230a2160789dc7b75615d",
+  "stage2_best_epoch": 10,
+  "stage2_best_validation": 3.207968426286243e-05,
+  "gmm_components": 16,
+  "real_only_thresholds": {
+    "nll_q90": 1146.3205036429167,
+    "nll_q95": 1289.342423398505,
+    "nll_q99": 1555.304246287932,
+    "primary": "nll_q95"
+  },
+  "tiny_oracle": {
+    "threshold_name": "tiny_oracle_best_balanced_accuracy",
+    "threshold_source": "Tiny labels; diagnostic only",
+    "num_samples": 7000,
+    "num_real": 3500,
+    "num_fake": 3500,
+    "tn": 1904,
+    "fp": 1596,
+    "fn": 1274,
+    "tp": 2226,
+    "accuracy": 0.59,
+    "balanced_accuracy": 0.5900000000000001,
+    "real_recall": 0.544,
+    "fake_recall": 0.636,
+    "fake_precision": 0.5824175824175825,
+    "fake_f1": 0.6080305927342257,
+    "real_fpr": 0.456,
+    "roc_auc": 0.6230929795918367,
+    "average_precision": 0.6084984380939541,
+    "mean_real_nll": 851.7682143341217,
+    "mean_fake_nll": 953.366976358781,
+    "threshold": 837.9464016244561
+  },
+  "separation": {
+    "mean_real_nll": 851.7682143341217,
+    "mean_fake_nll": 953.366976358781,
+    "fake_minus_real_mean": 101.59876202465932,
+    "cohens_d_fake_minus_real": 0.42227356734667554,
+    "ks_statistic": 0.18,
+    "ks_pvalue": 6.162186777542885e-50,
+    "histogram_overlap_coefficient": 0.8075950524905731,
+    "interpretation": "lower overlap and higher AUC/KS indicate stronger separation"
+  },
+  "macro": {
+    "macro_generator_balanced_accuracy": 0.59,
+    "macro_generator_fake_f1": 0.6044118791352509,
+    "macro_generator_roc_auc": 0.6231617142857143,
+    "worst_generator_balanced_accuracy": 0.523,
+    "best_generator_balanced_accuracy": 0.665
+  },
+  "methodological_warning": "The Tiny oracle threshold uses Tiny test labels. Use it only to measure separability; do not report it as an independently calibrated deployment threshold."
+}
