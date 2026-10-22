@@ -1,0 +1,7 @@
+# Tested locally: torch 2.4.1 CPU, torchvision 0.19.1, transformers 4.46.3.
+# Install a matching CUDA torch/torchvision build for actual training.
+torch>=2.4
+torchvision>=0.19
+transformers==4.46.3
+numpy>=1.24
+Pillow>=9.1

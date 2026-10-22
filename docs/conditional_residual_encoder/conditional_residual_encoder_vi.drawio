@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="01_architecture" name="01 - Kiến trúc tổng thể">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1630" math="0" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ENCODER HỌC QUY LUẬT PHẦN DƯ CỦA ẢNH THẬT" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=32;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="25" width="1710" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Bản thiết kế nghiên cứu v1 • Chỉ dùng ảnh thật để train • Chưa được thực nghiệm xác nhận" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="90" width="1710" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="image" value="Ảnh thật RGB&#10;B × 3 × 256 × 256" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dbeafe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="650" y="170" width="500" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="fre" value="BỘ LỌC PHẦN DƯ R — FROZEN&#10;Grayscale → FRE 1→8 channels&#10;Output: B × 8 × 256 × 256" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="90" y="320" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="condition" value="ĐIỀU KIỆN CỤC BỘ c — KHÔNG HỌC&#10;Low-pass RGB; mỗi ô target lấy 5 số:&#10;mean R/G/B, độ biến động sáng, năng lượng cạnh" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="1050" y="320" width="660" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="sample" value="CHỌN 8 PATCH 64×64 KHÔNG GIAO NHAU&#10;3 context A + 3 context B + 2 target&#10;Giữ khoảng trống ≥16 px với FRE kernel15" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="90" y="490" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a" value="CONTEXT A&#10;B × 3 × 8 × 64 × 64&#10;Những miếng được xem" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dbeafe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="660" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="b" value="CONTEXT B&#10;B × 3 × 8 × 64 × 64&#10;Nhóm xem thứ hai" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dbeafe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="425" y="660" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="target" value="TARGET RESIDUAL&#10;B × 2 × 8 × 64 × 64&#10;Không vào encoder" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="825" y="660" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ct" value="c: B × 2 × 16 × 5&#10;2 target; 16 ô/target&#10;Chỉ đặc điểm ảnh thô" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="1250" y="660" width="480" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="encoder" value="SHARED ENCODER E — ĐƯỢC TRAIN&#10;Patch CNN → pooling từng patch → pooling cả nhóm&#10;Hai nhóm A/B dùng chung trọng số" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="820" width="720" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="label" value="LABEL y — TỰ TÍNH&#10;16 ô 16×16/target&#10;8 energy + 8 corr ngang&#10;+ 8 corr dọc = 24 số&#10;B × 2 × 16 × 24" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="825" y="820" width="340" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="za" value="z_A: B × 64&#10;Bản mô tả từ context A" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="1000" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zb" value="z_B: B × 64&#10;Bản mô tả từ context B" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="425" y="1000" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="pred" value="BỘ DỰ ĐOÁN P — ĐƯỢC TRAIN&#10;Nối z (64 số) với c (5 số)&#10;MLP 69→128→128→48&#10;Dùng chung cho A và B" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="1230" y="840" width="500" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="output" value="μ: 24 giá trị trung tâm dự đoán&#10;s: 24 log-variance dự đoán&#10;Mỗi context dự đoán cùng 2 target" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="1230" y="1040" width="500" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ssl" value="LOSS PHỤ TRÊN z_A VÀ z_B&#10;Cùng ảnh → tương đồng; giữa các ảnh → giữ thông tin&#10;Invariance + variance floor + covariance" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="1160" width="720" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="nll" value="LOSS CHÍNH: CONDITIONAL GAUSSIAN NLL&#10;So μ, s dự đoán với label y đo từ target&#10;Dự đoán cả giá trị và độ dao động phù hợp" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="825" y="1210" width="905" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="total" value="LOSS TỔNG = L_pred + 0,1 × (25 L_inv + 25 L_var + L_cov)&#10;Backprop chỉ cập nhật encoder E và predictor P" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=1;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="300" y="1390" width="1200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="Xám: phép tính cố định / không nhận gradient • Tím: tham số được học • Xanh lá: đáp án tự tạo • Cam: loss&#10;B = số ảnh trong một batch. z là embedding học được, chưa chứng minh là thông số camera. Không có CLIP/GSD trong bản CNN này." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="1510" width="1710" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" source="image" target="fre" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.22;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="295" />
+              <mxPoint x="430" y="295" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" source="image" target="condition" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.78;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="295" />
+              <mxPoint x="1380" y="295" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" source="fre" target="sample" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" source="sample" target="a" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="620" />
+              <mxPoint x="215" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" source="sample" target="b" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="620" />
+              <mxPoint x="595" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge6" source="sample" target="target" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="620" />
+              <mxPoint x="995" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge7" source="condition" target="ct" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge8" source="a" target="encoder" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.2361111111111111;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge9" source="b" target="encoder" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.7638888888888888;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge10" source="target" target="label" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge11" source="encoder" target="za" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.2361111111111111;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge12" source="encoder" target="zb" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.7638888888888888;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge13" source="ct" target="pred" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.52;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge14" source="za" target="pred" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.48;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="215" y="1110" />
+              <mxPoint x="790" y="1110" />
+              <mxPoint x="790" y="800" />
+              <mxPoint x="1470" y="800" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge15" source="zb" target="pred" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1195" y="1040" />
+              <mxPoint x="1195" y="910" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge16" source="pred" target="output" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge17" source="za" target="ssl" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.2361111111111111;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge18" source="zb" target="ssl" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.7638888888888888;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge19" source="label" target="nll" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#15803d;dashed=0;exitX=0.5;exitY=1.0;entryX=0.1878453038674033;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge20" source="output" target="nll" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.7237569060773481;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge21" source="ssl" target="total" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.2916666666666667;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="1350" />
+              <mxPoint x="650" y="1350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge22" source="nll" target="total" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.4972375690607735;exitY=1.0;entryX=0.7083333333333334;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1275" y="1350" />
+              <mxPoint x="1150" y="1350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="02_encoder_and_labels" name="02 - Encoder và label">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1630" math="0" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="BÊN TRONG ENCODER VÀ CÁCH TẠO ĐÁP ÁN" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=32;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="25" width="1710" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Encoder đọc context; đáp án lấy từ target khác vị trí. Mỗi ký hiệu đều gắn với một đối tượng cụ thể." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="90" width="1710" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="left" value="A. ENCODER — TỪ 3 PATCH ĐẾN 64 SỐ" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=25;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="165" width="810" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="right" value="B. LABEL — ĐO TRỰC TIẾP TỪ TARGET" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=25;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="945" y="165" width="810" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="input" value="Một nhóm context: B × 3 × 8 × 64 × 64&#10;Gộp B và 3 patch để chạy chung CNN" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dbeafe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="245" width="740" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="cnn" value="PATCH CNN — DÙNG CHUNG CHO TẤT CẢ PATCH&#10;Conv3×3, stride2, padding1 + GroupNorm8 + GELU&#10;8→32: 32×32; 32→64: 16×16&#10;64→128: 8×8; 128→128: 4×4&#10;Output mỗi patch: 128 × 4 × 4" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="390" width="740" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="pool" value="SPATIAL POOLING TRONG MỖI PATCH&#10;Mean128 + std128 → 256 số&#10;Linear 256→128 → patch embedding128" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="660" width="740" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="set" value="SET POOLING TRÊN 3 PATCH&#10;Mean128 + std128 → 256 số&#10;Không dùng thứ tự hoặc tọa độ patch làm input" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="830" width="740" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="mlp" value="MLP 256→128→64, GELU ở lớp giữa&#10;z: B × 64 — không L2-normalize trước loss variance" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="1005" width="740" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="pred" value="PREDICTOR CHO TỪNG Ô TARGET&#10;[z:64 ; c:5] → 69→128→128→48&#10;24 số μ + 24 số s = log(variance)&#10;s được clamp [-6, 6] trước NLL" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="1165" width="740" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="r" value="Một target residual: 8 × 64 × 64&#10;Chia 4×4 ô; mỗi ô có 8 × 16 × 16 giá trị" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="245" width="740" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="stat" value="MỖI Ô, MỖI RESIDUAL CHANNEL:&#10;1. e = log(mean(r²) + ε_E): độ lớn phần dư&#10;2. ρ_h = corr(pixel bên trái, pixel bên phải)&#10;3. ρ_v = corr(pixel phía trên, pixel phía dưới)&#10;8 channels × 3 thống kê = 24 số&#10;ε_E = 1e-8 với output FRE đã khóa scale" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="390" width="740" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="normalize" value="CHUẨN HÓA LABEL BẰNG TRAIN STATISTICS&#10;y_j = (u_j − m_j) / max(a_j, 1e-3)&#10;u_j: thống kê thô; m_j: mean; a_j: std&#10;Chỉ ước lượng m, a từ ảnh thuộc encoder-train" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="670" width="740" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="y" value="Đáp án cuối y: B × 2 × 16 × 24&#10;B ảnh; 2 target; 16 ô; 24 thống kê" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="860" width="740" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c" value="ĐIỀU KIỆN c: B × 2 × 16 × 5&#10;Từ RGB low-pass bằng average filter7×7&#10;Mean R/G/B; std luminance; gradient energy&#10;Luminance = 0,299R + 0,587G + 0,114B&#10;Không đưa residual target vào predictor" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="1005" width="740" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="sample" value="SAMPLING TRÊN NATIVE CROP256&#10;9 vị trí: x,y thuộc {0,80,160}; mỗi core64&#10;Random chọn 8 core: A3, B3, target2&#10;Gap16 hạn chế chia sẻ receptive field của FRE15&#10;Giữ target/cùng tọa độ khi lấy RGB conditions" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#fef3c7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="1215" width="740" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="TẠI SAO LABEL KHÔNG ĐƯỢC HỌC?&#10;Nếu encoder và bộ tạo đáp án cùng tự do, chúng có thể cùng đổi để bài tập trở nên tầm thường.&#10;FRE, thống kê label, chuẩn hóa label và phép lấy conditions đều cố định / stop-gradient.&#10;Residual vẫn có thể chứa texture; 24 thống kê là thiết kế pilot, chưa phải mô tả đầy đủ quá trình tạo ảnh." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#fef3c7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="1415" width="1640" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" source="input" target="cnn" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" source="cnn" target="pool" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" source="pool" target="set" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" source="set" target="mlp" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" source="mlp" target="pred" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge6" source="r" target="stat" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge7" source="stat" target="normalize" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge8" source="normalize" target="y" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="03_losses" name="03 - Công thức loss">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="2060" math="0" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="LOSS: CHẤM ĐIỂM DỰ ĐOÁN VÀ GIỮ EMBEDDING CÓ THÔNG TIN" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=32;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="25" width="1710" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Công thức trong file này dùng text chỉnh sửa được. File loss_explained_vi.md có công thức LaTeX và giải thích đầy đủ." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="90" width="1710" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vars" value="TỪ ĐIỂN BIẾN&#10;B: số ảnh/batch; v thuộc {A,B}: nhóm context; t=1..2: target patch; q=1..16: ô/target; j=1..24: thống kê.&#10;z_A,z_B: bản mô tả 64 số từ hai nhóm context; c: 5 đặc điểm thô của ô target; y: đáp án 24 thống kê đã chuẩn hóa.&#10;μ: giá trị trung tâm predictor đoán; s: log-variance predictor đoán; θ: encoder weights; ψ: predictor weights.&#10;D=64: chiều embedding; ε=1e-4: số nhỏ trong variance regularizer; các mean/covariance bên dưới tính theo batch ảnh." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="175" width="1710" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="pred" value="1. LOSS CHÍNH — DỰ ĐOÁN PHÂN PHỐI CỦA LABEL&#10;ℓ = 0,5 × [ exp(−s) × (y − μ)² + s ]&#10;L_pred = mean ℓ trên mọi ảnh B, cả hai context A/B, 2 target, 16 ô và 24 thống kê.&#10;μ và s = P_ψ(z_v, c). Dùng s sau clamp [-6,6]; label y không có gradient.&#10;(y−μ)²: đoán sai bị phạt. exp(−s): đoán quá tự tin mà sai bị phạt mạnh. +s: ngăn tăng variance vô hạn.&#10;Có thể bỏ hằng số 0,5 log(2π). NLL không nhất thiết không âm; loss âm không tự có nghĩa training bị lỗi." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="405" width="1710" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="inv" value="2. INVARIANCE — HAI NHÓM CÙNG ẢNH CẦN TƯƠNG ĐỒNG&#10;L_inv = mean_(b,k) [ z_A[b,k] − z_B[b,k] ]²&#10;b là chỉ số ảnh; k=1..64 là chiều embedding. Mean = tổng chia B×64.&#10;Nếu chỉ dùng loss này, model có thể xuất một vector giống hệt cho mọi ảnh → mất thông tin." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="700" width="1710" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="var" value="3. VARIANCE FLOOR — GIỮ SỰ ĐA DẠNG GIỮA CÁC ẢNH&#10;v(Z) = (1/D) Σ_k max(0, 1 − sqrt(Var_batch(Z[:,k]) + ε))&#10;L_var = [ v(Z_A) + v(Z_B) ] / 2&#10;Z_A và Z_B là ma trận B×64; mỗi hàng là embedding của một ảnh.&#10;Nếu một chiều gần như giống nhau trên mọi ảnh, std nhỏ hơn1 → bị phạt. Dùng sample variance, mẫu số B−1.&#10;Không L2-normalize z trước term này; B≥2, pilot khuyên B64. Chống collapse không chứng minh học đúng forensic." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="925" width="1710" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cov" value="4. COVARIANCE — GIẢM CÁC CHIỀU TRÙNG THÔNG TIN&#10;Z_centered = Z − mean_batch(Z)&#10;C(Z) = Z_centeredᵀ Z_centered / (B−1)&#10;cov_penalty(Z) = (1/D) Σ_(k≠l) C(Z)[k,l]²&#10;L_cov = cov_penalty(Z_A) + cov_penalty(Z_B)&#10;C(Z) kích thước64×64; bỏ đường chéo. Các chiều cùng tăng/giảm theo nhau bị phạt. Không ép từng ảnh thành Gaussian." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="1205" width="1710" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="total" value="5. LOSS TỔNG — RECIPE THỬ NGHIỆM&#10;L_total = L_pred + λ × (25 L_inv + 25 L_var + L_cov)&#10;Bắt đầu λ=0,1; chạy đối chứng λ=0. Không coi các hệ số này là đã tối ưu cho forensic.&#10;Backprop qua predictor → z → encoder. Không update FRE, label statistics hoặc RGB conditions." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="1500" width="1710" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="example" value="VÍ DỤ NLL MỘT CHIỀU — CHỈ MINH HỌA, KHÔNG PHẢI KẾT QUẢ TRAIN&#10;Label y=2. Model đoán μ=1 và variance=1 → s=0 → ℓ=0,5.&#10;Giữ μ=1 nhưng đoán variance=4 → s=log4 → ℓ≈0,818: tăng độ bất định không miễn phí.&#10;Một chiều không đại diện toàn loss; phải lấy mean đúng các trục đã ghi." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#fef3c7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="45" y="1710" width="1710" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="warning" value="LOSS GIẢM CHỈ CHỨNG MINH MODEL LÀM BÀI TẬP TỐT HƠN.&#10;Cần kiểm tra c-only, hoán đổi z, unseen camera/source và unseen generators để chứng minh ích lợi cho detection." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="1920" width="1710" height="95" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="04_training_and_gmm" name="04 - Train và GMM">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1630" math="0" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="TỪ MỘT BƯỚC TRAIN ĐẾN ĐÁNH GIÁ ẢNH MỚI" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=32;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="25" width="1710" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Phân biệt: học encoder/predictor trước; fit density sau. Không dùng final-test để lựa model hoặc threshold." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="90" width="1710" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="tr" value="A. HỌC BẰNG ẢNH THẬT" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=25;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="45" y="165" width="800" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="inf" value="B. FREEZE VÀ XÂY DETECTOR" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=25;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=1;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="945" y="165" width="800" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="d" value="REAL ENCODER-TRAIN&#10;Native crop256; không resize để ép đủ kích thước&#10;Sampling A3 + B3 + target2; label chuẩn hóa cố định" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dbeafe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="245" width="740" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="f" value="FORWARD&#10;R frozen → context encoder E → z_A,z_B&#10;P(z_A,c), P(z_B,c) → μ,s&#10;Tự tính đáp án y từ residual target" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="410" width="740" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="l" value="LOSS TỔNG&#10;Prediction NLL + invariance + variance + covariance&#10;Tính label statistics / loss nhạy số học bằng FP32" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ffedd5;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="585" width="740" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="update" value="BACKWARD VÀ ADAMW UPDATE&#10;Update θ (encoder) và ψ (predictor)&#10;Không có BCE real/fake hoặc generator label" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="745" width="740" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="val" value="REAL VALIDATION — FIXED PATCH LAYOUT&#10;So prediction NLL; std/effective rank của z&#10;So predictor c-only và predictor với z bị hoán đổi&#10;Loss tốt không đảm bảo AUROC unseen tốt" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#fef3c7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="905" width="740" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="recipe" value="PILOT ĐỀ XUẤT — CHƯA BENCHMARK&#10;Batch64 ảnh; AdamW LR1e-4, WD1e-4&#10;20 epochs; warmup5% rồi cosine đến LR1e-6&#10;Shared flip/rotation90°; chưa thêm JPEG/blur&#10;Khóa seed, data membership và cách chọn checkpoint" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="1105" width="740" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="freeze" value="FREEZE ENCODER E VÀ PREDICTOR P&#10;Giữ cả predictor để đo surprise&#10;Khóa sampling / preprocessing / label scaler" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="245" width="740" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="surprise" value="ĐO SAI SỐ PHÂN PHỐI TRÊN REAL-FIT&#10;a[v,t,q,j] = 0,5 × [exp(−s) × (y−μ)² + s]&#10;Với mỗi chiều j: lấy mean và std qua v,t,q&#10;h = [mean24 ; std24] → embedding48" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dcfce7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="405" width="740" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="gauss" value="FIT GAUSSIAN/GMM TRÊN h CỦA REAL-FIT&#10;Bắt đầu K=1, full covariance + regularization&#10;Fit bằng real-fit, không dùng calibration/test" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#ede9fe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="605" width="740" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="cal" value="REAL-CALIBRATION RIÊNG&#10;score = −log p_GMM(h)&#10;Ngưỡng τ = percentile95 của calibration scores&#10;Nhắm empirical FPR5% trên calibration" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#e2e8f0;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="770" width="740" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="test" value="ẢNH MỚI → CÙNG E/P → h → score&#10;score &gt; τ: bất thường so với real reference&#10;Không tự đồng nhất score với P(fake)&#10;Report real FPR và unseen-fake TPR/AUROC" vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#dbeafe;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="940" width="740" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="audit" value="THÍ NGHIỆM QUYẾT ĐỊNH&#10;1. Predictor chỉ dùng c&#10;2. Predictor dùng c + đúng z&#10;3. Predictor dùng c + z từ ảnh khác&#10;Đúng z phải có ích trên validation và detection." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#fef3c7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="975" y="1120" width="740" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="split" value="TÁCH DỮ LIỆU THEO ẢNH GỐC&#10;Encoder-train / encoder-validation / real-density-fit / real-calibration / final-test.&#10;Mọi crop hoặc biến thể của một ảnh phải cùng split. Final-test gồm real mới + fake unseen generators." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#0f172a;align=center;verticalAlign=middle;spacing=15;fontStyle=0;rounded=1;fillColor=#fef3c7;strokeColor=#94a3b8;strokeWidth=1.5;">
+          <mxGeometry x="75" y="1340" width="1640" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="gsd" value="GSD KHÔNG CÓ TRONG BẢN CNN V1 NÀY. Nếu thay context CNN bằng CLIP+GSD, phải thiết kế lại input size và tensor contract.&#10;Không chiếu trực tiếp CNN feature128 bằng semantic basis CLIP1024. Bản GSD là một thí nghiệm mở rộng riêng." vertex="1" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#0f172a;align=left;verticalAlign=middle;spacing=15;fontStyle=0;text;strokeColor=none;fillColor=none;">
+          <mxGeometry x="75" y="1490" width="1640" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" source="d" target="f" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" source="f" target="l" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" source="l" target="update" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" source="update" target="val" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" source="freeze" target="surprise" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge6" source="surprise" target="gauss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge7" source="gauss" target="cal" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge8" source="cal" target="test" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748b;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

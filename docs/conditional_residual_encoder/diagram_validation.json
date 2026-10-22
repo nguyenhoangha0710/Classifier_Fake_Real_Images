@@ -1,0 +1,26 @@
+[
+  {
+    "page": "01_architecture",
+    "nodes": 20,
+    "edges": 22,
+    "preview": "01_architecture.png"
+  },
+  {
+    "page": "02_encoder_and_labels",
+    "nodes": 17,
+    "edges": 8,
+    "preview": "02_encoder_and_labels.png"
+  },
+  {
+    "page": "03_losses",
+    "nodes": 10,
+    "edges": 0,
+    "preview": "03_losses.png"
+  },
+  {
+    "page": "04_training_and_gmm",
+    "nodes": 18,
+    "edges": 8,
+    "preview": "04_training_and_gmm.png"
+  }
+]

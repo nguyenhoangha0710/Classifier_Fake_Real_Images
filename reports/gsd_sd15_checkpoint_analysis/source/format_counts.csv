@@ -1,0 +1,17 @@
+split,generator,label,format,count
+test,adm,0,JPEG,500
+test,adm,1,PNG,500
+test,biggan,0,JPEG,500
+test,biggan,1,PNG,500
+test,glide,0,JPEG,500
+test,glide,1,PNG,500
+test,midjourney,0,JPEG,500
+test,midjourney,1,PNG,500
+test,sd15,0,JPEG,500
+test,sd15,1,PNG,500
+test,vqdm,0,JPEG,500
+test,vqdm,1,PNG,500
+test,wukong,0,JPEG,500
+test,wukong,1,PNG,500
+train,sd15,0,JPEG,2000
+train,sd15,1,PNG,2000

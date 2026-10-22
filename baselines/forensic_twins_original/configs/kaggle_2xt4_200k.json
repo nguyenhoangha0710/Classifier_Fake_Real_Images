@@ -1,0 +1,71 @@
+{
+  "run_profile": "real_200k_v2_from_scratch",
+  "seed": 42,
+  "paths": {
+    "input_root": "/kaggle/input",
+    "output_root": "/kaggle/working/forensic_twins_v2_200k"
+  },
+  "data": {
+    "imagenet_per_class": 100,
+    "coco_total": 100000,
+    "min_side": 256,
+    "manifest_workers": 16,
+    "crop_sizes": [64, 96, 128],
+    "include_identity_rotation": true,
+    "flip_probability": 0.5
+  },
+  "model": {
+    "patch_size": 8,
+    "embed_dim": 192,
+    "depth": 6,
+    "num_heads": 3,
+    "mlp_ratio": 4.0,
+    "projector_hidden": 2048,
+    "projector_out": 8192,
+    "barlow_lambda": 0.00005,
+    "barlow_eps": 0.0001
+  },
+  "training": {
+    "expected_world_size": 2,
+    "micro_batch_per_gpu": 64,
+    "effective_batch_size": 128,
+    "epochs": 80,
+    "learning_rate": 0.0006,
+    "min_learning_rate": 0.000001,
+    "weight_decay": 0.0025,
+    "warmup_epochs": 15,
+    "adam_betas": [0.9, 0.999],
+    "adam_epsilon": 1e-8,
+    "gradient_clip_norm": 0.0,
+    "amp_fp16": true,
+    "num_workers_per_rank": 4,
+    "log_every_steps": 20
+  },
+  "checkpoint": {
+    "save_every_optimizer_steps": 250,
+    "milestone_every_epochs": 5,
+    "persist_every_epochs": 1,
+    "keep_last": 3,
+    "kaggle_dataset_slug": ""
+  },
+  "evaluation": {
+    "center_crop": 256,
+    "embedding_batch_per_gpu": 64,
+    "gmm_reg_covar": 0.000001,
+    "codec_seed": 42,
+    "gmm_calibration_fraction": 0.2,
+    "threshold_percentiles": [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98],
+    "primary_threshold_percentile": 95,
+    "visualization_max_per_generator_class": 500
+  },
+  "provisional_assumptions": {
+    "crop_sizes": "Paper v1 does not disclose the crop-size distribution.",
+    "identity_rotation": "Paper does not disclose whether identity is sampled.",
+    "vit_heads_mlp": "Paper discloses 192-D and six blocks, but not heads/MLP ratio.",
+    "projector": "Paper discloses only the 8192-D output.",
+    "optimizer_betas_epsilon": "Not disclosed by paper.",
+    "precision": "FP16 replaces paper BF16 because NVIDIA T4 lacks native BF16.",
+    "batch_lr": "Global batch 128 and LR 0.0006 replace paper batch 320/LR 0.0015.",
+    "data_scale": "This v2 run uses 100K ImageNet plus 100K COCO real images."
+  }
+}

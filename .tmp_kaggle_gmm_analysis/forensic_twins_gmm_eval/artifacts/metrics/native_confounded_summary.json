@@ -1,0 +1,59 @@
+{
+  "protocol": "native_confounded",
+  "pooled_auroc": 0.8466151435008326,
+  "pooled_average_precision": 0.8133270178245534,
+  "macro_generator_auroc": NaN,
+  "macro_generator_average_precision": NaN,
+  "num_images": 6403,
+  "per_generator": [
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_ai_0419_biggan",
+      "num_images": 487,
+      "auroc": NaN,
+      "average_precision": NaN
+    },
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_ai_0419_vqdm",
+      "num_images": 984,
+      "auroc": 0.8222892561983471,
+      "average_precision": 0.770573349571199
+    },
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_ai_0424_sdv5",
+      "num_images": 988,
+      "auroc": 0.7954016393442623,
+      "average_precision": 0.7333001283020975
+    },
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_ai_0424_wukong",
+      "num_images": 985,
+      "auroc": 0.8030226804123711,
+      "average_precision": 0.7564107563685271
+    },
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_ai_0508_adm",
+      "num_images": 989,
+      "auroc": 0.8035950920245398,
+      "average_precision": 0.7619417964115238
+    },
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_glide",
+      "num_images": 985,
+      "auroc": 0.9922804123711341,
+      "average_precision": 0.9915604447838138
+    },
+    {
+      "protocol": "native_confounded",
+      "generator": "imagenet_midjourney",
+      "num_images": 985,
+      "auroc": 0.8779835051546392,
+      "average_precision": 0.8696082739435325
+    }
+  ]
+}

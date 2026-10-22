@@ -1,0 +1,5 @@
+{
+  "checkpoint": "/kaggle/input/datasets/hadinho0710/checkpoint-gsd-sdv5-train/gsd_raw_all7_crop560_v1/seed42/clip_gsd/best.pt",
+  "dataset_root": "/kaggle/input/datasets/yangsangtai/tiny-genimage",
+  "manifest": "/kaggle/input/datasets/hadinho0710/checkpoint-gsd-sdv5-train/gsd_raw_all7_crop560_v1/seed42/test_manifest.csv"
+}

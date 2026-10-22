@@ -1,0 +1,47 @@
+{
+  "pages": [
+    {
+      "name": "01 Workflow",
+      "nodes": 10,
+      "edges": 7
+    },
+    {
+      "name": "02 Reference basis",
+      "nodes": 13,
+      "edges": 8
+    },
+    {
+      "name": "03 Teacher student",
+      "nodes": 12,
+      "edges": 8
+    },
+    {
+      "name": "04 Inside encoder",
+      "nodes": 13,
+      "edges": 8
+    },
+    {
+      "name": "05 Crops and mask",
+      "nodes": 11,
+      "edges": 4
+    },
+    {
+      "name": "06 Losses",
+      "nodes": 9,
+      "edges": 3
+    },
+    {
+      "name": "07 Training and export",
+      "nodes": 12,
+      "edges": 5
+    }
+  ],
+  "checks": [
+    "unique cell IDs",
+    "valid edge references",
+    "nodes in page bounds",
+    "text fits boxes",
+    "PNG dimensions"
+  ],
+  "status": "passed"
+}

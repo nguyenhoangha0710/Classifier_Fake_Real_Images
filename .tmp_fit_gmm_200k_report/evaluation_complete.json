@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "gmm": "/kaggle/working/forensic_twins_200k_gmm_eval/artifacts/gmm/real_k1_full.npz",
+  "thresholds": "/kaggle/working/forensic_twins_200k_gmm_eval/artifacts/gmm/thresholds.json",
+  "primary_threshold_percentile": 95,
+  "protocols": [
+    "native_raw",
+    "fake_codec_matched",
+    "jpeg_q95",
+    "jpeg_q80",
+    "jpeg_q65",
+    "jpeg_q50",
+    "jpeg_q35"
+  ],
+  "metrics": "/kaggle/working/forensic_twins_200k_gmm_eval/artifacts/metrics",
+  "figures": "/kaggle/working/forensic_twins_200k_gmm_eval/artifacts/figures"
+}

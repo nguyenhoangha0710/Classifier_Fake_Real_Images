@@ -1,0 +1,5 @@
+{
+  "epoch": 1,
+  "criterion": "minimum All7 raw validation cross entropy",
+  "signature": "18ea6abe15bbb769490788a8ec5516457b7538ebb3dad1018d4a94948a2a79cc"
+}

@@ -1,0 +1,12 @@
+{
+  "backbone": "CLIPVisionConfig {\n  \"_attn_implementation_autoset\": true,\n  \"_name_or_path\": \"openai/clip-vit-large-patch14\",\n  \"attention_dropout\": 0.0,\n  \"dropout\": 0.0,\n  \"hidden_act\": \"quick_gelu\",\n  \"hidden_size\": 1024,\n  \"image_size\": 224,\n  \"initializer_factor\": 1.0,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": 4096,\n  \"layer_norm_eps\": 1e-05,\n  \"model_type\": \"clip_vision_model\",\n  \"num_attention_heads\": 16,\n  \"num_channels\": 3,\n  \"num_hidden_layers\": 24,\n  \"patch_size\": 14,\n  \"projection_dim\": 768,\n  \"transformers_version\": \"4.46.3\"\n}\n",
+  "input_mode": "center_crop_max_edge_pad14",
+  "basis": "gram_eigh",
+  "attention": "sdpa",
+  "all_generators_seen": true,
+  "patch_size": 14,
+  "protocol": "raw_all7_center_crop560_v1",
+  "crop_max_side": 560,
+  "padding": "right/bottom edge replication to multiple of 14; no resize",
+  "trainable_parameters": 303181834
+}

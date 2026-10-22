@@ -1,0 +1,15 @@
+generator,label,n
+adm,0,1800
+adm,1,1800
+biggan,0,1800
+biggan,1,1800
+glide,0,1800
+glide,1,1800
+midjourney,0,1800
+midjourney,1,1800
+sd15,0,1800
+sd15,1,1800
+vqdm,0,1800
+vqdm,1,1800
+wukong,0,1800
+wukong,1,1800

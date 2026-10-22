@@ -1,0 +1,13 @@
+{
+  "backbone": "CLIPVisionConfig {\n  \"_attn_implementation_autoset\": true,\n  \"_name_or_path\": \"openai/clip-vit-large-patch14\",\n  \"attention_dropout\": 0.0,\n  \"dropout\": 0.0,\n  \"hidden_act\": \"quick_gelu\",\n  \"hidden_size\": 1024,\n  \"image_size\": 224,\n  \"initializer_factor\": 1.0,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": 4096,\n  \"layer_norm_eps\": 1e-05,\n  \"model_type\": \"clip_vision_model\",\n  \"num_attention_heads\": 16,\n  \"num_channels\": 3,\n  \"num_hidden_layers\": 24,\n  \"patch_size\": 14,\n  \"projection_dim\": 768,\n  \"transformers_version\": \"4.46.3\"\n}\n",
+  "trainable_parameters": 303181834,
+  "gsd_pre_block_indices": [
+    20,
+    21,
+    22,
+    23
+  ],
+  "initialization_head_sha": "f51530cb4cf578bd800f9a0de31df527d7356bf3ec64740ca58dd2123400738f",
+  "pooling": "patch_mean_post_ln",
+  "batch_basis": "entire logical batch, independent of microbatch"
+}

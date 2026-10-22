@@ -1,0 +1,15 @@
+{
+  "components": 1,
+  "covariance_type": "full",
+  "score": "negative_log_likelihood",
+  "embedding_dim": 192,
+  "num_fit": 40000,
+  "manifest": "/kaggle/input/datasets/hoangha071005/twins-gmm-checkpoint/forensic_twins_original/manifests/train_real_50k.csv",
+  "manifest_sha256": "ddac168061645a919399330d180031fcfe3a12c79817cd6a6907ae1e00ec75ae",
+  "checkpoint": "/kaggle/input/datasets/hoangha071005/twins-gmm-checkpoint/forensic_twins_original/artifacts/checkpoints/last.ckpt",
+  "checkpoint_optimizer_step": 31200,
+  "fre_sha256": "d95b9c50837dbf7b660bbefa20cdaa5db5e59601a9d6544573c10e78e04906bb",
+  "reg_covar": 1e-06,
+  "center_crop": 256,
+  "calibration_fraction": 0.2
+}

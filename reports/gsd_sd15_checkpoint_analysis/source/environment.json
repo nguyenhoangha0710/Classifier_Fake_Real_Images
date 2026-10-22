@@ -1,0 +1,10 @@
+{
+  "torch": "2.11.0+cu128",
+  "transformers": "4.46.3",
+  "pillow": "12.3.0",
+  "python": "3.13.15",
+  "gpu": "Tesla T4",
+  "use_devices": 1,
+  "paper": "https://arxiv.org/html/2603.09242v2",
+  "torch_threads": 2
+}

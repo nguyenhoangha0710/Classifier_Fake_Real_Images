@@ -1,0 +1,8 @@
+protocol,generator,num_images,auroc,average_precision
+native_confounded,imagenet_ai_0419_biggan,487,nan,nan
+native_confounded,imagenet_ai_0419_vqdm,984,0.8222892561983471,0.770573349571199
+native_confounded,imagenet_ai_0424_sdv5,988,0.7954016393442623,0.7333001283020975
+native_confounded,imagenet_ai_0424_wukong,985,0.8030226804123711,0.7564107563685271
+native_confounded,imagenet_ai_0508_adm,989,0.8035950920245398,0.7619417964115238
+native_confounded,imagenet_glide,985,0.9922804123711341,0.9915604447838138
+native_confounded,imagenet_midjourney,985,0.8779835051546392,0.8696082739435325

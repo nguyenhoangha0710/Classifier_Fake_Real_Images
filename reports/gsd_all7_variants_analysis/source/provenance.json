@@ -1,0 +1,98 @@
+{
+  "checkpoint_sha256": "b1eb0f87b85a90e995aefc23c397f45939ee9ae5278c61598ff8538a2ac4990c",
+  "training_signature": "18ea6abe15bbb769490788a8ec5516457b7538ebb3dad1018d4a94948a2a79cc",
+  "selected_epoch": 1,
+  "manifest_sha256": "a185319593f7cf4294fdf472c9e8e20895c19f52286792ea5f543dab8ba0a8f9",
+  "sample_order_hash": "c544b38bf4276a2fce06fd205fb4dbb86fa772ac26532509679311e7d8a96aa2",
+  "n": 7000,
+  "inference_config": {
+    "local_files_only": false,
+    "seeds": [
+      42
+    ],
+    "models": [
+      "clip_gsd"
+    ],
+    "epochs": 50,
+    "early_stopping": true,
+    "patience": 3,
+    "min_delta": 0.001,
+    "train_batch": 8,
+    "test_batch": 8,
+    "micro_batch": 1,
+    "anchor_micro_batch": 1,
+    "lr": 1e-06,
+    "head_lr": 1e-06,
+    "modulation_lr": 1e-06,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "k": 64,
+    "lambda_max": 1.0,
+    "a_init": 2.0,
+    "b_init": 1.0,
+    "validation_fraction": 0.1,
+    "num_workers": 0,
+    "gradient_checkpointing": true,
+    "precision": "fp16",
+    "svd_driver": "gesvdj",
+    "jpeg_probability": 0.0,
+    "jpeg_train_quality": [
+      75,
+      100
+    ],
+    "jpeg_subsampling": 0,
+    "blur_probability": 0.0,
+    "blur_sigma": [
+      0.0,
+      2.0
+    ],
+    "horizontal_flip_probability": 0.0,
+    "jpeg_eval_qualities": [
+      96
+    ],
+    "size_control": 256,
+    "threshold": 0.5,
+    "pooling": "patch_mean_post_ln",
+    "source_generator": "all7",
+    "strict_eight_generators": false,
+    "expected_generators": [
+      "sd15",
+      "adm",
+      "biggan",
+      "glide",
+      "midjourney",
+      "wukong",
+      "vqdm"
+    ],
+    "smoke": false,
+    "smoke_train_per_class": 64,
+    "smoke_eval_per_class": 4,
+    "train_generators": [
+      "sd15",
+      "adm",
+      "biggan",
+      "glide",
+      "midjourney",
+      "wukong",
+      "vqdm"
+    ],
+    "input_mode": "center_crop_max_edge_pad14",
+    "basis_method": "gram_eigh",
+    "attention": "sdpa",
+    "crop_max_side": 560
+  },
+  "transform_version": "original_before_crop560_v1",
+  "max_batches": null,
+  "anchor_model": "openai/clip-vit-large-patch14",
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.46.3",
+    "pillow": "12.3.0",
+    "python": "3.13.15",
+    "gpu": "Tesla T4"
+  }
+}

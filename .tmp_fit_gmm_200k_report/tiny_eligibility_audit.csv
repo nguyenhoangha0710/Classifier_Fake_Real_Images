@@ -1,0 +1,8 @@
+generator,status,raw_real,raw_fake,eligible_real,eligible_fake,invalid_or_too_small_real,invalid_or_too_small_fake,selected_per_class,crop_size
+imagenet_ai_0419_biggan,excluded_no_balanced_eligible_pair,500,500,487,0,13,500,0,256
+imagenet_ai_0419_vqdm,included,500,500,484,500,16,0,484,256
+imagenet_ai_0424_sdv5,included,500,500,488,500,12,0,488,256
+imagenet_ai_0424_wukong,included,500,500,485,500,15,0,485,256
+imagenet_ai_0508_adm,included,500,500,489,500,11,0,489,256
+imagenet_glide,included,500,500,485,500,15,0,485,256
+imagenet_midjourney,included,500,500,485,500,15,0,485,256

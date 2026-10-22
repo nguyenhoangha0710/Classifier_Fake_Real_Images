@@ -1,0 +1,2 @@
+seed,model,case,auc,balanced_accuracy,fake_recall,real_recall,accuracy
+42,clip_gsd,native,0.9999988571428571,0.9997142857142858,1.0,0.9994285714285714,0.9997142857142858

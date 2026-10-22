@@ -1,0 +1,11 @@
+{
+  "epoch": 16,
+  "max_epochs": 50,
+  "early_stopping": {
+    "reference_loss": 0.013950074381990862,
+    "bad_epochs": 3,
+    "stopped": true
+  },
+  "patience": 3,
+  "min_delta": 0.001
+}

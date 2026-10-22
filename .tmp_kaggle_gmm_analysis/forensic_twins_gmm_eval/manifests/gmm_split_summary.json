@@ -1,0 +1,15 @@
+{
+  "strategy": "deterministic_source_and_imagenet_class_stratified",
+  "seed": 42,
+  "calibration_fraction": 0.2,
+  "num_fit_requested": 40000,
+  "num_calibration_requested": 10000,
+  "fit_by_source": {
+    "coco2017": 20000,
+    "imagenet1k": 20000
+  },
+  "calibration_by_source": {
+    "coco2017": 5000,
+    "imagenet1k": 5000
+  }
+}

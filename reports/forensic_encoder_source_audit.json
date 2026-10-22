@@ -1,0 +1,45 @@
+{
+  "reviewed_date": "2026-10-21",
+  "scope": "Read-only paper and source review; no training or weight loading.",
+  "repositories": [
+    {
+      "repository": "Ekko-zn/SDAIE",
+      "commit": "532f0fe3773e591b73d5c28924a579707f789cc4",
+      "files": [
+        "Classifier/Net.py",
+        "Classifier/vit.py",
+        "backbone_train.py",
+        "utils.py",
+        "oc_funs.py"
+      ],
+      "findings": [
+        "Paper mean pooling vs first token in code without inserted CLS",
+        "Paper Phi(delta/sqrt(2)) vs code Phi(delta)",
+        "DDP per-rank DataLoader batch64; samples contain two images",
+        "No explicit 30000-update stop in published backbone training loop"
+      ]
+    },
+    {
+      "repository": "ductai199x/Forensic-Self-Descriptions-CVPR25",
+      "commit": "50f2eae06efdac2e5a33f407ca9a27a2295133ac",
+      "files": [
+        "fsd/fre.py",
+        "fsd/fsd_computation.py"
+      ],
+      "findings": [
+        "Paper FRE neighborhood11 vs code default15; checkpoint shape determines loader configuration",
+        "Paper iterative descriptor fitting vs code constrained least-squares KKT"
+      ]
+    }
+  ],
+  "papers": [
+    "https://arxiv.org/html/2512.05651",
+    "https://arxiv.org/html/2609.31514v1",
+    "https://arxiv.org/html/2603.09242v2",
+    "https://arxiv.org/html/2503.21003",
+    "https://arxiv.org/html/2212.10957",
+    "https://arxiv.org/abs/1902.04684",
+    "https://openaccess.thecvf.com/content/ICCV2025/html/Zou_Bi-Level_Optimization_for_Self-Supervised_AI-Generated_Face_Detection_ICCV_2025_paper.html",
+    "https://openaccess.thecvf.com/content_CVPR_2019/html/Park_Relational_Knowledge_Distillation_CVPR_2019_paper.html"
+  ]
+}
