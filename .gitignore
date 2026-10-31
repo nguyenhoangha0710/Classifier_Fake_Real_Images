@@ -60,6 +60,7 @@ baselines/aide_original_full/artifacts/checkpoints/*
 *.safetensors
 *.onnx
 *.rar
+baselines/clip_gsd_tiny_kaggle/best.zip
 
 # Local datasets and caches
 dataset/*

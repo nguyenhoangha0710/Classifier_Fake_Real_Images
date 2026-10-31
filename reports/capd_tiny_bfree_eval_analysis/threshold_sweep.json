@@ -1,0 +1,1414 @@
+{
+  "lse_full": {
+    "fixed_thresholds": [
+      {
+        "threshold": 0.5,
+        "macro_ba": 0.8253833462732919,
+        "macro_fake_recall": 0.6585306677018633,
+        "real_recall": 0.9922360248447205,
+        "fpr": 0.00776397515527949,
+        "real_fp": 80,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10224,
+            "fp": 80,
+            "fn": 78,
+            "tp": 10226,
+            "fake_recall": 0.9924301242236024,
+            "real_recall": 0.9922360248447205,
+            "balanced_accuracy": 0.9923330745341614
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10224,
+            "fp": 80,
+            "fn": 3818,
+            "tp": 6486,
+            "fake_recall": 0.6294642857142857,
+            "real_recall": 0.9922360248447205,
+            "balanced_accuracy": 0.8108501552795031
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10224,
+            "fp": 80,
+            "fn": 201,
+            "tp": 10103,
+            "fake_recall": 0.9804930124223602,
+            "real_recall": 0.9922360248447205,
+            "balanced_accuracy": 0.9863645186335404
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10224,
+            "fp": 80,
+            "fn": 6311,
+            "tp": 3993,
+            "fake_recall": 0.3875194099378882,
+            "real_recall": 0.9922360248447205,
+            "balanced_accuracy": 0.6898777173913043
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10224,
+            "fp": 80,
+            "fn": 1510,
+            "tp": 8794,
+            "fake_recall": 0.8534549689440993,
+            "real_recall": 0.9922360248447205,
+            "balanced_accuracy": 0.92284549689441
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10224,
+            "fp": 80,
+            "fn": 9193,
+            "tp": 1111,
+            "fake_recall": 0.1078222049689441,
+            "real_recall": 0.9922360248447205,
+            "balanced_accuracy": 0.5500291149068323
+          }
+        }
+      },
+      {
+        "threshold": 0.3,
+        "macro_ba": 0.831359989648033,
+        "macro_fake_recall": 0.6734924948240165,
+        "real_recall": 0.9892274844720497,
+        "fpr": 0.010772515527950333,
+        "real_fp": 111,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10193,
+            "fp": 111,
+            "fn": 58,
+            "tp": 10246,
+            "fake_recall": 0.9943711180124224,
+            "real_recall": 0.9892274844720497,
+            "balanced_accuracy": 0.991799301242236
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10193,
+            "fp": 111,
+            "fn": 3618,
+            "tp": 6686,
+            "fake_recall": 0.6488742236024845,
+            "real_recall": 0.9892274844720497,
+            "balanced_accuracy": 0.8190508540372671
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10193,
+            "fp": 111,
+            "fn": 160,
+            "tp": 10144,
+            "fake_recall": 0.984472049689441,
+            "real_recall": 0.9892274844720497,
+            "balanced_accuracy": 0.9868497670807453
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10193,
+            "fp": 111,
+            "fn": 6078,
+            "tp": 4226,
+            "fake_recall": 0.41013198757763975,
+            "real_recall": 0.9892274844720497,
+            "balanced_accuracy": 0.6996797360248447
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10193,
+            "fp": 111,
+            "fn": 1291,
+            "tp": 9013,
+            "fake_recall": 0.874708850931677,
+            "real_recall": 0.9892274844720497,
+            "balanced_accuracy": 0.9319681677018634
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10193,
+            "fp": 111,
+            "fn": 8981,
+            "tp": 1323,
+            "fake_recall": 0.12839673913043478,
+            "real_recall": 0.9892274844720497,
+            "balanced_accuracy": 0.5588121118012422
+          }
+        }
+      },
+      {
+        "threshold": 0.2,
+        "macro_ba": 0.8341016433747412,
+        "macro_fake_recall": 0.6825666407867494,
+        "real_recall": 0.9856366459627329,
+        "fpr": 0.014363354037267073,
+        "real_fp": 148,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10156,
+            "fp": 148,
+            "fn": 54,
+            "tp": 10250,
+            "fake_recall": 0.9947593167701864,
+            "real_recall": 0.9856366459627329,
+            "balanced_accuracy": 0.9901979813664596
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10156,
+            "fp": 148,
+            "fn": 3498,
+            "tp": 6806,
+            "fake_recall": 0.6605201863354038,
+            "real_recall": 0.9856366459627329,
+            "balanced_accuracy": 0.8230784161490683
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10156,
+            "fp": 148,
+            "fn": 138,
+            "tp": 10166,
+            "fake_recall": 0.9866071428571429,
+            "real_recall": 0.9856366459627329,
+            "balanced_accuracy": 0.9861218944099379
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10156,
+            "fp": 148,
+            "fn": 5925,
+            "tp": 4379,
+            "fake_recall": 0.4249805900621118,
+            "real_recall": 0.9856366459627329,
+            "balanced_accuracy": 0.7053086180124224
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10156,
+            "fp": 148,
+            "fn": 1158,
+            "tp": 9146,
+            "fake_recall": 0.8876164596273292,
+            "real_recall": 0.9856366459627329,
+            "balanced_accuracy": 0.936626552795031
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10156,
+            "fp": 148,
+            "fn": 8852,
+            "tp": 1452,
+            "fake_recall": 0.14091614906832298,
+            "real_recall": 0.9856366459627329,
+            "balanced_accuracy": 0.5632763975155279
+          }
+        }
+      },
+      {
+        "threshold": 0.1,
+        "macro_ba": 0.8359779373706004,
+        "macro_fake_recall": 0.6966064958592133,
+        "real_recall": 0.9753493788819876,
+        "fpr": 0.024650621118012417,
+        "real_fp": 254,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10050,
+            "fp": 254,
+            "fn": 42,
+            "tp": 10262,
+            "fake_recall": 0.9959239130434783,
+            "real_recall": 0.9753493788819876,
+            "balanced_accuracy": 0.9856366459627329
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10050,
+            "fp": 254,
+            "fn": 3333,
+            "tp": 6971,
+            "fake_recall": 0.6765333850931677,
+            "real_recall": 0.9753493788819876,
+            "balanced_accuracy": 0.8259413819875776
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10050,
+            "fp": 254,
+            "fn": 105,
+            "tp": 10199,
+            "fake_recall": 0.9898097826086957,
+            "real_recall": 0.9753493788819876,
+            "balanced_accuracy": 0.9825795807453417
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10050,
+            "fp": 254,
+            "fn": 5651,
+            "tp": 4653,
+            "fake_recall": 0.4515722049689441,
+            "real_recall": 0.9753493788819876,
+            "balanced_accuracy": 0.7134607919254659
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10050,
+            "fp": 254,
+            "fn": 1002,
+            "tp": 9302,
+            "fake_recall": 0.9027562111801242,
+            "real_recall": 0.9753493788819876,
+            "balanced_accuracy": 0.9390527950310559
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10050,
+            "fp": 254,
+            "fn": 8624,
+            "tp": 1680,
+            "fake_recall": 0.16304347826086957,
+            "real_recall": 0.9753493788819876,
+            "balanced_accuracy": 0.5691964285714286
+          }
+        }
+      },
+      {
+        "threshold": 0.05,
+        "macro_ba": 0.8349831780538303,
+        "macro_fake_recall": 0.7114065734989649,
+        "real_recall": 0.9585597826086957,
+        "fpr": 0.041440217391304324,
+        "real_fp": 427,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 9877,
+            "fp": 427,
+            "fn": 31,
+            "tp": 10273,
+            "fake_recall": 0.9969914596273292,
+            "real_recall": 0.9585597826086957,
+            "balanced_accuracy": 0.9777756211180124
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 9877,
+            "fp": 427,
+            "fn": 3155,
+            "tp": 7149,
+            "fake_recall": 0.6938082298136646,
+            "real_recall": 0.9585597826086957,
+            "balanced_accuracy": 0.8261840062111802
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 9877,
+            "fp": 427,
+            "fn": 84,
+            "tp": 10220,
+            "fake_recall": 0.9918478260869565,
+            "real_recall": 0.9585597826086957,
+            "balanced_accuracy": 0.9752038043478262
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 9877,
+            "fp": 427,
+            "fn": 5383,
+            "tp": 4921,
+            "fake_recall": 0.47758152173913043,
+            "real_recall": 0.9585597826086957,
+            "balanced_accuracy": 0.7180706521739131
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 9877,
+            "fp": 427,
+            "fn": 845,
+            "tp": 9459,
+            "fake_recall": 0.9179930124223602,
+            "real_recall": 0.9585597826086957,
+            "balanced_accuracy": 0.9382763975155279
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 9877,
+            "fp": 427,
+            "fn": 8344,
+            "tp": 1960,
+            "fake_recall": 0.19021739130434784,
+            "real_recall": 0.9585597826086957,
+            "balanced_accuracy": 0.5743885869565217
+          }
+        }
+      },
+      {
+        "threshold": 0.02,
+        "macro_ba": 0.8279470755693581,
+        "macro_fake_recall": 0.7347955486542442,
+        "real_recall": 0.9210986024844721,
+        "fpr": 0.07890139751552794,
+        "real_fp": 813,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 9491,
+            "fp": 813,
+            "fn": 25,
+            "tp": 10279,
+            "fake_recall": 0.9975737577639752,
+            "real_recall": 0.9210986024844721,
+            "balanced_accuracy": 0.9593361801242236
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 9491,
+            "fp": 813,
+            "fn": 2861,
+            "tp": 7443,
+            "fake_recall": 0.7223408385093167,
+            "real_recall": 0.9210986024844721,
+            "balanced_accuracy": 0.8217197204968945
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 9491,
+            "fp": 813,
+            "fn": 57,
+            "tp": 10247,
+            "fake_recall": 0.9944681677018633,
+            "real_recall": 0.9210986024844721,
+            "balanced_accuracy": 0.9577833850931676
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 9491,
+            "fp": 813,
+            "fn": 4986,
+            "tp": 5318,
+            "fake_recall": 0.516110248447205,
+            "real_recall": 0.9210986024844721,
+            "balanced_accuracy": 0.7186044254658386
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 9491,
+            "fp": 813,
+            "fn": 624,
+            "tp": 9680,
+            "fake_recall": 0.9394409937888198,
+            "real_recall": 0.9210986024844721,
+            "balanced_accuracy": 0.9302697981366459
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 9491,
+            "fp": 813,
+            "fn": 7843,
+            "tp": 2461,
+            "fake_recall": 0.23883928571428573,
+            "real_recall": 0.9210986024844721,
+            "balanced_accuracy": 0.5799689440993789
+          }
+        }
+      },
+      {
+        "threshold": 0.01,
+        "macro_ba": 0.8171745600414079,
+        "macro_fake_recall": 0.7565346790890269,
+        "real_recall": 0.8778144409937888,
+        "fpr": 0.1221855590062112,
+        "real_fp": 1259,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 9045,
+            "fp": 1259,
+            "fn": 17,
+            "tp": 10287,
+            "fake_recall": 0.9983501552795031,
+            "real_recall": 0.8778144409937888,
+            "balanced_accuracy": 0.9380822981366459
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 9045,
+            "fp": 1259,
+            "fn": 2585,
+            "tp": 7719,
+            "fake_recall": 0.749126552795031,
+            "real_recall": 0.8778144409937888,
+            "balanced_accuracy": 0.81347049689441
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 9045,
+            "fp": 1259,
+            "fn": 43,
+            "tp": 10261,
+            "fake_recall": 0.9958268633540373,
+            "real_recall": 0.8778144409937888,
+            "balanced_accuracy": 0.9368206521739131
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 9045,
+            "fp": 1259,
+            "fn": 4577,
+            "tp": 5727,
+            "fake_recall": 0.5558035714285714,
+            "real_recall": 0.8778144409937888,
+            "balanced_accuracy": 0.71680900621118
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 9045,
+            "fp": 1259,
+            "fn": 492,
+            "tp": 9812,
+            "fake_recall": 0.952251552795031,
+            "real_recall": 0.8778144409937888,
+            "balanced_accuracy": 0.91503299689441
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 9045,
+            "fp": 1259,
+            "fn": 7338,
+            "tp": 2966,
+            "fake_recall": 0.2878493788819876,
+            "real_recall": 0.8778144409937888,
+            "balanced_accuracy": 0.5828319099378882
+          }
+        }
+      },
+      {
+        "threshold": 0.005,
+        "macro_ba": 0.7970529244306419,
+        "macro_fake_recall": 0.7815087991718427,
+        "real_recall": 0.812597049689441,
+        "fpr": 0.18740295031055898,
+        "real_fp": 1931,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 8373,
+            "fp": 1931,
+            "fn": 14,
+            "tp": 10290,
+            "fake_recall": 0.998641304347826,
+            "real_recall": 0.812597049689441,
+            "balanced_accuracy": 0.9056191770186335
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 8373,
+            "fp": 1931,
+            "fn": 2285,
+            "tp": 8019,
+            "fake_recall": 0.7782414596273292,
+            "real_recall": 0.812597049689441,
+            "balanced_accuracy": 0.7954192546583851
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 8373,
+            "fp": 1931,
+            "fn": 28,
+            "tp": 10276,
+            "fake_recall": 0.9972826086956522,
+            "real_recall": 0.812597049689441,
+            "balanced_accuracy": 0.9049398291925466
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 8373,
+            "fp": 1931,
+            "fn": 4105,
+            "tp": 6199,
+            "fake_recall": 0.6016110248447205,
+            "real_recall": 0.812597049689441,
+            "balanced_accuracy": 0.7071040372670807
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 8373,
+            "fp": 1931,
+            "fn": 397,
+            "tp": 9907,
+            "fake_recall": 0.9614712732919255,
+            "real_recall": 0.812597049689441,
+            "balanced_accuracy": 0.8870341614906833
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 8373,
+            "fp": 1931,
+            "fn": 6679,
+            "tp": 3625,
+            "fake_recall": 0.3518051242236025,
+            "real_recall": 0.812597049689441,
+            "balanced_accuracy": 0.5822010869565217
+          }
+        }
+      },
+      {
+        "threshold": 0.001,
+        "macro_ba": 0.7184992883022774,
+        "macro_fake_recall": 0.857223731884058,
+        "real_recall": 0.5797748447204969,
+        "fpr": 0.4202251552795031,
+        "real_fp": 4330,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 5974,
+            "fp": 4330,
+            "fn": 5,
+            "tp": 10299,
+            "fake_recall": 0.999514751552795,
+            "real_recall": 0.5797748447204969,
+            "balanced_accuracy": 0.7896447981366459
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 5974,
+            "fp": 4330,
+            "fn": 1446,
+            "tp": 8858,
+            "fake_recall": 0.859666149068323,
+            "real_recall": 0.5797748447204969,
+            "balanced_accuracy": 0.71972049689441
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 5974,
+            "fp": 4330,
+            "fn": 11,
+            "tp": 10293,
+            "fake_recall": 0.9989324534161491,
+            "real_recall": 0.5797748447204969,
+            "balanced_accuracy": 0.7893536490683231
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 5974,
+            "fp": 4330,
+            "fn": 2674,
+            "tp": 7630,
+            "fake_recall": 0.7404891304347826,
+            "real_recall": 0.5797748447204969,
+            "balanced_accuracy": 0.6601319875776397
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 5974,
+            "fp": 4330,
+            "fn": 155,
+            "tp": 10149,
+            "fake_recall": 0.984957298136646,
+            "real_recall": 0.5797748447204969,
+            "balanced_accuracy": 0.7823660714285714
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 5974,
+            "fp": 4330,
+            "fn": 4536,
+            "tp": 5768,
+            "fake_recall": 0.5597826086956522,
+            "real_recall": 0.5797748447204969,
+            "balanced_accuracy": 0.5697787267080745
+          }
+        }
+      }
+    ],
+    "best_shared_threshold": {
+      "threshold": 0.0845256059808434,
+      "macro_ba": 0.836608760351967,
+      "macro_fake_recall": 0.70019733436853,
+      "real_recall": 0.9730201863354038,
+      "fpr": 0.02697981366459623,
+      "real_fp": 278,
+      "branches": {
+        "SD2.1_inpainted_diffcat": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 38,
+          "tp": 10266,
+          "fake_recall": 0.9963121118012422,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.9846661490683231
+        },
+        "SD2.1_inpainted_diffcat_origBG": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 3279,
+          "tp": 7025,
+          "fake_recall": 0.6817740683229814,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.8273971273291926
+        },
+        "SD2.1_inpainted_samecat": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 103,
+          "tp": 10201,
+          "fake_recall": 0.9900038819875776,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.9815120341614907
+        },
+        "SD2.1_inpainted_samecat_origBG": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 5595,
+          "tp": 4709,
+          "fake_recall": 0.45700698757763975,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.7150135869565217
+        },
+        "SD2.1_selfconditioned": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 956,
+          "tp": 9348,
+          "fake_recall": 0.90722049689441,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.9401203416149069
+        },
+        "SD2.1_selfconditioned_origBG": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 8564,
+          "tp": 1740,
+          "fake_recall": 0.16886645962732919,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.5709433229813665
+        }
+      }
+    },
+    "oracle_per_branch": {
+      "SD2.1_inpainted_diffcat": {
+        "threshold": 0.4783910493788932,
+        "tn": 10222,
+        "fp": 82,
+        "fn": 75,
+        "tp": 10229,
+        "fake_recall": 0.9927212732919255,
+        "real_recall": 0.9920419254658385,
+        "balanced_accuracy": 0.992381599378882
+      },
+      "SD2.1_inpainted_diffcat_origBG": {
+        "threshold": 0.0850940703614563,
+        "tn": 10026,
+        "fp": 278,
+        "fn": 3279,
+        "tp": 7025,
+        "fake_recall": 0.6817740683229814,
+        "real_recall": 0.9730201863354038,
+        "balanced_accuracy": 0.8273971273291926
+      },
+      "SD2.1_inpainted_samecat": {
+        "threshold": 0.2587350079370574,
+        "tn": 10183,
+        "fp": 121,
+        "fn": 148,
+        "tp": 10156,
+        "fake_recall": 0.9856366459627329,
+        "real_recall": 0.9882569875776398,
+        "balanced_accuracy": 0.9869468167701864
+      },
+      "SD2.1_inpainted_samecat_origBG": {
+        "threshold": 0.0286101459063578,
+        "tn": 9682,
+        "fp": 622,
+        "fn": 5141,
+        "tp": 5163,
+        "fake_recall": 0.5010675465838509,
+        "real_recall": 0.9396350931677019,
+        "balanced_accuracy": 0.7203513198757764
+      },
+      "SD2.1_selfconditioned": {
+        "threshold": 0.0848662622706188,
+        "tn": 10026,
+        "fp": 278,
+        "fn": 956,
+        "tp": 9348,
+        "fake_recall": 0.90722049689441,
+        "real_recall": 0.9730201863354038,
+        "balanced_accuracy": 0.9401203416149069
+      },
+      "SD2.1_selfconditioned_origBG": {
+        "threshold": 0.0096750535735716,
+        "tn": 9013,
+        "fp": 1291,
+        "fn": 7298,
+        "tp": 3006,
+        "fake_recall": 0.29173136645962733,
+        "real_recall": 0.874708850931677,
+        "balanced_accuracy": 0.5832201086956522
+      }
+    }
+  },
+  "lse_window": {
+    "fixed_thresholds": [
+      {
+        "threshold": 0.5,
+        "macro_ba": 0.8277691511387164,
+        "macro_fake_recall": 0.6645639233954451,
+        "real_recall": 0.9909743788819876,
+        "fpr": 0.009025621118012417,
+        "real_fp": 93,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10211,
+            "fp": 93,
+            "fn": 71,
+            "tp": 10233,
+            "fake_recall": 0.9931094720496895,
+            "real_recall": 0.9909743788819876,
+            "balanced_accuracy": 0.9920419254658386
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10211,
+            "fp": 93,
+            "fn": 3732,
+            "tp": 6572,
+            "fake_recall": 0.6378105590062112,
+            "real_recall": 0.9909743788819876,
+            "balanced_accuracy": 0.8143924689440993
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10211,
+            "fp": 93,
+            "fn": 183,
+            "tp": 10121,
+            "fake_recall": 0.9822399068322981,
+            "real_recall": 0.9909743788819876,
+            "balanced_accuracy": 0.9866071428571428
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10211,
+            "fp": 93,
+            "fn": 6230,
+            "tp": 4074,
+            "fake_recall": 0.3953804347826087,
+            "real_recall": 0.9909743788819876,
+            "balanced_accuracy": 0.6931774068322981
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10211,
+            "fp": 93,
+            "fn": 1418,
+            "tp": 8886,
+            "fake_recall": 0.8623835403726708,
+            "real_recall": 0.9909743788819876,
+            "balanced_accuracy": 0.9266789596273293
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10211,
+            "fp": 93,
+            "fn": 9104,
+            "tp": 1200,
+            "fake_recall": 0.11645962732919254,
+            "real_recall": 0.9909743788819876,
+            "balanced_accuracy": 0.55371700310559
+          }
+        }
+      },
+      {
+        "threshold": 0.3,
+        "macro_ba": 0.8330987965838509,
+        "macro_fake_recall": 0.678911102484472,
+        "real_recall": 0.9872864906832298,
+        "fpr": 0.012713509316770177,
+        "real_fp": 131,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10173,
+            "fp": 131,
+            "fn": 56,
+            "tp": 10248,
+            "fake_recall": 0.9945652173913043,
+            "real_recall": 0.9872864906832298,
+            "balanced_accuracy": 0.9909258540372671
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10173,
+            "fp": 131,
+            "fn": 3554,
+            "tp": 6750,
+            "fake_recall": 0.6550854037267081,
+            "real_recall": 0.9872864906832298,
+            "balanced_accuracy": 0.821185947204969
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10173,
+            "fp": 131,
+            "fn": 144,
+            "tp": 10160,
+            "fake_recall": 0.9860248447204969,
+            "real_recall": 0.9872864906832298,
+            "balanced_accuracy": 0.9866556677018634
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10173,
+            "fp": 131,
+            "fn": 5987,
+            "tp": 4317,
+            "fake_recall": 0.4189635093167702,
+            "real_recall": 0.9872864906832298,
+            "balanced_accuracy": 0.703125
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10173,
+            "fp": 131,
+            "fn": 1206,
+            "tp": 9098,
+            "fake_recall": 0.8829580745341615,
+            "real_recall": 0.9872864906832298,
+            "balanced_accuracy": 0.9351222826086957
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10173,
+            "fp": 131,
+            "fn": 8904,
+            "tp": 1400,
+            "fake_recall": 0.1358695652173913,
+            "real_recall": 0.9872864906832298,
+            "balanced_accuracy": 0.5615780279503105
+          }
+        }
+      },
+      {
+        "threshold": 0.2,
+        "macro_ba": 0.8348861283643892,
+        "macro_fake_recall": 0.6881146480331263,
+        "real_recall": 0.9816576086956522,
+        "fpr": 0.018342391304347783,
+        "real_fp": 189,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 10115,
+            "fp": 189,
+            "fn": 51,
+            "tp": 10253,
+            "fake_recall": 0.9950504658385093,
+            "real_recall": 0.9816576086956522,
+            "balanced_accuracy": 0.9883540372670807
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 10115,
+            "fp": 189,
+            "fn": 3436,
+            "tp": 6868,
+            "fake_recall": 0.6665372670807453,
+            "real_recall": 0.9816576086956522,
+            "balanced_accuracy": 0.8240974378881988
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 10115,
+            "fp": 189,
+            "fn": 123,
+            "tp": 10181,
+            "fake_recall": 0.9880628881987578,
+            "real_recall": 0.9816576086956522,
+            "balanced_accuracy": 0.984860248447205
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 10115,
+            "fp": 189,
+            "fn": 5820,
+            "tp": 4484,
+            "fake_recall": 0.43517080745341613,
+            "real_recall": 0.9816576086956522,
+            "balanced_accuracy": 0.7084142080745341
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 10115,
+            "fp": 189,
+            "fn": 1087,
+            "tp": 9217,
+            "fake_recall": 0.8945069875776398,
+            "real_recall": 0.9816576086956522,
+            "balanced_accuracy": 0.938082298136646
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 10115,
+            "fp": 189,
+            "fn": 8765,
+            "tp": 1539,
+            "fake_recall": 0.14935947204968944,
+            "real_recall": 0.9816576086956522,
+            "balanced_accuracy": 0.5655085403726708
+          }
+        }
+      },
+      {
+        "threshold": 0.1,
+        "macro_ba": 0.8361639492753623,
+        "macro_fake_recall": 0.7027044513457557,
+        "real_recall": 0.969623447204969,
+        "fpr": 0.030376552795031042,
+        "real_fp": 313,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 9991,
+            "fp": 313,
+            "fn": 38,
+            "tp": 10266,
+            "fake_recall": 0.9963121118012422,
+            "real_recall": 0.969623447204969,
+            "balanced_accuracy": 0.9829677795031055
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 9991,
+            "fp": 313,
+            "fn": 3256,
+            "tp": 7048,
+            "fake_recall": 0.6840062111801242,
+            "real_recall": 0.969623447204969,
+            "balanced_accuracy": 0.8268148291925466
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 9991,
+            "fp": 313,
+            "fn": 99,
+            "tp": 10205,
+            "fake_recall": 0.9903920807453416,
+            "real_recall": 0.969623447204969,
+            "balanced_accuracy": 0.9800077639751552
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 9991,
+            "fp": 313,
+            "fn": 5545,
+            "tp": 4759,
+            "fake_recall": 0.46185947204968947,
+            "real_recall": 0.969623447204969,
+            "balanced_accuracy": 0.7157414596273293
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 9991,
+            "fp": 313,
+            "fn": 934,
+            "tp": 9370,
+            "fake_recall": 0.9093555900621118,
+            "real_recall": 0.969623447204969,
+            "balanced_accuracy": 0.9394895186335404
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 9991,
+            "fp": 313,
+            "fn": 8508,
+            "tp": 1796,
+            "fake_recall": 0.17430124223602483,
+            "real_recall": 0.969623447204969,
+            "balanced_accuracy": 0.5719623447204969
+          }
+        }
+      },
+      {
+        "threshold": 0.05,
+        "macro_ba": 0.8340531185300206,
+        "macro_fake_recall": 0.7189602743271221,
+        "real_recall": 0.9491459627329193,
+        "fpr": 0.05085403726708071,
+        "real_fp": 524,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 9780,
+            "fp": 524,
+            "fn": 30,
+            "tp": 10274,
+            "fake_recall": 0.9970885093167702,
+            "real_recall": 0.9491459627329193,
+            "balanced_accuracy": 0.9731172360248448
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 9780,
+            "fp": 524,
+            "fn": 3050,
+            "tp": 7254,
+            "fake_recall": 0.703998447204969,
+            "real_recall": 0.9491459627329193,
+            "balanced_accuracy": 0.8265722049689441
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 9780,
+            "fp": 524,
+            "fn": 72,
+            "tp": 10232,
+            "fake_recall": 0.9930124223602484,
+            "real_recall": 0.9491459627329193,
+            "balanced_accuracy": 0.9710791925465838
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 9780,
+            "fp": 524,
+            "fn": 5254,
+            "tp": 5050,
+            "fake_recall": 0.4901009316770186,
+            "real_recall": 0.9491459627329193,
+            "balanced_accuracy": 0.719623447204969
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 9780,
+            "fp": 524,
+            "fn": 779,
+            "tp": 9525,
+            "fake_recall": 0.9243982919254659,
+            "real_recall": 0.9491459627329193,
+            "balanced_accuracy": 0.9367721273291926
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 9780,
+            "fp": 524,
+            "fn": 8190,
+            "tp": 2114,
+            "fake_recall": 0.20516304347826086,
+            "real_recall": 0.9491459627329193,
+            "balanced_accuracy": 0.57715450310559
+          }
+        }
+      },
+      {
+        "threshold": 0.02,
+        "macro_ba": 0.8236688017598344,
+        "macro_fake_recall": 0.7445813923395446,
+        "real_recall": 0.9027562111801242,
+        "fpr": 0.09724378881987583,
+        "real_fp": 1002,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 9302,
+            "fp": 1002,
+            "fn": 21,
+            "tp": 10283,
+            "fake_recall": 0.9979619565217391,
+            "real_recall": 0.9027562111801242,
+            "balanced_accuracy": 0.9503590838509317
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 9302,
+            "fp": 1002,
+            "fn": 2735,
+            "tp": 7569,
+            "fake_recall": 0.734569099378882,
+            "real_recall": 0.9027562111801242,
+            "balanced_accuracy": 0.8186626552795031
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 9302,
+            "fp": 1002,
+            "fn": 51,
+            "tp": 10253,
+            "fake_recall": 0.9950504658385093,
+            "real_recall": 0.9027562111801242,
+            "balanced_accuracy": 0.9489033385093167
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 9302,
+            "fp": 1002,
+            "fn": 4803,
+            "tp": 5501,
+            "fake_recall": 0.5338703416149069,
+            "real_recall": 0.9027562111801242,
+            "balanced_accuracy": 0.7183132763975155
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 9302,
+            "fp": 1002,
+            "fn": 566,
+            "tp": 9738,
+            "fake_recall": 0.9450698757763976,
+            "real_recall": 0.9027562111801242,
+            "balanced_accuracy": 0.9239130434782609
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 9302,
+            "fp": 1002,
+            "fn": 7615,
+            "tp": 2689,
+            "fake_recall": 0.2609666149068323,
+            "real_recall": 0.9027562111801242,
+            "balanced_accuracy": 0.5818614130434783
+          }
+        }
+      },
+      {
+        "threshold": 0.01,
+        "macro_ba": 0.8076313405797102,
+        "macro_fake_recall": 0.7680188923395445,
+        "real_recall": 0.8472437888198758,
+        "fpr": 0.15275621118012417,
+        "real_fp": 1574,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 8730,
+            "fp": 1574,
+            "fn": 17,
+            "tp": 10287,
+            "fake_recall": 0.9983501552795031,
+            "real_recall": 0.8472437888198758,
+            "balanced_accuracy": 0.9227969720496895
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 8730,
+            "fp": 1574,
+            "fn": 2446,
+            "tp": 7858,
+            "fake_recall": 0.7626164596273292,
+            "real_recall": 0.8472437888198758,
+            "balanced_accuracy": 0.8049301242236024
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 8730,
+            "fp": 1574,
+            "fn": 34,
+            "tp": 10270,
+            "fake_recall": 0.9967003105590062,
+            "real_recall": 0.8472437888198758,
+            "balanced_accuracy": 0.921972049689441
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 8730,
+            "fp": 1574,
+            "fn": 4380,
+            "tp": 5924,
+            "fake_recall": 0.5749223602484472,
+            "real_recall": 0.8472437888198758,
+            "balanced_accuracy": 0.7110830745341615
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 8730,
+            "fp": 1574,
+            "fn": 445,
+            "tp": 9859,
+            "fake_recall": 0.9568128881987578,
+            "real_recall": 0.8472437888198758,
+            "balanced_accuracy": 0.9020283385093169
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 8730,
+            "fp": 1574,
+            "fn": 7020,
+            "tp": 3284,
+            "fake_recall": 0.3187111801242236,
+            "real_recall": 0.8472437888198758,
+            "balanced_accuracy": 0.5829774844720497
+          }
+        }
+      },
+      {
+        "threshold": 0.005,
+        "macro_ba": 0.7837652044513458,
+        "macro_fake_recall": 0.7955971790890269,
+        "real_recall": 0.7719332298136646,
+        "fpr": 0.22806677018633537,
+        "real_fp": 2350,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 7954,
+            "fp": 2350,
+            "fn": 12,
+            "tp": 10292,
+            "fake_recall": 0.9988354037267081,
+            "real_recall": 0.7719332298136646,
+            "balanced_accuracy": 0.8853843167701864
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 7954,
+            "fp": 2350,
+            "fn": 2120,
+            "tp": 8184,
+            "fake_recall": 0.7942546583850931,
+            "real_recall": 0.7719332298136646,
+            "balanced_accuracy": 0.7830939440993789
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 7954,
+            "fp": 2350,
+            "fn": 27,
+            "tp": 10277,
+            "fake_recall": 0.9973796583850931,
+            "real_recall": 0.7719332298136646,
+            "balanced_accuracy": 0.8846564440993789
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 7954,
+            "fp": 2350,
+            "fn": 3837,
+            "tp": 6467,
+            "fake_recall": 0.6276203416149069,
+            "real_recall": 0.7719332298136646,
+            "balanced_accuracy": 0.6997767857142858
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 7954,
+            "fp": 2350,
+            "fn": 348,
+            "tp": 9956,
+            "fake_recall": 0.9662267080745341,
+            "real_recall": 0.7719332298136646,
+            "balanced_accuracy": 0.8690799689440993
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 7954,
+            "fp": 2350,
+            "fn": 6293,
+            "tp": 4011,
+            "fake_recall": 0.3892663043478261,
+            "real_recall": 0.7719332298136646,
+            "balanced_accuracy": 0.5805997670807453
+          }
+        }
+      },
+      {
+        "threshold": 0.001,
+        "macro_ba": 0.6969704321946171,
+        "macro_fake_recall": 0.8752102743271223,
+        "real_recall": 0.5187305900621118,
+        "fpr": 0.48126940993788825,
+        "real_fp": 4959,
+        "branches": {
+          "SD2.1_inpainted_diffcat": {
+            "tn": 5345,
+            "fp": 4959,
+            "fn": 3,
+            "tp": 10301,
+            "fake_recall": 0.999708850931677,
+            "real_recall": 0.5187305900621118,
+            "balanced_accuracy": 0.7592197204968945
+          },
+          "SD2.1_inpainted_diffcat_origBG": {
+            "tn": 5345,
+            "fp": 4959,
+            "fn": 1224,
+            "tp": 9080,
+            "fake_recall": 0.8812111801242236,
+            "real_recall": 0.5187305900621118,
+            "balanced_accuracy": 0.6999708850931676
+          },
+          "SD2.1_inpainted_samecat": {
+            "tn": 5345,
+            "fp": 4959,
+            "fn": 5,
+            "tp": 10299,
+            "fake_recall": 0.999514751552795,
+            "real_recall": 0.5187305900621118,
+            "balanced_accuracy": 0.7591226708074534
+          },
+          "SD2.1_inpainted_samecat_origBG": {
+            "tn": 5345,
+            "fp": 4959,
+            "fn": 2337,
+            "tp": 7967,
+            "fake_recall": 0.7731948757763976,
+            "real_recall": 0.5187305900621118,
+            "balanced_accuracy": 0.6459627329192547
+          },
+          "SD2.1_selfconditioned": {
+            "tn": 5345,
+            "fp": 4959,
+            "fn": 121,
+            "tp": 10183,
+            "fake_recall": 0.9882569875776398,
+            "real_recall": 0.5187305900621118,
+            "balanced_accuracy": 0.7534937888198758
+          },
+          "SD2.1_selfconditioned_origBG": {
+            "tn": 5345,
+            "fp": 4959,
+            "fn": 4025,
+            "tp": 6279,
+            "fake_recall": 0.609375,
+            "real_recall": 0.5187305900621118,
+            "balanced_accuracy": 0.5640527950310559
+          }
+        }
+      }
+    ],
+    "best_shared_threshold": {
+      "threshold": 0.113878252762582,
+      "macro_ba": 0.836608760351967,
+      "macro_fake_recall": 0.70019733436853,
+      "real_recall": 0.9730201863354038,
+      "fpr": 0.02697981366459623,
+      "real_fp": 278,
+      "branches": {
+        "SD2.1_inpainted_diffcat": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 38,
+          "tp": 10266,
+          "fake_recall": 0.9963121118012422,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.9846661490683231
+        },
+        "SD2.1_inpainted_diffcat_origBG": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 3279,
+          "tp": 7025,
+          "fake_recall": 0.6817740683229814,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.8273971273291926
+        },
+        "SD2.1_inpainted_samecat": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 103,
+          "tp": 10201,
+          "fake_recall": 0.9900038819875776,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.9815120341614907
+        },
+        "SD2.1_inpainted_samecat_origBG": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 5595,
+          "tp": 4709,
+          "fake_recall": 0.45700698757763975,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.7150135869565217
+        },
+        "SD2.1_selfconditioned": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 956,
+          "tp": 9348,
+          "fake_recall": 0.90722049689441,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.9401203416149069
+        },
+        "SD2.1_selfconditioned_origBG": {
+          "tn": 10026,
+          "fp": 278,
+          "fn": 8564,
+          "tp": 1740,
+          "fake_recall": 0.16886645962732919,
+          "real_recall": 0.9730201863354038,
+          "balanced_accuracy": 0.5709433229813665
+        }
+      }
+    },
+    "oracle_per_branch": {
+      "SD2.1_inpainted_diffcat": {
+        "threshold": 0.5607439139237376,
+        "tn": 10222,
+        "fp": 82,
+        "fn": 75,
+        "tp": 10229,
+        "fake_recall": 0.9927212732919255,
+        "real_recall": 0.9920419254658385,
+        "balanced_accuracy": 0.992381599378882
+      },
+      "SD2.1_inpainted_diffcat_origBG": {
+        "threshold": 0.1146202308645211,
+        "tn": 10026,
+        "fp": 278,
+        "fn": 3279,
+        "tp": 7025,
+        "fake_recall": 0.6817740683229814,
+        "real_recall": 0.9730201863354038,
+        "balanced_accuracy": 0.8273971273291926
+      },
+      "SD2.1_inpainted_samecat": {
+        "threshold": 0.3269786128596469,
+        "tn": 10183,
+        "fp": 121,
+        "fn": 148,
+        "tp": 10156,
+        "fake_recall": 0.9856366459627329,
+        "real_recall": 0.9882569875776398,
+        "balanced_accuracy": 0.9869468167701864
+      },
+      "SD2.1_inpainted_samecat_origBG": {
+        "threshold": 0.0393809890581837,
+        "tn": 9682,
+        "fp": 622,
+        "fn": 5141,
+        "tp": 5163,
+        "fake_recall": 0.5010675465838509,
+        "real_recall": 0.9396350931677019,
+        "balanced_accuracy": 0.7203513198757764
+      },
+      "SD2.1_selfconditioned": {
+        "threshold": 0.1141256428368217,
+        "tn": 10026,
+        "fp": 278,
+        "fn": 956,
+        "tp": 9348,
+        "fake_recall": 0.90722049689441,
+        "real_recall": 0.9730201863354038,
+        "balanced_accuracy": 0.9401203416149069
+      },
+      "SD2.1_selfconditioned_origBG": {
+        "threshold": 0.0088391548997896,
+        "tn": 8620,
+        "fp": 1684,
+        "fn": 6904,
+        "tp": 3400,
+        "fake_recall": 0.3299689440993789,
+        "real_recall": 0.8365683229813664,
+        "balanced_accuracy": 0.5832686335403726
+      }
+    }
+  }
+}

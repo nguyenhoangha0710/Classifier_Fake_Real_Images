@@ -1,0 +1,44 @@
+{
+  "evaluator": "gsd_uploaded_best_variants_v1",
+  "fingerprint": "e0b1a885fd1434062f40e8f76a6e3dab16f64e1b9ff5ac0cf064d9bde099068c",
+  "status": "complete",
+  "planned_cases": [
+    "native",
+    "fake_jpeg96",
+    "all_jpeg96",
+    "all_jpeg90",
+    "all_jpeg80",
+    "resize_square256",
+    "resize_square560",
+    "blur_sigma1",
+    "resize256_jpeg96"
+  ],
+  "completed_cases": [
+    "native",
+    "fake_jpeg96",
+    "all_jpeg96",
+    "all_jpeg90",
+    "all_jpeg80",
+    "resize_square256",
+    "resize_square560",
+    "blur_sigma1",
+    "resize256_jpeg96"
+  ],
+  "saved_rows": {
+    "native": 7000,
+    "fake_jpeg96": 7000,
+    "all_jpeg96": 7000,
+    "all_jpeg90": 7000,
+    "all_jpeg80": 7000,
+    "resize_square256": 7000,
+    "resize_square560": 7000,
+    "blur_sigma1": 7000,
+    "resize256_jpeg96": 7000
+  },
+  "n_per_case": 7000,
+  "smoke": false,
+  "training": false,
+  "reason": "complete",
+  "remaining_cases": [],
+  "elapsed_seconds": 10191.080602253
+}

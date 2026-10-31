@@ -1,2 +1,507 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" version="24.7.17"><diagram name="01 Workflow" id="01"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1250"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="title" value="DINOv2 | Workflow trong paper gốc" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="40" y="25" width="1720" height="60" as="geometry" /></mxCell><mxCell id="sub" value="Nguồn chính: arXiv:2304.07193v2 (02/02/2024), TMLR 01/2024. Không có nhánh forensic/GSD bổ sung." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="95" width="1720" height="60" as="geometry" /></mxCell><mxCell id="web" value="Ảnh web&#10;~1,2 tỷ ảnh sau xử lý" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="210" width="300" height="140" as="geometry" /></mxCell><mxCell id="dedup" value="Loại ảnh gần trùng&#10;Loại trùng benchmark val/test" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="410" y="210" width="360" height="140" as="geometry" /></mxCell><mxCell id="retrieve" value="Retrieval bằng đặc trưng tự giám sát&#10;+ các tập ảnh tuyển chọn" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="840" y="210" width="430" height="140" as="geometry" /></mxCell><mxCell id="data" value="LVD-142M&#10;142.109.386 ảnh" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="1340" y="210" width="420" height="140" as="geometry" /></mxCell><mxCell id="edge1" source="web" target="dedup" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge2" source="dedup" target="retrieve" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge3" source="retrieve" target="data" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="pre" value="A. Pretrain ViT-g/14&#10;Student học bằng gradient&#10;Teacher theo EMA" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1340" y="430" width="420" height="180" as="geometry" /></mxCell><mxCell id="edge4" source="data" target="pre" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="hr" value="Thích nghi độ phân giải&#10;518 × 518&#10;10k iterations bổ sung" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="840" y="430" width="430" height="180" as="geometry" /></mxCell><mxCell id="edge5" source="pre" target="hr" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="large" value="Encoder lớn đã học&#10;ViT-g/14" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="410" y="430" width="360" height="180" as="geometry" /></mxCell><mxCell id="edge6" source="hr" target="large" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="distill" value="B. Distill sang S / B / L&#10;Teacher lớn đóng băng&#10;EMA student nhỏ là model cuối" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="410" y="740" width="600" height="170" as="geometry" /></mxCell><mxCell id="edge7" source="large" target="distill" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.3;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="use" value="C. Dùng encoder&#10;CLS embedding + patch embeddings&#10;Bỏ các head pretrain" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1160" y="740" width="600" height="170" as="geometry" /></mxCell><mxCell id="edge8" source="distill" target="use" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge9" source="large" target="use" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="590" y="665" /><mxPoint x="1460" y="665" /></Array></mxGeometry></mxCell><mxCell id="eval" value="Đánh giá riêng: k-NN / linear probe / segmentation / depth / retrieval&#10;Linear probe dùng nhãn downstream; pretraining không dùng class label hoặc caption." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="410" y="990" width="1350" height="120" as="geometry" /></mxCell><mxCell id="edge10" source="use" target="eval" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.7777777777777778;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="footer" value="Paper §3, §4, §5 Model distillation, Appendix B.1–B.3 | Mỗi trang sau mở rộng một phần của workflow này." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="1175" width="1720" height="50" as="geometry" /></mxCell></root></mxGraphModel></diagram><diagram name="02 Architecture" id="02"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1250"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="title" value="DINOv2 | Teacher–student trong pretraining" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="40" y="25" width="1720" height="60" as="geometry" /></mxCell><mxCell id="sub" value="ViT-g/14: D=1536, 40 blocks, 24 attention heads, SwiGLU. Hai mạng cùng kiến trúc; hai head DINO/iBOT tách riêng." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="95" width="1720" height="60" as="geometry" /></mxCell><mxCell id="tinput" value="TEACHER INPUT&#10;2 global crops&#10;224 × 224, không mask" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="220" width="300" height="150" as="geometry" /></mxCell><mxCell id="tvit" value="Teacher ViT&#10;Patch embed 14 × 14&#10;[CLS] + positional embed&#10;Transformer + LayerNorm" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="410" y="220" width="350" height="150" as="geometry" /></mxCell><mxCell id="tcls" value="CLS token&#10;z_t: [2B, 1536]" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="840" y="190" width="310" height="100" as="geometry" /></mxCell><mxCell id="tpatch" value="Patch tokens&#10;P_t: [2B, 256, 1536]" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="840" y="340" width="310" height="100" as="geometry" /></mxCell><mxCell id="th1" value="DINO head_t&#10;prototype scores" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1220" y="190" width="260" height="100" as="geometry" /></mxCell><mxCell id="th2" value="iBOT head_t&#10;prototype scores" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1220" y="340" width="260" height="100" as="geometry" /></mxCell><mxCell id="targets" value="Temperature&#10;Sinkhorn–Knopp&#10;3 iterations&#10;STOP GRADIENT" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1550" y="210" width="210" height="210" as="geometry" /></mxCell><mxCell id="edge1" source="tinput" target="tvit" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge2" source="tvit" target="tcls" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.3;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="800" y="265" /><mxPoint x="800" y="240" /></Array></mxGeometry></mxCell><mxCell id="edge3" source="tvit" target="tpatch" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.7;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="800" y="325" /><mxPoint x="800" y="390" /></Array></mxGeometry></mxCell><mxCell id="edge4" source="tcls" target="th1" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge5" source="tpatch" target="th2" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge6" source="th1" target="targets" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.14285714285714285;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge7" source="th2" target="targets" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.8571428571428571;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="sinput" value="STUDENT INPUT&#10;2 global crops: có mask&#10;8 local crops: không mask&#10;Local: 98 × 98" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="660" width="300" height="180" as="geometry" /></mxCell><mxCell id="svit" value="Student ViT&#10;Cùng global crops với teacher&#10;Thay patch bị che bằng mask&#10;token&#10;Backprop qua backbone" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="410" y="660" width="350" height="180" as="geometry" /></mxCell><mxCell id="scls" value="CLS của global + local&#10;Tổng 10B vector D chiều" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="840" y="640" width="310" height="100" as="geometry" /></mxCell><mxCell id="spatch" value="Chọn masked patch tokens&#10;Chỉ từ global crops" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="840" y="810" width="310" height="110" as="geometry" /></mxCell><mxCell id="sh1" value="DINO head_s&#10;softmax(scores / T_s)" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1220" y="640" width="260" height="100" as="geometry" /></mxCell><mxCell id="sh2" value="iBOT head_s&#10;softmax(scores / T_s)" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1220" y="810" width="260" height="110" as="geometry" /></mxCell><mxCell id="loss" value="DINO loss&#10;+ iBOT loss&#10;+ 0,1 KoLeo&#10;↓&#10;Gradient student" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1550" y="650" width="210" height="270" as="geometry" /></mxCell><mxCell id="edge8" source="sinput" target="svit" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge9" source="svit" target="scls" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.25;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="800" y="705" /><mxPoint x="800" y="690" /></Array></mxGeometry></mxCell><mxCell id="edge10" source="svit" target="spatch" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.75;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="800" y="795" /><mxPoint x="800" y="865" /></Array></mxGeometry></mxCell><mxCell id="edge11" source="scls" target="sh1" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge12" source="spatch" target="sh2" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge13" source="sh1" target="loss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.14814814814814814;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge14" source="sh2" target="loss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7962962962962963;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge15" source="targets" target="loss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#269267;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="kinput" value="KoLeo: CLS global" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=17;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1200" y="755" width="280" height="45" as="geometry" /></mxCell><mxCell id="edge16" source="scls" target="kinput" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=0;exitX=0.5;exitY=1.0;entryX=0.0;entryY=0.4888888888888889;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="995" y="777" /></Array></mxGeometry></mxCell><mxCell id="edge17" source="kinput" target="loss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=0;exitX=1.0;exitY=0.4888888888888889;entryX=0.0;entryY=0.4703703703703704;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge18" source="loss" target="svit" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#c94f4f;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=1.0;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1655" y="970" /><mxPoint x="585" y="970" /></Array></mxGeometry></mxCell><mxCell id="ema" value="EMA sau optimizer step: θ_t ← m θ_t + (1 − m) θ_s&#10;Áp dụng cho backbone và các head; teacher không nhận gradient." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="410" y="490" width="740" height="95" as="geometry" /></mxCell><mxCell id="edge19" source="svit" target="ema" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=1;exitX=0.5;exitY=0.0;entryX=0.23648648648648649;entryY=1.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge20" source="ema" target="tvit" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=1;exitX=0.23648648648648649;exitY=0.0;entryX=0.5;entryY=1.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="embed" value="EMBEDDING = token sau backbone, trước head. Prototype scores phục vụ loss, không phải class label.&#10;B = số ảnh trong batch; D = embedding dimension. Registers không thuộc paper gốc này." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="1010" width="1720" height="110" as="geometry" /></mxCell><mxCell id="footer" value="Paper §4–§5 | Code: ssl_meta_arch.py, augmentations.py, configs/train/vitg14.yaml. Xanh lá: teacher; xanh dương: student." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="1175" width="1720" height="50" as="geometry" /></mxCell></root></mxGraphModel></diagram><diagram name="03 Losses" id="03"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1250"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="title" value="DINOv2 | Loss và cách ghép mục tiêu" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="40" y="25" width="1720" height="60" as="geometry" /></mxCell><mxCell id="sub" value="g1, g2: hai global crops. V = {g1, g2, l1, …, l8}. M_g: vị trí mask trên global crop g. H(q,p) = −Σ q log p." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="95" width="1720" height="60" as="geometry" /></mxCell><mxCell id="dino" value="1. IMAGE LEVEL — DINO&#10;L_DINO = mean H(q_t(g), p_s(v))&#10;g ∈ {g1,g2}; v ∈ V; v ≠ g&#10;&#10;Teacher g1 → student g2 + local&#10;Teacher g2 → student g1 + local&#10;Không ghép global cùng view." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="210" width="540" height="290" as="geometry" /></mxCell><mxCell id="ibot" value="2. PATCH LEVEL — iBOT&#10;L_iBOT = mean H(q_t(g,i), p_s(g,i))&#10;g ∈ {g1,g2}; i ∈ M_g&#10;&#10;Cùng crop, cùng vị trí patch&#10;Teacher nhìn patch; student bị che&#10;Dự đoán phân phối, không tái tạo RGB." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="630" y="210" width="540" height="290" as="geometry" /></mxCell><mxCell id="koleo" value="3. EMBEDDING — KoLeo&#10;u_i = z_i / ||z_i||₂&#10;d_i = min_{j ≠ i} ||u_i − u_j||₂&#10;L_KoLeo = −(1/n) Σ log d_i&#10;&#10;Áp dụng trên student CLS tokens&#10;Khuyến khích đặc trưng trải rộng." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1220" y="210" width="540" height="290" as="geometry" /></mxCell><mxCell id="total" value="L_total = L_DINO + L_iBOT + 0,1 × L_KoLeo&#10;Dạng tổng hợp; mean/weight theo crop và masked token được chuẩn hóa trong&#10;code." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=25;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="400" y="610" width="1000" height="130" as="geometry" /></mxCell><mxCell id="edge1" source="dino" target="total" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.25;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="310" y="560" /><mxPoint x="650" y="560" /></Array></mxGeometry></mxCell><mxCell id="edge2" source="ibot" target="total" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge3" source="koleo" target="total" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.75;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1490" y="560" /><mxPoint x="1150" y="560" /></Array></mxGeometry></mxCell><mxCell id="target" value="TẠO TARGET&#10;Student: softmax với temperature T_s&#10;Teacher: temperature T_t + Sinkhorn–Knopp&#10;Target teacher được detach&#10;Head DINO và head iBOT không chia sẻ trọng số." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="840" width="820" height="240" as="geometry" /></mxCell><mxCell id="meaning" value="GIỚI HẠN CỦA LOSS&#10;Khớp teacher ≠ có ground-truth embedding&#10;Loss thấp ≠ phân loại downstream tốt&#10;Đặc trưng được đánh giá riêng bằng probe/k-NN&#10;KoLeo: paper và code có khác biệt phạm vi crop (README)." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="940" y="840" width="820" height="240" as="geometry" /></mxCell><mxCell id="footer" value="Paper §4, Appendix B.1 | Code ssl_meta_arch.py: cross-view global pairing, same-position masking, per-crop loss normalization." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="1175" width="1720" height="50" as="geometry" /></mxCell></root></mxGraphModel></diagram><diagram name="04 Training" id="04"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1250"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="title" value="DINOv2 | Một training step và lịch huấn luyện" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="40" y="25" width="1720" height="60" as="geometry" /></mxCell><mxCell id="sub" value="Đây là pretraining model lớn từ đầu. Các con số bên phải lấy từ paper Table 16 / Appendix B, không lấy YAML mặc định." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="95" width="1720" height="60" as="geometry" /></mxCell><mxCell id="a" value="1. Lấy batch ảnh LVD-142M&#10;Không dùng class label / caption." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="60" y="190" width="850" height="110" as="geometry" /></mxCell><mxCell id="b" value="2. Tạo 2 global + 8 local crops&#10;Random resized crop, flip; color jitter, grayscale, blur / solarize." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="60" y="335" width="850" height="110" as="geometry" /></mxCell><mxCell id="edge1" source="a" target="b" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="c" value="3. Mask một phần global student&#10;Teacher nhận global không mask; local student không mask." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="60" y="480" width="850" height="110" as="geometry" /></mxCell><mxCell id="edge2" source="b" target="c" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="d" value="4. Teacher forward: no_grad&#10;Student forward: có autograd; tính DINO + iBOT + KoLeo." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="60" y="625" width="850" height="110" as="geometry" /></mxCell><mxCell id="edge3" source="c" target="d" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="e" value="5. Backward → AdamW student&#10;Cập nhật backbone và hai head student." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="60" y="770" width="850" height="110" as="geometry" /></mxCell><mxCell id="edge4" source="d" target="e" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="f" value="6. EMA teacher sau optimizer step&#10;Cập nhật schedule; tiếp tục batch kế tiếp." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="60" y="915" width="850" height="110" as="geometry" /></mxCell><mxCell id="edge5" source="e" target="f" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="config" value="PRETRAIN ViT-g/14 — PAPER&#10;AdamW; batch size 3072&#10;625k iterations; LR 3,5 × 10⁻⁴&#10;Warmup 100k iterations&#10;Weight decay cosine: 0,04 → 0,2&#10;EMA momentum cosine: 0,994 → 1&#10;Stochastic depth: 0,4; LayerScale: 10⁻⁵&#10;FP16; head gradient reduction FP32" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1010" y="190" width="730" height="385" as="geometry" /></mxCell><mxCell id="high" value="HIGH-RES ADAPTATION&#10;518 × 518; 10k iterations bổ sung&#10;Nén các schedule; giảm base LR&#10;Không nhầm với 625k iterations ban đầu." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1010" y="635" width="730" height="165" as="geometry" /></mxCell><mxCell id="infra" value="HẠ TẦNG / HIỆU SUẤT&#10;Memory-efficient attention; sequence packing&#10;Efficient stochastic depth; FSDP&#10;Packing dùng block-diagonal attention mask." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1010" y="860" width="730" height="165" as="geometry" /></mxCell><mxCell id="footer" value="Paper §5, Table 16, Appendix B.1–B.2 | 224/98 và 8 local crops: đối chiếu cấu hình ViT-g + code augmentation phát hành." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="1175" width="1720" height="50" as="geometry" /></mxCell></root></mxGraphModel></diagram><diagram name="05 Distill and inference" id="05"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1250"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="title" value="DINOv2 | Distillation khác pretraining; embedding dùng ở đâu?" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;"><mxGeometry x="40" y="25" width="1720" height="60" as="geometry" /></mxCell><mxCell id="sub" value="Teacher lớn đóng băng khi distill; EMA của student nhỏ là bản dùng cuối. Không dùng vòng EMA để cập nhật teacher lớn." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="95" width="1720" height="60" as="geometry" /></mxCell><mxCell id="img" value="Ảnh / multi-crops&#10;Không masking" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="220" width="300" height="130" as="geometry" /></mxCell><mxCell id="big" value="Teacher lớn: ViT-g/14 đã học&#10;FROZEN — không gradient&#10;Không cập nhật bằng EMA student nhỏ" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="440" y="190" width="490" height="150" as="geometry" /></mxCell><mxCell id="small" value="Student nhỏ: ViT-S / B / L&#10;Có gradient&#10;Không stochastic depth" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="440" y="440" width="490" height="150" as="geometry" /></mxCell><mxCell id="edge1" source="img" target="big" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.2692307692307692;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="255" /><mxPoint x="390" y="265" /></Array></mxGeometry></mxCell><mxCell id="edge2" source="img" target="small" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="190" y="515" /></Array></mxGeometry></mxCell><mxCell id="loss" value="Giữ các loss distillation&#10;iBOT trên hai global crops dù không masking&#10;Backprop chỉ qua student nhỏ" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1090" y="315" width="620" height="150" as="geometry" /></mxCell><mxCell id="edge3" source="big" target="loss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.23333333333333334;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="265" /><mxPoint x="1010" y="350" /></Array></mxGeometry></mxCell><mxCell id="edge4" source="small" target="loss" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7666666666666667;"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="515" /><mxPoint x="1010" y="430" /></Array></mxGeometry></mxCell><mxCell id="ema" value="Bản EMA riêng của student nhỏ&#10;Được giữ làm model cuối" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="440" y="690" width="490" height="125" as="geometry" /></mxCell><mxCell id="edge5" source="small" target="ema" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="enc" value="Inference: ảnh → backbone → LayerNorm&#10;Bỏ DINO/iBOT heads; không mask" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1090" y="690" width="620" height="125" as="geometry" /></mxCell><mxCell id="edge6" source="ema" target="enc" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="cls" value="CLS embedding&#10;[B, D]&#10;Image-level tasks" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1090" y="900" width="280" height="150" as="geometry" /></mxCell><mxCell id="patch" value="Patch embeddings&#10;[B, N, D]&#10;Dense tasks" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="1430" y="900" width="280" height="150" as="geometry" /></mxCell><mxCell id="edge7" source="enc" target="cls" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.22580645161290322;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="edge8" source="enc" target="patch" edge="1" parent="1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.7741935483870968;exitY=1.0;entryX=0.5;entryY=0.0;"><mxGeometry relative="1" as="geometry"><Array as="points" /></mxGeometry></mxCell><mxCell id="dims" value="Embedding dimension: S=384; B=768; L=1024; g=1536&#10;N=(H/14) × (W/14), với H,W chia hết cho 14&#10;Linear probe: đóng băng backbone, chỉ train classifier bằng nhãn." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="900" width="900" height="150" as="geometry" /></mxCell><mxCell id="footer" value="Paper §5 Model distillation; Appendix B.3 | Kích thước và đầu ra: code vision_transformer.py. Chi tiết paper/code khác nhau: README." vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;"><mxGeometry x="40" y="1175" width="1720" height="50" as="geometry" /></mxCell></root></mxGraphModel></diagram></mxfile>
+<mxfile host="65bd71144e">
+    <diagram name="01 Workflow" id="01">
+        <mxGraphModel dx="2160" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;" value="DINOv2 | Workflow trong paper gốc" vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="Nguồn chính: arXiv:2304.07193v2 (02/02/2024), TMLR 01/2024. Không có nhánh forensic/GSD bổ sung." vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="web" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Ảnh web&#xa;~1,2 tỷ ảnh sau xử lý" vertex="1">
+                    <mxGeometry height="140" width="300" x="40" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="dedup" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Loại ảnh gần trùng&#xa;Loại trùng benchmark val/test" vertex="1">
+                    <mxGeometry height="140" width="360" x="410" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="retrieve" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Retrieval bằng đặc trưng tự giám sát&#xa;+ các tập ảnh tuyển chọn" vertex="1">
+                    <mxGeometry height="140" width="430" x="840" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="data" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=1;spacing=14;" value="LVD-142M&#xa;142.109.386 ảnh" vertex="1">
+                    <mxGeometry height="140" width="420" x="1340" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" edge="1" parent="1" source="web" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="dedup">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge2" edge="1" parent="1" source="dedup" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="retrieve">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge3" edge="1" parent="1" source="retrieve" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="data">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pre" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="A. Pretrain ViT-g/14&#xa;Student học bằng gradient&#xa;Teacher theo EMA" vertex="1">
+                    <mxGeometry height="180" width="420" x="1340" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge4" edge="1" parent="1" source="data" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="pre">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hr" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Thích nghi độ phân giải&#xa;518 × 518&#xa;10k iterations bổ sung" vertex="1">
+                    <mxGeometry height="180" width="430" x="840" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge5" edge="1" parent="1" source="pre" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;" target="hr">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="large" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=1;spacing=14;" value="Encoder lớn đã học&#xa;ViT-g/14" vertex="1">
+                    <mxGeometry height="180" width="360" x="410" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge6" edge="1" parent="1" source="hr" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;" target="large">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="distill" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="B. Distill sang S / B / L&#xa;Teacher lớn đóng băng&#xa;EMA student nhỏ là model cuối" vertex="1">
+                    <mxGeometry height="170" width="600" x="410" y="740" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge7" edge="1" parent="1" source="large" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.3;entryY=0.0;" target="distill">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="use" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="C. Dùng encoder&#xa;CLS embedding + patch embeddings&#xa;Bỏ các head pretrain" vertex="1">
+                    <mxGeometry height="170" width="600" x="1160" y="740" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge8" edge="1" parent="1" source="distill" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="use">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge9" edge="1" parent="1" source="large" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="use">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="590" y="665"/>
+                            <mxPoint x="1460" y="665"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eval" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="Đánh giá riêng: k-NN / linear probe / segmentation / depth / retrieval&#xa;Linear probe dùng nhãn downstream; pretraining không dùng class label hoặc caption." vertex="1">
+                    <mxGeometry height="120" width="1350" x="410" y="990" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge10" edge="1" parent="1" source="use" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.7777777777777778;entryY=0.0;" target="eval">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="footer" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;" value="Paper §3, §4, §5 Model distillation, Appendix B.1–B.3 | Mỗi trang sau mở rộng một phần của workflow này." vertex="1">
+                    <mxGeometry height="50" width="1720" x="40" y="1175" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="02 Architecture" id="02">
+        <mxGraphModel dx="2160" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;" value="DINOv2 | Teacher–student trong pretraining" vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="ViT-g/14: D=1536, 40 blocks, 24 attention heads, SwiGLU. Hai mạng cùng kiến trúc; hai head DINO/iBOT tách riêng." vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="tinput" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="TEACHER INPUT&#xa;2 global crops&#xa;224 × 224, không mask" vertex="1">
+                    <mxGeometry height="150" width="300" x="40" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="tvit" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Teacher ViT&#xa;Patch embed 14 × 14&#xa;[CLS] + positional embed&#xa;Transformer + LayerNorm" vertex="1">
+                    <mxGeometry height="150" width="350" x="410" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="tcls" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="CLS token&#xa;z_t: [2B, 1536]" vertex="1">
+                    <mxGeometry height="100" width="310" x="840" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="tpatch" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Patch tokens&#xa;P_t: [2B, 256, 1536]" vertex="1">
+                    <mxGeometry height="100" width="310" x="840" y="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="th1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="DINO head_t&#xa;prototype scores" vertex="1">
+                    <mxGeometry height="100" width="260" x="1220" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="th2" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="iBOT head_t&#xa;prototype scores" vertex="1">
+                    <mxGeometry height="100" width="260" x="1220" y="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="targets" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="Temperature&#xa;Sinkhorn–Knopp&#xa;3 iterations&#xa;STOP GRADIENT" vertex="1">
+                    <mxGeometry height="210" width="210" x="1550" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" edge="1" parent="1" source="tinput" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="tvit">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge2" edge="1" parent="1" source="tvit" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.3;entryX=0.0;entryY=0.5;" target="tcls">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="265"/>
+                            <mxPoint x="800" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge3" edge="1" parent="1" source="tvit" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.7;entryX=0.0;entryY=0.5;" target="tpatch">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="325"/>
+                            <mxPoint x="800" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge4" edge="1" parent="1" source="tcls" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="th1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge5" edge="1" parent="1" source="tpatch" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="th2">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge6" edge="1" parent="1" source="th1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.14285714285714285;" target="targets">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge7" edge="1" parent="1" source="th2" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.8571428571428571;" target="targets">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="sinput" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="STUDENT INPUT&#xa;2 global crops: có mask&#xa;8 local crops: không mask&#xa;Local: 98 × 98" vertex="1">
+                    <mxGeometry height="180" width="300" x="40" y="660" as="geometry"/>
+                </mxCell>
+                <mxCell id="svit" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Student ViT&#xa;Cùng global crops với teacher&#xa;Thay patch bị che bằng mask&#xa;token&#xa;Backprop qua backbone" vertex="1">
+                    <mxGeometry height="180" width="350" x="410" y="660" as="geometry"/>
+                </mxCell>
+                <mxCell id="scls" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="CLS của global + local&#xa;Tổng 10B vector D chiều" vertex="1">
+                    <mxGeometry height="100" width="310" x="840" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="spatch" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="Chọn masked patch tokens&#xa;Chỉ từ global crops" vertex="1">
+                    <mxGeometry height="110" width="310" x="840" y="810" as="geometry"/>
+                </mxCell>
+                <mxCell id="sh1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="DINO head_s&#xa;softmax(scores / T_s)" vertex="1">
+                    <mxGeometry height="100" width="260" x="1220" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="sh2" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="iBOT head_s&#xa;softmax(scores / T_s)" vertex="1">
+                    <mxGeometry height="110" width="260" x="1220" y="810" as="geometry"/>
+                </mxCell>
+                <mxCell id="loss" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="DINO loss&#xa;+ iBOT loss&#xa;+ 0,1 KoLeo&#xa;↓&#xa;Gradient student" vertex="1">
+                    <mxGeometry height="270" width="210" x="1550" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge8" edge="1" parent="1" source="sinput" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="svit">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge9" edge="1" parent="1" source="svit" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.25;entryX=0.0;entryY=0.5;" target="scls">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="705"/>
+                            <mxPoint x="800" y="690"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge10" edge="1" parent="1" source="svit" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.75;entryX=0.0;entryY=0.5;" target="spatch">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="795"/>
+                            <mxPoint x="800" y="865"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge11" edge="1" parent="1" source="scls" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="sh1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge12" edge="1" parent="1" source="spatch" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="sh2">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge13" edge="1" parent="1" source="sh1" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.14814814814814814;" target="loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge14" edge="1" parent="1" source="sh2" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7962962962962963;" target="loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge15" edge="1" parent="1" source="targets" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#269267;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kinput" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=17;fontFamily=Arial;fontStyle=0;spacing=14;" value="KoLeo: CLS global" vertex="1">
+                    <mxGeometry height="45" width="280" x="1200" y="755" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge16" edge="1" parent="1" source="scls" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=0;exitX=0.5;exitY=1.0;entryX=0.0;entryY=0.4888888888888889;" target="kinput">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="995" y="777"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge17" edge="1" parent="1" source="kinput" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=0;exitX=1.0;exitY=0.4888888888888889;entryX=0.0;entryY=0.4703703703703704;" target="loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge18" edge="1" parent="1" source="loss" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#c94f4f;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=1.0;" target="svit">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1655" y="970"/>
+                            <mxPoint x="585" y="970"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ema" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="EMA sau optimizer step: θ_t ← m θ_t + (1 − m) θ_s&#xa;Áp dụng cho backbone và các head; teacher không nhận gradient." vertex="1">
+                    <mxGeometry height="95" width="740" x="410" y="490" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge19" edge="1" parent="1" source="svit" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=1;exitX=0.5;exitY=0.0;entryX=0.23648648648648649;entryY=1.0;" target="ema">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge20" edge="1" parent="1" source="ema" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=1;exitX=0.23648648648648649;exitY=0.0;entryX=0.5;entryY=1.0;" target="tvit">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="embed" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="EMBEDDING = token sau backbone, trước head. Prototype scores phục vụ loss, không phải class label.&#xa;B = số ảnh trong batch; D = embedding dimension. Registers không thuộc paper gốc này." vertex="1">
+                    <mxGeometry height="110" width="1720" x="40" y="1010" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;" value="Paper §4–§5 | Code: ssl_meta_arch.py, augmentations.py, configs/train/vitg14.yaml. Xanh lá: teacher; xanh dương: student." vertex="1">
+                    <mxGeometry height="50" width="1720" x="40" y="1175" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="03 Losses" id="03">
+        <mxGraphModel dx="2160" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;" value="DINOv2 | Loss và cách ghép mục tiêu" vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="g1, g2: hai global crops. V = {g1, g2, l1, …, l8}. M_g: vị trí mask trên global crop g. H(q,p) = −Σ q log p." vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="dino" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="1. IMAGE LEVEL — DINO&#xa;L_DINO = mean H(q_t(g), p_s(v))&#xa;g ∈ {g1,g2}; v ∈ V; v ≠ g&#xa;&#xa;Teacher g1 → student g2 + local&#xa;Teacher g2 → student g1 + local&#xa;Không ghép global cùng view." vertex="1">
+                    <mxGeometry height="290" width="540" x="40" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="ibot" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="2. PATCH LEVEL — iBOT&#xa;L_iBOT = mean H(q_t(g,i), p_s(g,i))&#xa;g ∈ {g1,g2}; i ∈ M_g&#xa;&#xa;Cùng crop, cùng vị trí patch&#xa;Teacher nhìn patch; student bị che&#xa;Dự đoán phân phối, không tái tạo RGB." vertex="1">
+                    <mxGeometry height="290" width="540" x="630" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="koleo" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="3. EMBEDDING — KoLeo&#xa;u_i = z_i / ||z_i||₂&#xa;d_i = min_{j ≠ i} ||u_i − u_j||₂&#xa;L_KoLeo = −(1/n) Σ log d_i&#xa;&#xa;Áp dụng trên student CLS tokens&#xa;Khuyến khích đặc trưng trải rộng." vertex="1">
+                    <mxGeometry height="290" width="540" x="1220" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="total" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=25;fontFamily=Arial;fontStyle=1;spacing=14;" value="L_total = L_DINO + L_iBOT + 0,1 × L_KoLeo&#xa;Dạng tổng hợp; mean/weight theo crop và masked token được chuẩn hóa trong&#xa;code." vertex="1">
+                    <mxGeometry height="130" width="1000" x="400" y="610" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" edge="1" parent="1" source="dino" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.25;entryY=0.0;" target="total">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="560"/>
+                            <mxPoint x="650" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge2" edge="1" parent="1" source="ibot" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="total">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge3" edge="1" parent="1" source="koleo" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.75;entryY=0.0;" target="total">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1490" y="560"/>
+                            <mxPoint x="1150" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="target" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="TẠO TARGET&#xa;Student: softmax với temperature T_s&#xa;Teacher: temperature T_t + Sinkhorn–Knopp&#xa;Target teacher được detach&#xa;Head DINO và head iBOT không chia sẻ trọng số." vertex="1">
+                    <mxGeometry height="240" width="820" x="40" y="840" as="geometry"/>
+                </mxCell>
+                <mxCell id="meaning" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="GIỚI HẠN CỦA LOSS&#xa;Khớp teacher ≠ có ground-truth embedding&#xa;Loss thấp ≠ phân loại downstream tốt&#xa;Đặc trưng được đánh giá riêng bằng probe/k-NN&#xa;KoLeo: paper và code có khác biệt phạm vi crop (README)." vertex="1">
+                    <mxGeometry height="240" width="820" x="940" y="840" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;" value="Paper §4, Appendix B.1 | Code ssl_meta_arch.py: cross-view global pairing, same-position masking, per-crop loss normalization." vertex="1">
+                    <mxGeometry height="50" width="1720" x="40" y="1175" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="04 Training" id="04">
+        <mxGraphModel dx="2160" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;" value="DINOv2 | Một training step và lịch huấn luyện" vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="Đây là pretraining model lớn từ đầu. Các con số bên phải lấy từ paper Table 16 / Appendix B, không lấy YAML mặc định." vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="a" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="1. Lấy batch ảnh LVD-142M&#xa;Không dùng class label / caption." vertex="1">
+                    <mxGeometry height="110" width="850" x="60" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="b" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="2. Tạo 2 global + 8 local crops&#xa;Random resized crop, flip; color jitter, grayscale, blur / solarize." vertex="1">
+                    <mxGeometry height="110" width="850" x="60" y="335" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" edge="1" parent="1" source="a" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="b">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="3. Mask một phần global student&#xa;Teacher nhận global không mask; local student không mask." vertex="1">
+                    <mxGeometry height="110" width="850" x="60" y="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge2" edge="1" parent="1" source="b" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="c">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="d" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="4. Teacher forward: no_grad&#xa;Student forward: có autograd; tính DINO + iBOT + KoLeo." vertex="1">
+                    <mxGeometry height="110" width="850" x="60" y="625" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge3" edge="1" parent="1" source="c" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="d">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="5. Backward → AdamW student&#xa;Cập nhật backbone và hai head student." vertex="1">
+                    <mxGeometry height="110" width="850" x="60" y="770" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge4" edge="1" parent="1" source="d" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="e">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="f" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=21;fontFamily=Arial;fontStyle=0;spacing=14;" value="6. EMA teacher sau optimizer step&#xa;Cập nhật schedule; tiếp tục batch kế tiếp." vertex="1">
+                    <mxGeometry height="110" width="850" x="60" y="915" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge5" edge="1" parent="1" source="e" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="f">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="config" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="PRETRAIN ViT-g/14 — PAPER&#xa;AdamW; batch size 3072&#xa;625k iterations; LR 3,5 × 10⁻⁴&#xa;Warmup 100k iterations&#xa;Weight decay cosine: 0,04 → 0,2&#xa;EMA momentum cosine: 0,994 → 1&#xa;Stochastic depth: 0,4; LayerScale: 10⁻⁵&#xa;FP16; head gradient reduction FP32" vertex="1">
+                    <mxGeometry height="385" width="730" x="1010" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="high" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="HIGH-RES ADAPTATION&#xa;518 × 518; 10k iterations bổ sung&#xa;Nén các schedule; giảm base LR&#xa;Không nhầm với 625k iterations ban đầu." vertex="1">
+                    <mxGeometry height="165" width="730" x="1010" y="635" as="geometry"/>
+                </mxCell>
+                <mxCell id="infra" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="HẠ TẦNG / HIỆU SUẤT&#xa;Memory-efficient attention; sequence packing&#xa;Efficient stochastic depth; FSDP&#xa;Packing dùng block-diagonal attention mask." vertex="1">
+                    <mxGeometry height="165" width="730" x="1010" y="860" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;" value="Paper §5, Table 16, Appendix B.1–B.2 | 224/98 và 8 local crops: đối chiếu cấu hình ViT-g + code augmentation phát hành." vertex="1">
+                    <mxGeometry height="50" width="1720" x="40" y="1175" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="05 Distill and inference" id="05">
+        <mxGraphModel dx="2160" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=31;fontFamily=Arial;fontStyle=1;spacing=14;" value="DINOv2 | Distillation khác pretraining; embedding dùng ở đâu?" vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="sub" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=20;fontFamily=Arial;fontStyle=0;spacing=14;" value="Teacher lớn đóng băng khi distill; EMA của student nhỏ là bản dùng cuối. Không dùng vòng EMA để cập nhật teacher lớn." vertex="1">
+                    <mxGeometry height="60" width="1720" x="40" y="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="img" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Ảnh / multi-crops&#xa;Không masking" vertex="1">
+                    <mxGeometry height="130" width="300" x="40" y="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="big" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Teacher lớn: ViT-g/14 đã học&#xa;FROZEN — không gradient&#xa;Không cập nhật bằng EMA student nhỏ" vertex="1">
+                    <mxGeometry height="150" width="490" x="440" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="small" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e4efff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Student nhỏ: ViT-S / B / L&#xa;Có gradient&#xa;Không stochastic depth" vertex="1">
+                    <mxGeometry height="150" width="490" x="440" y="440" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" edge="1" parent="1" source="img" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.2692307692307692;entryX=0.0;entryY=0.5;" target="big">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="390" y="255"/>
+                            <mxPoint x="390" y="265"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge2" edge="1" parent="1" source="img" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.5;exitY=1.0;entryX=0.0;entryY=0.5;" target="small">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="190" y="515"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="loss" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff0d6;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Giữ các loss distillation&#xa;iBOT trên hai global crops dù không masking&#xa;Backprop chỉ qua student nhỏ" vertex="1">
+                    <mxGeometry height="150" width="620" x="1090" y="315" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge3" edge="1" parent="1" source="big" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.23333333333333334;" target="loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1010" y="265"/>
+                            <mxPoint x="1010" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge4" edge="1" parent="1" source="small" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.7666666666666667;" target="loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1010" y="515"/>
+                            <mxPoint x="1010" y="430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ema" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#eee6ff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Bản EMA riêng của student nhỏ&#xa;Được giữ làm model cuối" vertex="1">
+                    <mxGeometry height="125" width="490" x="440" y="690" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge5" edge="1" parent="1" source="small" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8b5cc6;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;" target="ema">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="enc" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Inference: ảnh → backbone → LayerNorm&#xa;Bỏ DINO/iBOT heads; không mask" vertex="1">
+                    <mxGeometry height="125" width="620" x="1090" y="690" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge6" edge="1" parent="1" source="ema" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" target="enc">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cls" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="CLS embedding&#xa;[B, D]&#xa;Image-level tasks" vertex="1">
+                    <mxGeometry height="150" width="280" x="1090" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="patch" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#def5ea;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=23;fontFamily=Arial;fontStyle=0;spacing=14;" value="Patch embeddings&#xa;[B, N, D]&#xa;Dense tasks" vertex="1">
+                    <mxGeometry height="150" width="280" x="1430" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge7" edge="1" parent="1" source="enc" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.22580645161290322;exitY=1.0;entryX=0.5;entryY=0.0;" target="cls">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge8" edge="1" parent="1" source="enc" style="edgeStyle=none;rounded=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#466480;dashed=0;exitX=0.7741935483870968;exitY=1.0;entryX=0.5;entryY=0.0;" target="patch">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="dims" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=22;fontFamily=Arial;fontStyle=0;spacing=14;" value="Embedding dimension: S=384; B=768; L=1024; g=1536&#xa;N=(H/14) × (W/14), với H,W chia hết cho 14&#xa;Linear probe: đóng băng backbone, chỉ train classifier bằng nhãn." vertex="1">
+                    <mxGeometry height="150" width="900" x="40" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a4b3c5;fontColor=#17243a;fontSize=16;fontFamily=Arial;fontStyle=0;spacing=14;" value="Paper §5 Model distillation; Appendix B.3 | Kích thước và đầu ra: code vision_transformer.py. Chi tiết paper/code khác nhau: README." vertex="1">
+                    <mxGeometry height="50" width="1720" x="40" y="1175" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

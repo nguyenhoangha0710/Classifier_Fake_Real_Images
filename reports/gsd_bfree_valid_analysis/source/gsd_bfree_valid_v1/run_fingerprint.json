@@ -1,0 +1,67 @@
+{
+  "evaluator": "gsd_bfree_official_valid_native_pairs4_batch8_v1",
+  "checkpoint_sha256": "bd8b97c57f7bdf3d7d65a24bd612debd8ac0e63a6a76a68c2199368478e45b6a",
+  "training_signature": "4595045b4c6c76c1ad4aa303a7d2f1690cfac8150add4548d24609a6c980dce6",
+  "epoch": 1,
+  "manifest": {
+    "metadata": {
+      "dataset": "baopv051/b-free-training-data",
+      "split": "official_validation_ids",
+      "source_train_list_count": 51517,
+      "source_valid_list_count": 10304,
+      "valid_contained_in_train_list": true,
+      "train_list_md5": "06581da53bf81741501396d71eb7ec5f",
+      "valid_list_md5": "72e7b4be2d049029dbedca7e75af91b0",
+      "selected_id_count": 10304,
+      "id_order_hash": "ff9b3602f53999339bbb5c500407b03b4f4f6175c3807941ed16b896fea04ab1",
+      "smoke": false,
+      "unique_images": 72128,
+      "predictions_per_branch": 20608,
+      "total_branch_predictions": 123648,
+      "branches": [
+        "SD2.1_selfconditioned",
+        "SD2.1_selfconditioned_origBG",
+        "SD2.1_inpainted_samecat",
+        "SD2.1_inpainted_samecat_origBG",
+        "SD2.1_inpainted_diffcat",
+        "SD2.1_inpainted_diffcat_origBG"
+      ],
+      "audit": "PNG headers + file sizes; RGB decode checked at inference. No full image/pixel hash audit; resume assumes identical dataset contents/version, same-size content edits are not detected by provenance."
+    },
+    "records_hash": "c39e220bd0d9b952a8f08d8cede9d524be4cca5fd1ff140825f5ae76440353e0"
+  },
+  "id_order_hash": "ff9b3602f53999339bbb5c500407b03b4f4f6175c3807941ed16b896fea04ab1",
+  "selected_ids": 10304,
+  "branches": [
+    "SD2.1_selfconditioned",
+    "SD2.1_selfconditioned_origBG",
+    "SD2.1_inpainted_samecat",
+    "SD2.1_inpainted_samecat_origBG",
+    "SD2.1_inpainted_diffcat",
+    "SD2.1_inpainted_diffcat_origBG"
+  ],
+  "smoke": false,
+  "batch_protocol": "four_id_pairs_interleaved_real_fake_batch8_no_real_score_reuse",
+  "inference": {
+    "input_mode": "center_crop_max_edge_pad14",
+    "crop_max_side": 560,
+    "test_batch": 8,
+    "micro_batch": 1,
+    "anchor_micro_batch": 1,
+    "precision": "fp16",
+    "basis_method": "gram_eigh",
+    "attention": "sdpa",
+    "pooling": "patch_mean_post_ln",
+    "k": 64,
+    "lambda_max": 1.0,
+    "threshold": 0.5
+  },
+  "processing": "native_png_rgb_no_resize_no_jpeg_no_blur_edge_pad14",
+  "anchor": "openai/clip-vit-large-patch14",
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.46.3",
+    "pillow": "13.0.0",
+    "gpu": "Tesla T4"
+  }
+}

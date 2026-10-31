@@ -308,6 +308,8 @@ class AugmentationTests(unittest.TestCase):
         self.assertEqual(config['validation_monitor'], r.VALIDATION_MONITOR)
         self.assertEqual(config['crop_max_side'], 560)
         self.assertEqual(config['data_mode'], 'reuse_manifests')
+        self.assertEqual(config['manifest_root'], '/kaggle/input/datasets/hadinho0710/mainfest-train-genimage')
+        self.assertTrue(config['output_root'].endswith('_manifest_v3'))
         path = Path(__file__).parent / NOTEBOOK
         self.assertEqual(json.loads(path.read_text(encoding='utf-8')), nb)
 

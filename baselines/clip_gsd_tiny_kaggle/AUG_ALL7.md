@@ -19,10 +19,20 @@ Use `hadinho0710/checkpoint-gsd-sdv5-train`, version containing
 No best.pt/last.pt is required or read from this input. Training still initializes
 from original pretrained CLIP, downloaded with Internet enabled.
 
-Leave `manifest_root=None`, `dataset_root=None` for discovery if exactly one matching
-input exists. Otherwise set `manifest_root` to the directory CONTAINING `seed42/`
+The notebook config now explicitly selects the observed input path
+`/kaggle/input/datasets/hadinho0710/mainfest-train-genimage`. This fixes ambiguity when
+both the manifest-only dataset and old checkpoint dataset are attached. The spelling
+`mainfest` is the actual dataset slug, not a typo to correct in the path.
+The notebook uses a fresh output directory ending in `_manifest_v3` to avoid the old
+failed run's config.json conflict. The generic runtime default remains `_manifest_v2`;
+the notebook's explicit CONFIG takes precedence.
+
+For other inputs, set `manifest_root` to the directory CONTAINING `seed42/`
 (a direct `seed42/` path is also accepted), and `dataset_root` to the directory
-containing generator folders. Old absolute image paths in the CSV are ignored;
+containing generator folders. `dataset_root=None` still auto-discovers the image dataset.
+Only use `manifest_root=None` for discovery if exactly one matching source is attached;
+the loader intentionally refuses to choose between different sources automatically.
+Old absolute image paths in the CSV are ignored;
 relative_path maps to the new Kaggle mount. Merely listing directories is not RGB scanning.
 
 The loader preserves exact saved IDs, labels and ROW ORDER for all three cohorts,
@@ -84,7 +94,7 @@ The anchor stays frozen; only the detector/GSD/head are optimized.
 
 ## Artifacts and resume
 
-Default output: `/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v2`.
+Notebook output: `/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v3`.
 
 - At root: `manifest_reuse.json` records source CSV hashes, paths, checks/trust limitations;
   `reused_manifest_index.csv` stores the resolved selected-image index (not a fresh audit).

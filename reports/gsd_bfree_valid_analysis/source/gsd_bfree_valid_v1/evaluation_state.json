@@ -1,0 +1,39 @@
+{
+  "evaluator": "gsd_bfree_official_valid_native_pairs4_batch8_v1",
+  "fingerprint": "0f38b078f028d4113c674ac8899a9bed203ae0751c52e41c0a63ced6aed0803e",
+  "status": "complete",
+  "selected_ids": 10304,
+  "n_per_branch": 20608,
+  "expected_unique_images": 72128,
+  "expected_prediction_rows": 123648,
+  "planned_branches": [
+    "SD2.1_selfconditioned",
+    "SD2.1_selfconditioned_origBG",
+    "SD2.1_inpainted_samecat",
+    "SD2.1_inpainted_samecat_origBG",
+    "SD2.1_inpainted_diffcat",
+    "SD2.1_inpainted_diffcat_origBG"
+  ],
+  "completed_branches": [
+    "SD2.1_selfconditioned",
+    "SD2.1_selfconditioned_origBG",
+    "SD2.1_inpainted_samecat",
+    "SD2.1_inpainted_samecat_origBG",
+    "SD2.1_inpainted_diffcat",
+    "SD2.1_inpainted_diffcat_origBG"
+  ],
+  "saved_rows": {
+    "SD2.1_selfconditioned": 20608,
+    "SD2.1_selfconditioned_origBG": 20608,
+    "SD2.1_inpainted_samecat": 20608,
+    "SD2.1_inpainted_samecat_origBG": 20608,
+    "SD2.1_inpainted_diffcat": 20608,
+    "SD2.1_inpainted_diffcat_origBG": 20608
+  },
+  "smoke": false,
+  "training": false,
+  "threshold": 0.5,
+  "reason": "complete",
+  "remaining_branches": [],
+  "elapsed_seconds": 29149.657788943998
+}

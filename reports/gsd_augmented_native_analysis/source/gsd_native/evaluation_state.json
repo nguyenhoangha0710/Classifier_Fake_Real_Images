@@ -1,0 +1,20 @@
+{
+  "evaluator": "gsd_uploaded_best_variants_v1",
+  "fingerprint": "e0b1a885fd1434062f40e8f76a6e3dab16f64e1b9ff5ac0cf064d9bde099068c",
+  "status": "complete",
+  "planned_cases": [
+    "native"
+  ],
+  "completed_cases": [
+    "native"
+  ],
+  "saved_rows": {
+    "native": 7000
+  },
+  "n_per_case": 7000,
+  "smoke": false,
+  "training": false,
+  "reason": "complete",
+  "remaining_cases": [],
+  "elapsed_seconds": 1135.045406234
+}

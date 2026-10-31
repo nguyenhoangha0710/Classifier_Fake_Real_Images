@@ -1,0 +1,67 @@
+{
+  "dataset": "hoangha071005/test-gsd-bfree",
+  "version": 1,
+  "listed_files": 3148,
+  "downloads": [
+    {
+      "name": "gsd_bfree_valid_v1/bfree_manifest_summary.json",
+      "bytes": 980,
+      "sha256": "c668823c34891adea7394bb340a938baaed042e5dc28d2b335de35a771dde28e"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/bfree_valid_ids.csv",
+      "bytes": 283785,
+      "sha256": "c68149940557566606901aa207940bb99d09461dfa850d078f3194593da86b1a"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/checkpoint_inspection.json",
+      "bytes": 2463,
+      "sha256": "f27fca45933b85ab1d7d1b9ac4731165c5e8e4e8ba655d3a05f46bc5f2d65476"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/completion.json",
+      "bytes": 1184,
+      "sha256": "4e50dfe811fa5aa2563e56d2742a174378eda4d8bcb351748be0ba708d71c9d8"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/evaluation_config.json",
+      "bytes": 581,
+      "sha256": "40e372651f0e3ada93d92290c467ffd37796e4bbe84725e26bed1c89f21af496"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/evaluation_state.json",
+      "bytes": 1184,
+      "sha256": "4e50dfe811fa5aa2563e56d2742a174378eda4d8bcb351748be0ba708d71c9d8"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/macro_metrics.csv",
+      "bytes": 299,
+      "sha256": "cf5545bd6e80d0f612075214a2845ae9617f54e7d2871dc6c2c36d965e58af13"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/manifest_identity.json",
+      "bytes": 1130,
+      "sha256": "2bbd46abc183099ab256efbfae01df52b4ad5767fdb71c9fc6929434ec37c24c"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/metrics.csv",
+      "bytes": 1345,
+      "sha256": "63fc284130f5c2a5b57f06e7a8213f8f062ee2210dbdefa62c7123719b18a578"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/predictions.csv",
+      "bytes": 36003827,
+      "sha256": "67d0bb8b2d20c053b83d53aa333ac31aff337864a8a902e9a00064318330e642"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/run_fingerprint.json",
+      "bytes": 2493,
+      "sha256": "fa6771c7cdaac2faba4c4e8df7e07c0fdd8922c5ed4b341e9c684c07a2e8f86e"
+    },
+    {
+      "name": "gsd_bfree_valid_v1/source_paths.json",
+      "bytes": 197,
+      "sha256": "288d812b894c12832ba87eecea0cd70ade477d4e55a45b31fda9c16ffa4f3924"
+    }
+  ]
+}

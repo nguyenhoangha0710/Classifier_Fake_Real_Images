@@ -1,0 +1,15 @@
+{
+  "output_root": "/kaggle/working/capd_tn1",
+  "resume_from": null,
+  "manifest_root": "/kaggle/input/datasets/hadinho0710/mainfest-train-genimage",
+  "smoke": false,
+  "modes": [
+    "train"
+  ],
+  "eval_after_train": [
+    "native"
+  ],
+  "time_budget_hours": 11.0,
+  "run_name": "r2_dinov3",
+  "backbone": "dinov3"
+}

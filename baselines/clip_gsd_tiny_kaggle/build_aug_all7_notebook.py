@@ -41,8 +41,11 @@ Input thứ hai cần thư mục sau (không cần best.pt/last.pt):
 
 Có thể dùng `hadinho0710/checkpoint-gsd-sdv5-train` phiên bản chứa
 `gsd_raw_all7_crop560_v1/seed42/` hoặc upload gói manifest-only đi kèm.
-Để `manifest_root=None` và `dataset_root=None` cho tự tìm nếu chỉ có một ứng viên;
-nếu có nhiều, điền chính xác đường dẫn thư mục tương ứng dưới /kaggle/input.
+Config hiện GHIM vào `/kaggle/input/datasets/hadinho0710/mainfest-train-genimage`,
+đúng đường dẫn dataset manifest riêng trong log của bạn. Có thể giữ cả input checkpoint cũ;
+manifest của checkpoint sẽ không được chọn. Không sửa `mainfest` thành `manifest`: đây là slug thực tế.
+Nếu đổi dataset manifest, sửa manifest_root tương ứng. Chỉ đặt manifest_root=None khi có đúng một nguồn.
+dataset_root=None vẫn tự tìm dataset ảnh riêng, không dùng ảnh từ dataset checkpoint.
 Đường dẫn tuyệt đối cũ trong CSV được bỏ qua; code map lại bằng relative_path.
 Chỉ kiểm tra metadata/ảnh trùng theo hash ĐÃ LƯU và file tồn tại/đúng byte length.
 Tin tưởng audit trước và đúng phiên bản dataset: không phát hiện thay đổi nội dung cùng kích thước file,
@@ -85,7 +88,8 @@ Không tự giảm ảnh/batch, không bỏ ảnh khi OOM. Chưa kiểm chứng 
 Chế độ mặc định chỉ kiểm tra manifest/path/size khi chạy lại; resume cuối epoch, không giữa epoch.
 Manifest có thể lấy từ run raw-only nhưng KHÔNG lấy trọng số detector raw-only để tiếp tục train.
 
-Output: `/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v2`.
+Output: `/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v3`.
+Thư mục mới tránh xung đột config.json của lần chạy lỗi trước (manifest_root=None).
 Sau mỗi epoch: best.pt/last.pt, history.json, validation_metrics.csv,
 validation_predictions_epochNNN.csv. Mỗi seed có validation_processing_plan.csv và validation_protocol.json.
 Lưu/download output của Kaggle trước khi reset session; /kaggle/working không phải lưu trữ vĩnh viễn.
@@ -93,9 +97,10 @@ Lưu/download output của Kaggle trước khi reset session; /kaggle/working kh
         md('## Runtime\nKhông cần upload file Python riêng.'), code(source),
         code('''CONFIG = dict(DEFAULT_CONFIG)
 CONFIG.update(
-    output_root='/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v2',
+    output_root='/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v3',
     dataset_root=None,
-    data_mode='reuse_manifests', manifest_root=None,
+    data_mode='reuse_manifests',
+    manifest_root='/kaggle/input/datasets/hadinho0710/mainfest-train-genimage',
     models=['clip_gsd'], seeds=[42],
     input_mode='center_crop_max_edge_pad14', crop_max_side=560,
     epochs=50, early_stopping=True, patience=3, min_delta=0.001,
@@ -109,9 +114,11 @@ CONFIG.update(
     smoke=False, resume=True,
 )
 # Smoke: dùng cùng crop/augmentation/validation, ít ảnh và 1 epoch; output phải riêng.
-# CONFIG.update(smoke=True, output_root='/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_smoke')
-# Nếu tự tìm bị nhiều ứng viên: trỏ tới thư mục chứa seed42 (không trỏ tới best.pt).
+# CONFIG.update(smoke=True, output_root='/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v3_smoke')
+# manifest_root đã ghim theo input trong log; không trỏ tới best.pt.
+# Nếu chỉ gắn checkpoint cũ thay vì dataset manifest riêng, sửa sang đường dẫn thực tế:
 # CONFIG['manifest_root'] = '/kaggle/input/<attached-output>/gsd_raw_all7_crop560_v1'
+# Chỉ tự tìm khi có đúng một nguồn manifest: CONFIG['manifest_root'] = None
 # CONFIG['dataset_root'] = '/kaggle/input/datasets/yangsangtai/tiny-genimage'
 # Audit lại từ đầu chỉ khi muốn; không tự fallback:
 # CONFIG.update(data_mode='full_scan', output_root='/kaggle/working/gsd_all7_blur_jpeg_fullscan_v2')

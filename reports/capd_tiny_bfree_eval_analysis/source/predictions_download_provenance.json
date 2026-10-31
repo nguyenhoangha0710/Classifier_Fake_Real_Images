@@ -1,0 +1,7 @@
+{
+  "dataset": "hadinho0710/eval-capd-test-tiny-bfree",
+  "version": 1,
+  "name": "capd_eval_bfree/r2_dinov3/seed42/bfree_eval/predictions_bfree.csv",
+  "bytes": 21157821,
+  "sha256": "45b89a7bbb018df71c495dd732bf8a22de693aec40e1b7a69d3ca75513339ede"
+}

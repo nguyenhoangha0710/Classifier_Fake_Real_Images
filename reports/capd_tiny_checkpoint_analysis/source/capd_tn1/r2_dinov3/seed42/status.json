@@ -1,0 +1,13 @@
+{
+  "status": "trained",
+  "epoch": 6,
+  "step_in_epoch": 0,
+  "global_step": 15750,
+  "hours": 9.836043213522498,
+  "best_epoch": 3,
+  "early_stopping": {
+    "reference_loss": 0.007034006224208278,
+    "bad_epochs": 3,
+    "stopped": true
+  }
+}

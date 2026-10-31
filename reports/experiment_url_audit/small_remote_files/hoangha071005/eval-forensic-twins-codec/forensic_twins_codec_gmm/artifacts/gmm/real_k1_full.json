@@ -1,0 +1,28 @@
+{
+  "encoder_sha256": "3e6e81adbcf34285c3afd38ee6b7019e59767ac9e28416a4524724d9d771771f",
+  "fre_sha256": "d95b9c50837dbf7b660bbefa20cdaa5db5e59601a9d6544573c10e78e04906bb",
+  "manifest_hashes": {
+    "train_real_200k.csv": "56023995de848527cecad2298c2ddfa074bcd06dacd7f314b6f6bf9554066f90",
+    "augmented_gmm_fit_base.csv": "47d6adc1f82d4a25778893eb6a7c0565f25d758cbc397ab2351689d887712591",
+    "augmented_gmm_calibration_base.csv": "246cfac49ba4c86f29cada43263ffd48a0b4f46c5d0e8da444b89e34ec11d949",
+    "bfree_valid_clean_eval.csv": "30d0dd7c2eb3063549141df8512c44e33d7fc7719703c8a1473c316390e9ab29"
+  },
+  "crop": 256,
+  "reg_covar": 1e-06,
+  "percentiles": [
+    90,
+    95,
+    99
+  ],
+  "primary": 95,
+  "protocols": [
+    "native",
+    "jpeg_q95",
+    "jpeg_q80",
+    "jpeg_q65",
+    "jpeg_q50",
+    "resize_075"
+  ],
+  "embedding_dim": 192,
+  "preprocess": "native_legacy_center_crop_then_zero_halo7_v1"
+}

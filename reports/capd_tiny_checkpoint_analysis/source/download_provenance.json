@@ -1,0 +1,187 @@
+{
+  "dataset": "hadinho0710/checkpoin-capd-train-tiny",
+  "version": 1,
+  "listed_files": 65,
+  "downloads": [
+    {
+      "name": "__huggingface_repos__.json",
+      "bytes": 186,
+      "sha256": "2ce0ebec5e15ea7d127217e0df478fef380d8968859e473a9ce8490001c23f5a"
+    },
+    {
+      "name": "capd_all.py",
+      "bytes": 125388,
+      "sha256": "32161bef4e84a4fc3401e215f4de2a24f1164a5860b7cfa51a81bf50805f42c7"
+    },
+    {
+      "name": "capd_tn1/r1_clip/config.json",
+      "bytes": 2746,
+      "sha256": "5d1e7b32ebd49985fc599998fd448597e6aa0cf54f45500454d63e79cb539dc8"
+    },
+    {
+      "name": "capd_tn1/r1_clip/environment.json",
+      "bytes": 128,
+      "sha256": "7c207c7b66e1c9c726c6b7639d84521be4f133bcb61f27d08af8e46d94cea806"
+    },
+    {
+      "name": "capd_tn1/r1_clip/manifest_reuse.json",
+      "bytes": 1726,
+      "sha256": "3a4c14393d4681ff24bc3313f09308808e818830b25239a4c7aeec10fa32c32e"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/architecture.json",
+      "bytes": 433,
+      "sha256": "7984154dce1eba6968f3b03f85ea1081b7c69dd130573ba315bfd347899b9223"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/history.json",
+      "bytes": 3204,
+      "sha256": "4e0e5e6f498c6db848252abe934db9be8070a79aed6154ea5d9f42fcf95f9e42"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/split_summary.json",
+      "bytes": 487,
+      "sha256": "47a689718d0a2c3d96aaeab072de60a5c171e9d2bd8ecb66349b436ad3b4f273"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/status.json",
+      "bytes": 247,
+      "sha256": "c66941744b8d2f5d1e12153291e6ed4832b6dc51a31c5afa02bdfe27465ee7ad"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/test_counts.csv",
+      "bytes": 192,
+      "sha256": "624e63f8dd6c95b28dbbc7b1a291f8dd877d2324a25cc8db56580e1b97efc3b8"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/train_counts.csv",
+      "bytes": 206,
+      "sha256": "2529de3d4892c84bcedb11d6244c5e4d5ec6cbfbac3704b52bdd5fec21e2719b"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/train_steps.csv",
+      "bytes": 1195130,
+      "sha256": "e81084177dd0742bfa684260896313e5df387a0800b984a2879997a462f31b14"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/validation_counts.csv",
+      "bytes": 192,
+      "sha256": "c097320e520abda75f73100cb323e9c05bf46d7ab2f77a3ce08a063b7c45c793"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/validation_metrics.csv",
+      "bytes": 1182,
+      "sha256": "a868f639b9d0c0fb951077d192af941ba8ea86fda5232ac363de9aeb1c40d2bf"
+    },
+    {
+      "name": "capd_tn1/r1_clip/seed42/validation_protocol.json",
+      "bytes": 658,
+      "sha256": "7dc3ccc1f5f29c0cc3051fad678d0978c6df29e2c830f7cc1bb5011017690cb4"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/config.json",
+      "bytes": 2750,
+      "sha256": "00e4743916ed96eef6248969f47b67f8c3ba098c58a2f7a36ef3f1318fa71ba3"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/environment.json",
+      "bytes": 128,
+      "sha256": "7c207c7b66e1c9c726c6b7639d84521be4f133bcb61f27d08af8e46d94cea806"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/manifest_reuse.json",
+      "bytes": 1726,
+      "sha256": "3a4c14393d4681ff24bc3313f09308808e818830b25239a4c7aeec10fa32c32e"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/architecture.json",
+      "bytes": 400,
+      "sha256": "0ebc337e8f0e66d53e7752829903f387a6834dfa252dbb4f147cc540fdc54531"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/completion.json",
+      "bytes": 86,
+      "sha256": "f2b986325d944848cb01c4f3ef408b05a4c3f8ff07ded63d2871c973a89d5206"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/history.json",
+      "bytes": 7994,
+      "sha256": "19d087dfaf9d0b18ffc033daefd4111283e84f59f9e55716d9a44ba738c4e1fc"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/selected_checkpoint.json",
+      "bytes": 200,
+      "sha256": "0eb8db1ed1b3344fc48201ef58511479afed463e024f7101876594e79b6398c8"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/split_summary.json",
+      "bytes": 487,
+      "sha256": "47a689718d0a2c3d96aaeab072de60a5c171e9d2bd8ecb66349b436ad3b4f273"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/status.json",
+      "bytes": 246,
+      "sha256": "ad87d0057e07520f2b3f9a25f74344d5a94045e460f1dc1be3f2637a8806a125"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/test_counts.csv",
+      "bytes": 192,
+      "sha256": "624e63f8dd6c95b28dbbc7b1a291f8dd877d2324a25cc8db56580e1b97efc3b8"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/tiny_eval/metrics.csv",
+      "bytes": 1236,
+      "sha256": "01fc50601a7910c776b142022acac972a00aefc9456ba9a3807a0ae576fe3a38"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/tiny_eval/predictions_native.csv",
+      "bytes": 1908416,
+      "sha256": "8f6771962a5d08096d2e21c3874aa657630cfb594c52e3ea2b14108df70cce0c"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/train_counts.csv",
+      "bytes": 206,
+      "sha256": "2529de3d4892c84bcedb11d6244c5e4d5ec6cbfbac3704b52bdd5fec21e2719b"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/train_steps.csv",
+      "bytes": 2934225,
+      "sha256": "c6ef9503650c8850a95caa5c6fe5a44d1068498b0ce1c4de3d770e76023e583b"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/validation_counts.csv",
+      "bytes": 192,
+      "sha256": "c097320e520abda75f73100cb323e9c05bf46d7ab2f77a3ce08a063b7c45c793"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/validation_metrics.csv",
+      "bytes": 2685,
+      "sha256": "24b9438d51abc9bf99dce70de175a33731ccefd6e6cd9d7944a9010525f91e19"
+    },
+    {
+      "name": "capd_tn1/r2_dinov3/seed42/validation_protocol.json",
+      "bytes": 658,
+      "sha256": "7dc3ccc1f5f29c0cc3051fad678d0978c6df29e2c830f7cc1bb5011017690cb4"
+    },
+    {
+      "name": "cfg_r1_clip.json",
+      "bytes": 317,
+      "sha256": "4ccb7ba6e30fe82aa1311d428aac07e6aa83c5f1269a8eeb6de2aa291e0601d6"
+    },
+    {
+      "name": "cfg_r2_dinov3.json",
+      "bytes": 321,
+      "sha256": "247462ad67017c240bd1f2abb7268f85af2bab78284d67482c87159f010cab68"
+    },
+    {
+      "name": "log_r1_clip.txt",
+      "bytes": 80019,
+      "sha256": "19213606cb834d124450b1e2e744bcf90cc65064409307bfa26ee5e5f973bf72"
+    },
+    {
+      "name": "log_r2_dinov3.txt",
+      "bytes": 195764,
+      "sha256": "190cc7922f5d685990f26580941864d3db0f703f822db74a87cb340080a31f11"
+    }
+  ]
+}

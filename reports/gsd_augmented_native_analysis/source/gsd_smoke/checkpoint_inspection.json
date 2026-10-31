@@ -1,0 +1,134 @@
+{
+  "source": "/kaggle/input/datasets/hadinho0710/checkpoint-augmented-gsd-train-tinigenimage/best",
+  "materialized_checkpoint": "/kaggle/working/gsd_uploaded_checkpoint_cache/repacked_33dd322fb9e8.pt",
+  "sha256": "bd8b97c57f7bdf3d7d65a24bd612debd8ac0e63a6a76a68c2199368478e45b6a",
+  "epoch": 1,
+  "signature": "4595045b4c6c76c1ad4aa303a7d2f1690cfac8150add4548d24609a6c980dce6",
+  "protocol": "all7_center_crop560_blur_jpeg_fixedval_v2",
+  "training_config": {
+    "dataset_root": null,
+    "input_root": "/kaggle/input",
+    "output_root": "/kaggle/working/gsd_all7_crop560_blur_jpeg_manifest_v3",
+    "model_id": "openai/clip-vit-large-patch14",
+    "local_files_only": false,
+    "seeds": [
+      42
+    ],
+    "models": [
+      "clip_gsd"
+    ],
+    "epochs": 50,
+    "early_stopping": true,
+    "patience": 3,
+    "min_delta": 0.001,
+    "train_batch": 8,
+    "test_batch": 8,
+    "micro_batch": 1,
+    "anchor_micro_batch": 1,
+    "lr": 1e-06,
+    "head_lr": 1e-06,
+    "modulation_lr": 1e-06,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "k": 64,
+    "lambda_max": 1.0,
+    "a_init": 2.0,
+    "b_init": 1.0,
+    "validation_fraction": 0.1,
+    "num_workers": 0,
+    "gradient_checkpointing": true,
+    "precision": "fp16",
+    "svd_driver": "gesvdj",
+    "resume": true,
+    "jpeg_probability": 0.5,
+    "jpeg_train_quality": [
+      75,
+      100
+    ],
+    "jpeg_subsampling": 0,
+    "blur_probability": 0.5,
+    "blur_sigma": [
+      0.0,
+      2.0
+    ],
+    "horizontal_flip_probability": 0.0,
+    "jpeg_eval_qualities": [
+      96
+    ],
+    "size_control": 256,
+    "threshold": 0.5,
+    "pooling": "patch_mean_post_ln",
+    "source_generator": "all7",
+    "strict_eight_generators": false,
+    "expected_generators": [
+      "sd15",
+      "adm",
+      "biggan",
+      "glide",
+      "midjourney",
+      "wukong",
+      "vqdm"
+    ],
+    "smoke": false,
+    "smoke_train_per_class": 64,
+    "smoke_eval_per_class": 4,
+    "train_generators": [
+      "sd15",
+      "adm",
+      "biggan",
+      "glide",
+      "midjourney",
+      "wukong",
+      "vqdm"
+    ],
+    "input_mode": "center_crop_max_edge_pad14",
+    "basis_method": "gram_eigh",
+    "attention": "sdpa",
+    "eval_cases": [
+      "native"
+    ],
+    "scan_log_every": 500,
+    "data_mode": "reuse_manifests",
+    "manifest_root": "/kaggle/input/datasets/hadinho0710/mainfest-train-genimage",
+    "crop_max_side": 560,
+    "validation_processing_seed": 42,
+    "validation_monitor": "mean_native_fixed_processed_cross_entropy"
+  },
+  "validation": {
+    "native": {
+      "loss": 0.007488636899876967,
+      "n": 2800,
+      "auc": 0.9996140306122449,
+      "ap": 0.9994611234880919,
+      "balanced_accuracy": 0.9985714285714286,
+      "accuracy": 0.9985714285714286,
+      "fake_recall": 0.9985714285714286,
+      "real_recall": 0.9985714285714286,
+      "tn": 1398,
+      "fp": 2,
+      "fn": 2,
+      "tp": 1398
+    },
+    "processed": {
+      "loss": 0.018528292772072227,
+      "n": 2800,
+      "auc": 0.999316581632653,
+      "ap": 0.9988150730937765,
+      "balanced_accuracy": 0.9953571428571428,
+      "accuracy": 0.9953571428571428,
+      "fake_recall": 0.9928571428571429,
+      "real_recall": 0.9978571428571429,
+      "tn": 1397,
+      "fp": 3,
+      "fn": 10,
+      "tp": 1390
+    }
+  },
+  "val_loss": 0.013008464835974598,
+  "tensors": 401,
+  "note": "Best saved checkpoint among completed validations, NOT proof the full training run finished."
+}

@@ -1,0 +1,8 @@
+case,generator,n,accuracy,balanced_accuracy,real_recall,fake_recall,fake_precision,fake_f1,auc,ap,tn,fp,fn,tp
+native,pooled,16,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,7,0,0,9
+native,adm,1,1.0,,,1.0,1.0,1.0,,,0,0,0,1
+native,biggan,2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1,0,0,1
+native,glide,7,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,5,0,0,2
+native,midjourney,2,1.0,,,1.0,1.0,1.0,,,0,0,0,2
+native,vqdm,2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1,0,0,1
+native,wukong,2,1.0,,,1.0,1.0,1.0,,,0,0,0,2

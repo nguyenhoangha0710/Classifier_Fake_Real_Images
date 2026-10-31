@@ -1,0 +1,11 @@
+{
+  "train": 25200,
+  "validation": 2800,
+  "test": 7000,
+  "train_hash": "116e631f1191734dc52b6021d4d2694c2a6fec63701ccd6c8546d2fc6eee283a",
+  "validation_hash": "afbdad26e4b54218f9e520d63a35b3c7513158865baf3fe552f5c561dc431aa8",
+  "test_hash": "c544b38bf4276a2fce06fd205fb4dbb86fa772ac26532509679311e7d8a96aa2",
+  "selection": "Reused ordered audited All7 cohorts; no re-split",
+  "manifest_root": "/kaggle/input/datasets/hadinho0710/mainfest-train-genimage",
+  "smoke_subset": false
+}

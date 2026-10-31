@@ -112,6 +112,24 @@ class ManifestReuseTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'manifest_root explicitly'):
                 self.load_without_image_reads(cfg, output)
 
+    def test_explicit_root_wins_when_manifest_and_checkpoint_are_both_attached(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg, output, _, source, _ = self.make_fixture(Path(tmp))
+            dedicated = Path(cfg['input_root']) / 'datasets/hadinho0710/mainfest-train-genimage'
+            seed_folder = dedicated / 'seed42'
+            seed_folder.mkdir(parents=True)
+            for part in r.MANIFEST_PARTITIONS:
+                name = f'{part}_manifest.csv'
+                (seed_folder / name).write_bytes((source / 'seed42' / name).read_bytes())
+            cfg['manifest_root'] = str(dedicated)
+            # The checkpoint/old_run remains attached with all three manifests too.
+            index = self.load_without_image_reads(cfg, output)
+            self.assertEqual(len(index), 84)
+            provenance = json.loads((output / 'manifest_reuse.json').read_text())
+            self.assertEqual(provenance['manifest_root'], str(dedicated.resolve()))
+            self.assertTrue(all(str(dedicated.resolve()) in p['path']
+                                for p in provenance['sources']['42'].values()))
+
     def test_missing_or_changed_files_fail_closed(self):
         with tempfile.TemporaryDirectory() as tmp:
             cfg, output, dataset, _, frames = self.make_fixture(Path(tmp))

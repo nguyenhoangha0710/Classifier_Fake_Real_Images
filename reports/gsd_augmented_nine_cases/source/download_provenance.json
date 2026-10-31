@@ -1,0 +1,67 @@
+{
+  "dataset": "hoangha071005/gsd-test-nine-cases",
+  "version": 1,
+  "listed_files": 1662,
+  "downloads": [
+    {
+      "name": "gsd_uploaded_best_variants_v1/case_plan.json",
+      "bytes": 617,
+      "sha256": "91a4d598719d1cfa7429ba242677a937b25bbca67f0367a2471a25b6680493c9"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/checkpoint_inspection.json",
+      "bytes": 3486,
+      "sha256": "8cbb39f4f60d8fac62695ca230725db4a2b226317db19f5a5615f5544ac9a89e"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/completion.json",
+      "bytes": 969,
+      "sha256": "999437595f6b35d880f80378e7a4b3e21709e0c8a3b02599e1a66ae6b3ede98e"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/delta_from_native.csv",
+      "bytes": 23680,
+      "sha256": "6b2dab2e5ca0600cc5fa54a7ac1740548e5247cea86b6078eafd6f4cdfa1f82b"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/evaluation_config.json",
+      "bytes": 954,
+      "sha256": "56257d669d923889751a3b748f7a2d6f208e2d3aa6f61c646e1789eae9e7b285"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/evaluation_state.json",
+      "bytes": 969,
+      "sha256": "999437595f6b35d880f80378e7a4b3e21709e0c8a3b02599e1a66ae6b3ede98e"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/macro_all.csv",
+      "bytes": 1147,
+      "sha256": "439a00d777f55950d0dd8f654b1a0ef7a33ed60285cf2e0156fa55511c869c7d"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/metrics.csv",
+      "bytes": 9319,
+      "sha256": "2992dc33378012137822e031257a5f89c97d00f5b7dbe5b158c7f721cb095268"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/paired_summary.csv",
+      "bytes": 6906,
+      "sha256": "bb921dfd424d0ff537d6328f9c9f69e879d8696c64fbf4ecc323502e1aabe152"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/predictions.csv",
+      "bytes": 17567013,
+      "sha256": "0ecd09755bde6cf9590ae9ce7ceeae433f4d02417f3622d2e7619ad3db40d7b4"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/run_fingerprint.json",
+      "bytes": 1101,
+      "sha256": "83ce5619daddcd915847299dcae76694387525a3d194acfb6ee54780c5ebae7b"
+    },
+    {
+      "name": "gsd_uploaded_best_variants_v1/source_paths.json",
+      "bytes": 301,
+      "sha256": "8be8de918d5820bb3eea734f34f1ead539557a239f6f44438e844718428e3606"
+    }
+  ]
+}

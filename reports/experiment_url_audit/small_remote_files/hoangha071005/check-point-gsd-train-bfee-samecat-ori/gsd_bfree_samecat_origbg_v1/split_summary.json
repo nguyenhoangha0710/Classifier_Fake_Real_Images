@@ -1,0 +1,20 @@
+{
+  "eligible": 40661,
+  "validation": 2000,
+  "train_pool": 38661,
+  "virtual_epochs": 3,
+  "ids_per_virtual_epoch": 12600,
+  "images_per_virtual_epoch": 25200,
+  "unused_reserve_ids": 861,
+  "area_tertile_edges": [
+    0.14840189615885416,
+    0.2768948872884114
+  ],
+  "validation_area_groups": {
+    "medium": 667,
+    "small": 667,
+    "large": 666
+  },
+  "validation_order_hash": "887f6db3eae985b14d96fb6698d84f0c4e94f16a1c5625c7f50d809025b8db96",
+  "train_order_hash": "33b633331c10d66fad383c3f46afdaaa9fe0f7d978d42508933773c92897da53"
+}

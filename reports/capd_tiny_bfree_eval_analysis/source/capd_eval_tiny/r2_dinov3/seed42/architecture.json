@@ -1,0 +1,17 @@
+{
+  "backbone": "dinov3",
+  "patch": 16,
+  "trainable_parameters": 3421698,
+  "total_parameters": 306575874,
+  "lora_rank": 8,
+  "lora_targets": [
+    "qkv",
+    "proj",
+    "fc1",
+    "fc2"
+  ],
+  "head_hidden": 256,
+  "lse_r": 5.0,
+  "geometry": "GSD center crop <=560, replicate pad to patch multiple, no resize",
+  "signature": "32d624fbecf1d487ef8d34ee732dc27b67f865bbacefabe4a49387631ae7d61f"
+}
