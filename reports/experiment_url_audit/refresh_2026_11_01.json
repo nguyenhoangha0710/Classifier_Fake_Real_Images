@@ -1,0 +1,27 @@
+[
+  {
+    "handle": "hadinho0710/check-point-train-capd-bfree",
+    "checked_at_utc": "2026-11-01T14:32:24.677586+00:00",
+    "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/view/hadinho0710/check-point-train-capd-bfree (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000025BD3B75520>: Failed to resolve 'www.kaggle.com' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  {
+    "handle": "hadinho0710/eval-train-capd-bfee-test-tiny-and-bfree",
+    "checked_at_utc": "2026-11-01T14:32:24.678585+00:00",
+    "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/view/hadinho0710/eval-train-capd-bfee-test-tiny-and-bfree (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000025BD3B751C0>: Failed to resolve 'www.kaggle.com' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  {
+    "handle": "hadinho0710/checkpoin-capd-train-tiny",
+    "checked_at_utc": "2026-11-01T14:32:24.678585+00:00",
+    "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/view/hadinho0710/checkpoin-capd-train-tiny (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000025BD3B75D30>: Failed to resolve 'www.kaggle.com' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  {
+    "handle": "hadinho0710/eval-capd-test-tiny-bfree",
+    "checked_at_utc": "2026-11-01T14:32:24.678585+00:00",
+    "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/view/hadinho0710/eval-capd-test-tiny-bfree (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000025BD3B53D00>: Failed to resolve 'www.kaggle.com' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  {
+    "handle": "hoangha071005/check-point-gsd-train-bfee-samecat-ori",
+    "checked_at_utc": "2026-11-01T14:32:24.679553+00:00",
+    "error": "HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/view/hoangha071005/check-point-gsd-train-bfee-samecat-ori (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000025BD3B75940>: Failed to resolve 'www.kaggle.com' ([Errno 11001] getaddrinfo failed)\"))"
+  }
+]

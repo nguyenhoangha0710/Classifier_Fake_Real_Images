@@ -2,11 +2,28 @@
 
 Ngày đối chiếu: **31/10/2026, giờ Việt Nam**. Phạm vi: các thí nghiệm có code, cấu hình hoặc artifact trong dự án HoangHa_Code và các dataset công khai liên quan được tìm thấy ở hai tài khoản `hadinho0710`, `hoangha071005`.
 
+**Cập nhật nội dung local: 01/11/2026, giờ Việt Nam.** Bổ sung CAPD TN2, bảng so sánh cùng cohort, phân tích ngưỡng và bộ hình báo cáo. Phiên bản nguồn bên dưới là phiên bản đã có bằng chứng trong artifact đã tải. Lần kiểm tra online bổ sung không truy cập được Kaggle (web tool không đọc được trang, Python gặp lỗi DNS), nên chưa xác nhận có phiên bản server mới hơn. Log: [refresh_2026_11_01.json](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/experiment_url_audit/refresh_2026_11_01.json).
+
 Các link Kaggle bên dưới là URL dataset; **version và đường dẫn tương đối bên trong dataset** được ghi riêng. Khi tái lập, chọn đúng version, không mặc định lấy bản mới nhất. Version “hiện tại” chỉ phản ánh lúc kiểm tra, không chứng minh đó là version đã mount trong một run cũ nếu provenance không ghi.
 
 **Mức xác nhận:** “API xác nhận” nghĩa là đã đọc metadata hoặc inventory trực tiếp từ Kaggle; “artifact xác nhận” nghĩa là config/provenance/source_paths của run ghi nguồn đó. HTTP 403 chỉ có nghĩa là API công khai không đọc được trong lần kiểm tra, không đủ để kết luận dataset không tồn tại. Những thí nghiệm chưa có URL kết quả xác nhận được được ghi đúng là chưa tìm thấy.
 
 **Cách đọc file chạy local:** các bảng dưới đây trỏ tới file có thật trên máy, ghi riêng notebook train/test, runtime và script phân tích. Notebook chạy trên Kaggle; các script có chữ Modal chạy qua Modal; runtime/module được notebook hoặc entry point gọi, không mặc định là script standalone. Đây là code local phù hợp từng protocol, chưa mặc định là đúng bản notebook đã submit trong lịch sử nếu chưa có hash đối chiếu. Riêng CAPD có thêm snapshot `capd_all.py` tải trực tiếp từ dataset nguồn để đối chiếu code của artifact cũ. Thay đổi code local hoặc chọn notebook phiên bản khác có thể tạo protocol khác run đã báo cáo.
+
+## 0. Truy cập nhanh — kết quả mới phục vụ báo cáo
+
+| Nội dung | Link nguồn / file local | Trạng thái |
+|---|---|---|
+| CAPD train Tiny | [Checkpoint Tiny](https://www.kaggle.com/datasets/hadinho0710/checkpoin-capd-train-tiny) | Artifact v1; R2 DINOv3 chọn epoch 3 |
+| CAPD train Tiny → test Tiny/BFree | [Kết quả TN1](https://www.kaggle.com/datasets/hadinho0710/eval-capd-test-tiny-bfree) | Artifact v1; Tiny 10 case, BFree 6 nhánh |
+| CAPD train BFree | [Checkpoint BFree](https://www.kaggle.com/datasets/hadinho0710/check-point-train-capd-bfree) | Config evaluator ghi root `capd_tn2`; chưa xác nhận riêng version dataset checkpoint trong lần cập nhật này |
+| CAPD train BFree → test Tiny/BFree | [Kết quả TN2](https://www.kaggle.com/datasets/hadinho0710/eval-train-capd-bfee-test-tiny-and-bfree) | Artifact v1, inventory 385 file; B2 DINOv3 chọn virtual epoch 2 |
+| So sánh metrics CAPD/GSD và baseline | [METRICS_COMPARISON.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/METRICS_COMPARISON.md) | Ngưỡng 0,5; đối chiếu cùng ID/nhãn, ghi riêng miền train/test |
+| So sánh BFree theo nhánh | [BFREE_GROUPED_TABLES.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/BFREE_GROUPED_TABLES.md) | Trung bình 5 nhánh; nhánh 6 chỉ có cohort ghép partial |
+| Phân tích ngưỡng CAPD train BFree | [THRESHOLD_SUMMARY.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/THRESHOLD_SUMMARY.md) | Ngưỡng hậu nghiệm Tiny10 khác ngưỡng tối ưu riêng native |
+| Hình đưa vào báo cáo | [Danh mục và chú thích 8 hình](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/report_figures/README.md), [ZIP](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/image/report_figures.zip) | Vẽ lại từ artifact; PNG 300 dpi, PDF và SVG |
+
+Đường dẫn code train/test chi tiết nằm ở từng mục GSD/CAPD bên dưới. B-Free trong các kết quả này là **official validation**, không phải một test split độc lập khác. CAPD/GSD train BFree dùng real COCO và fake `SD2.1_inpainted_samecat_origBG`; không mô tả là đã train phối hợp cả sáu nhánh.
 
 ## 1. Data và manifest dùng chung
 
@@ -165,11 +182,30 @@ Lưu ý: `capd_eval_bfree/.../tiny_eval/metrics.csv` chỉ chứa bản Tiny nat
 | Runtime train TN2 | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/capd_bfree.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/capd_bfree.py) |
 | Builder notebook TN1/TN2/eval | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/build_capd_notebooks.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/build_capd_notebooks.py) |
 | Notebook eval chung (cần đặt checkpoint/run TN2) | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/eval_capd_tn1_kaggle_v1830.ipynb](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/eval_capd_tn1_kaggle_v1830.ipynb) |
+| Notebook eval TN2 riêng, bản lưu v1050 | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/eval_capd_tn2_kaggle_v1050.ipynb](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/eval_capd_tn2_kaggle_v1050.ipynb) |
+| Notebook eval TN2 riêng, bản lưu v0840 | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/eval_capd_tn2_kaggle_v0840.ipynb](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/baselines/capd/eval_capd_tn2_kaggle_v0840.ipynb) |
+| Quét ngưỡng và tổng hợp mean/median TN2 | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/threshold_summary.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/threshold_summary.py) |
+| Phân tích phân bố điểm TN2 | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/score_statistics.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/score_statistics.py) |
 
 - **Data:** [D2](https://www.kaggle.com/datasets/baopv051/b-free-training-data). **Audit/split reuse theo notebook:** [GSD-P2](https://www.kaggle.com/datasets/hoangha071005/check-point-gsd-train-bfee-samecat-ori), v1. **Pretrained DINOv3:** [W1](https://www.kaggle.com/datasets/hadinho0710/dinov3-weight).
+- **Link checkpoint TN2:** [hadinho0710/check-point-train-capd-bfree](https://www.kaggle.com/datasets/hadinho0710/check-point-train-capd-bfree). `config.json` trong artifact kết quả ghi `resume_from=/kaggle/input/datasets/hadinho0710/check-point-train-capd-bfree/capd_tn2`. Đây là bằng chứng nguồn checkpoint do evaluator ghi; không mặc định version của dataset checkpoint bằng version 1 của dataset kết quả. Best checkpoint B2 được evaluator lưu lại tại `capd_eval_bfree/b2_dinov3/seed42/best.pt` và root `capd_eval_tiny` tương ứng.
 - **Code local:** `baselines/capd/train_capd_bfree_kaggle_v1830.ipynb`, `capd_bfree.py`, `build_capd_notebooks.py` và README TN2.
 - **Kết quả TN2 đã xác nhận ngày 01/11/2026:** [hadinho0710/eval-train-capd-bfee-test-tiny-and-bfree](https://www.kaggle.com/datasets/hadinho0710/eval-train-capd-bfee-test-tiny-and-bfree), **v1**, 385 file; run b2_dinov3, complete Tiny10 case và BFree6 nhánh. Config source checkpoint ghi hadinho0710/check-point-train-capd-bfree/capd_tn2; best virtual epoch2. Root kết quả: `capd_eval_tiny/b2_dinov3/seed42/tiny_eval/` và `capd_eval_bfree/b2_dinov3/seed42/bfree_eval/`. Không gán kết quả TN1 sang TN2.
 - **Báo cáo/file chạy local:** [REPORT.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/REPORT.md), [analyze.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/analyze.py), [download_source.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/download_source.py), [snapshot capd_all.py từ dataset](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/source/capd_all.py).
+
+| Nội dung TN2 | Đường dẫn trong dataset kết quả v1 |
+|---|---|
+| Tiny 10 case | `capd_eval_tiny/b2_dinov3/seed42/tiny_eval/metrics.csv`, `predictions_<case>.csv` |
+| BFree 6 nhánh | `capd_eval_bfree/b2_dinov3/seed42/bfree_eval/metrics_bfree.csv`, `predictions_bfree.csv` |
+| Checkpoint selection và lịch sử train | Hai root `capd_eval_tiny/b2_dinov3/seed42/` và `capd_eval_bfree/b2_dinov3/seed42/`: `selected_checkpoint.json`, `history.json` |
+| Trạng thái evaluation | `seed42/completion.json` trong từng root evaluation |
+| Cấu hình và nguồn checkpoint | `capd_eval_tiny/b2_dinov3/config.json`, `capd_eval_bfree/b2_dinov3/config.json` |
+
+**Phạm vi kết quả:** ở full pooling, ngưỡng 0,5, Tiny native BA **90,31%**, AUC **98,50%**; BFree macro đủ 6 nhánh BA **94,86%**, AUC **98,83%**. Bảng so sánh cùng GSD chỉ dùng 5 nhánh hoàn tất chung nên CAPD có BA **93,91%**, không thay thế lẫn nhau hai cách tổng hợp. Riêng nhánh `inpainted_diffcat_origBG`, CAPD đủ 10.304 ID/lớp đạt BA **99,62%**, nhưng trên cohort ghép 7.024 ID/lớp với GSD đạt **99,59%**.
+
+**Ngưỡng và phân bố điểm:** [THRESHOLD_SUMMARY.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/THRESHOLD_SUMMARY.md), [threshold_summary.json](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/capd_train_bfree_eval_analysis/threshold_summary.json). Ngưỡng tối ưu mean BA Tiny10 là **0,01769052581** (mean BA **93,58%**); ngưỡng tối ưu riêng native là **0,02695203008**. Đây là phân tích hậu nghiệm dùng nhãn test, chưa phải hiệu năng của ngưỡng hiệu chỉnh độc lập. Mean/median tính từ từng case/nhánh, không gộp tất cả prediction thành ảnh độc lập.
+
+Notebook local là các phiên bản để chạy/đối chiếu, chưa có hash chứng minh chính xác notebook nào đã submit cho artifact cũ. Kết quả xác nhận ở đây thuộc **B2 DINOv3**; không gán sang B1 CLIP.
 
 ## 4. Forensic Twins và GMM
 
@@ -388,3 +424,32 @@ File này là bản đồ nguồn và bằng chứng theo run, không phải kh�
 | Đối chiếu artifact — inventory và file nhỏ | [D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/experiment_url_audit/inspect_artifacts.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/experiment_url_audit/inspect_artifacts.py) |
 
 Chưa tìm thấy file `.py`/`.ipynb` trong hai thư mục `baselines/cnnspot/` và `baselines/fft/` khi rà soát; không tự tạo đường dẫn entry point cho hai nhánh này. Bảng code local không thay đổi trạng thái xác nhận checkpoint/kết quả đã ghi ở mục 8.
+
+## 11. So sánh cùng cohort và hình báo cáo — cập nhật 01/11/2026
+
+Các sản phẩm dưới đây được tạo từ prediction/artifact đã tải, chưa có URL dataset publish riêng. Không phải run train/test mới.
+
+| Nội dung | File local |
+|---|---|
+| Bảng metrics theo miền train → test | [METRICS_COMPARISON.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/METRICS_COMPARISON.md) |
+| Metrics đầy đủ, không làm tròn | [metrics_comparison.json](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/metrics_comparison.json) |
+| Code tính metrics | [compare_metrics.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/compare_metrics.py) |
+| Code ghép ID, đối chiếu nhãn và điểm dự đoán | [compare_scores.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/compare_scores.py) |
+| Báo cáo phân bố điểm | [COMPARISON.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/COMPARISON.md) |
+| BFree theo nhánh, các cặp cột CAPD/GSD | [BFREE_GROUPED_TABLES.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/BFREE_GROUPED_TABLES.md), [HTML](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/BFREE_GROUPED_TABLES.html) |
+| Code xuất bảng BFree | [format_bfree_comparison.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/format_bfree_comparison.py) |
+| Nguồn predictions Tiny10 CAPD train Tiny | [provenance.json](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/score_model_comparison/source/capd_train_tiny/provenance.json) |
+| Danh mục hình và chú thích để đưa vào báo cáo | [report_figures/README.md](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/report_figures/README.md) |
+| Code xuất 8 hình PNG 300 dpi, PDF và SVG | [build_figures.py](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/report_figures/build_figures.py) |
+| SHA-256 các file nguồn dùng vẽ hình | [sources.json](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/report_figures/sources.json) |
+| Xem nhanh 8 hình | [preview.jpg](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/reports/report_figures/preview.jpg) |
+| Toàn bộ hình, chú thích và code | [report_figures.zip](D:/LLM/LVLM/MLLM_detect_fake_image/HoangHa_Code/image/report_figures.zip) |
+
+**Quy ước để dùng đúng bảng:**
+
+- Tiny native: cùng 7.000 ảnh test, 3.500 ảnh mỗi lớp; dataset Tiny-GenImage có 7 generator. Không gọi đây là đánh giá full GenImage 8 generator.
+- BFree so sánh chính: 5 nhánh, mỗi nhánh cùng 10.304 ID/lớp; báo cáo mean của chỉ số từng nhánh. Có nhánh `inpainted_samecat_origBG` thuộc miền train BFree, không gọi mean này là thuần held-out.
+- Nhánh BFree thứ sáu: ghép CAPD/GSD trên 7.024 ID/lớp do prediction GSD còn partial; không đưa vào mean 5 nhánh. CAPD riêng có đủ cả 6 nhánh.
+- Bảng biến đổi Tiny so sánh CAPD/GSD: mean/median dùng cùng 9 case có mặt ở cả hai model, khác mean Tiny10 của riêng CAPD. Không thay thế lẫn nhau các kết quả này.
+- Ngưỡng mặc định 0,5; CAPD dùng full pooling. Bảng hậu nghiệm tối ưu ngưỡng và các pooling khác được ghi riêng. AUC/AP hiển thị 100,00% có thể do làm tròn.
+- Backbone CAPD B2 là DINOv3, trong khi GSD dùng CLIP; kết quả so sánh phản ánh cả hệ thống, chưa cô lập đóng góp kiến trúc khi khác backbone.
