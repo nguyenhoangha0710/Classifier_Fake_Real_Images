@@ -1,0 +1,114 @@
+[01:40:24] [resume] copying previous output from /kaggle/input/datasets/hadinho0710/check-point-train-capd-bfree/capd_tn2/b2_dinov3/seed42
+[01:40:26] [b2_dinov3] backbone=dinov3 modes=['eval_tiny'] smoke=False
+[manifest] 5,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] 10,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] 15,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] 20,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] 25,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] 30,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] 35,000/35,000 file paths/sizes checked; no image decode/hash.
+[manifest] Reused 35,000 selected images. No RGB decoding or image hashing; no re-split.
+[split/reused] train=25,200, validation=2,800, test=7,000; original ID order retained.
+[validation] Fixed native + processed views; plan: /kaggle/working/capd_eval_tiny/b2_dinov3/seed42/validation_processing_plan.csv
+[01:42:17] [model] trainable params: 3,421,698
+[01:42:23] [test/native] batch 1/875
+[01:43:43] [test/native] batch 101/875
+[01:44:51] [test/native] batch 201/875
+[01:45:57] [test/native] batch 301/875
+[01:47:01] [test/native] batch 401/875
+[01:47:59] [test/native] batch 501/875
+[01:49:01] [test/native] batch 601/875
+[01:50:03] [test/native] batch 701/875
+[01:51:05] [test/native] batch 801/875
+[01:51:54] [eval_tiny] native: AUC=0.9850 nonfinite=0
+[01:51:56] [test/png_roundtrip] batch 1/875
+[01:53:00] [test/png_roundtrip] batch 101/875
+[01:54:03] [test/png_roundtrip] batch 201/875
+[01:55:04] [test/png_roundtrip] batch 301/875
+[01:56:07] [test/png_roundtrip] batch 401/875
+[01:57:09] [test/png_roundtrip] batch 501/875
+[01:58:11] [test/png_roundtrip] batch 601/875
+[01:59:17] [test/png_roundtrip] batch 701/875
+[02:00:19] [test/png_roundtrip] batch 801/875
+[02:01:08] [eval_tiny] png_roundtrip: AUC=0.9850 nonfinite=0
+[02:01:09] [test/fake_jpeg96] batch 1/875
+[02:02:05] [test/fake_jpeg96] batch 101/875
+[02:02:58] [test/fake_jpeg96] batch 201/875
+[02:03:53] [test/fake_jpeg96] batch 301/875
+[02:04:48] [test/fake_jpeg96] batch 401/875
+[02:05:43] [test/fake_jpeg96] batch 501/875
+[02:06:38] [test/fake_jpeg96] batch 601/875
+[02:07:33] [test/fake_jpeg96] batch 701/875
+[02:08:28] [test/fake_jpeg96] batch 801/875
+[02:09:10] [eval_tiny] fake_jpeg96: AUC=0.9860 nonfinite=0
+[02:09:11] [test/all_jpeg96] batch 1/875
+[02:10:07] [test/all_jpeg96] batch 101/875
+[02:11:01] [test/all_jpeg96] batch 201/875
+[02:11:56] [test/all_jpeg96] batch 301/875
+[02:12:51] [test/all_jpeg96] batch 401/875
+[02:13:45] [test/all_jpeg96] batch 501/875
+[02:14:40] [test/all_jpeg96] batch 601/875
+[02:15:36] [test/all_jpeg96] batch 701/875
+[02:16:31] [test/all_jpeg96] batch 801/875
+[02:17:13] [eval_tiny] all_jpeg96: AUC=0.9861 nonfinite=0
+[02:17:14] [test/all_jpeg90] batch 1/875
+[02:18:10] [test/all_jpeg90] batch 101/875
+[02:19:04] [test/all_jpeg90] batch 201/875
+[02:19:59] [test/all_jpeg90] batch 301/875
+[02:20:54] [test/all_jpeg90] batch 401/875
+[02:21:49] [test/all_jpeg90] batch 501/875
+[02:22:43] [test/all_jpeg90] batch 601/875
+[02:23:39] [test/all_jpeg90] batch 701/875
+[02:24:34] [test/all_jpeg90] batch 801/875
+[02:25:16] [eval_tiny] all_jpeg90: AUC=0.9840 nonfinite=0
+[02:25:17] [test/all_jpeg80] batch 1/875
+[02:26:13] [test/all_jpeg80] batch 101/875
+[02:27:06] [test/all_jpeg80] batch 201/875
+[02:28:01] [test/all_jpeg80] batch 301/875
+[02:28:56] [test/all_jpeg80] batch 401/875
+[02:29:51] [test/all_jpeg80] batch 501/875
+[02:30:46] [test/all_jpeg80] batch 601/875
+[02:31:40] [test/all_jpeg80] batch 701/875
+[02:32:36] [test/all_jpeg80] batch 801/875
+[02:33:18] [eval_tiny] all_jpeg80: AUC=0.9714 nonfinite=0
+[02:33:19] [test/resize_square256] batch 1/875
+[02:33:59] [test/resize_square256] batch 101/875
+[02:34:39] [test/resize_square256] batch 201/875
+[02:35:18] [test/resize_square256] batch 301/875
+[02:35:58] [test/resize_square256] batch 401/875
+[02:36:37] [test/resize_square256] batch 501/875
+[02:37:17] [test/resize_square256] batch 601/875
+[02:37:57] [test/resize_square256] batch 701/875
+[02:38:36] [test/resize_square256] batch 801/875
+[02:39:06] [eval_tiny] resize_square256: AUC=0.9706 nonfinite=0
+[02:39:07] [test/resize_square560] batch 1/875
+[02:40:28] [test/resize_square560] batch 101/875
+[02:41:48] [test/resize_square560] batch 201/875
+[02:43:09] [test/resize_square560] batch 301/875
+[02:44:30] [test/resize_square560] batch 401/875
+[02:45:51] [test/resize_square560] batch 501/875
+[02:47:12] [test/resize_square560] batch 601/875
+[02:48:32] [test/resize_square560] batch 701/875
+[02:49:53] [test/resize_square560] batch 801/875
+[02:50:53] [eval_tiny] resize_square560: AUC=0.9892 nonfinite=0
+[02:50:54] [test/blur_sigma1] batch 1/875
+[02:51:50] [test/blur_sigma1] batch 101/875
+[02:52:44] [test/blur_sigma1] batch 201/875
+[02:53:39] [test/blur_sigma1] batch 301/875
+[02:54:34] [test/blur_sigma1] batch 401/875
+[02:55:29] [test/blur_sigma1] batch 501/875
+[02:56:24] [test/blur_sigma1] batch 601/875
+[02:57:19] [test/blur_sigma1] batch 701/875
+[02:58:15] [test/blur_sigma1] batch 801/875
+[02:58:57] [eval_tiny] blur_sigma1: AUC=0.9791 nonfinite=0
+[02:58:58] [test/resize256_jpeg96] batch 1/875
+[02:59:38] [test/resize256_jpeg96] batch 101/875
+[03:00:18] [test/resize256_jpeg96] batch 201/875
+[03:00:58] [test/resize256_jpeg96] batch 301/875
+[03:01:37] [test/resize256_jpeg96] batch 401/875
+[03:02:18] [test/resize256_jpeg96] batch 501/875
+[03:02:57] [test/resize256_jpeg96] batch 601/875
+[03:03:37] [test/resize256_jpeg96] batch 701/875
+[03:04:17] [test/resize256_jpeg96] batch 801/875
+[03:04:46] [eval_tiny] resize256_jpeg96: AUC=0.9655 nonfinite=0
+[03:04:48] [exit] complete

@@ -1,0 +1,16 @@
+{
+  "resume_from": "/kaggle/input/datasets/hadinho0710/check-point-train-capd-bfree/capd_tn2",
+  "manifest_root": "/kaggle/input/datasets/hadinho0710/mainfest-train-genimage",
+  "smoke": false,
+  "run_name": "b2_dinov3",
+  "backbone": "dinov3",
+  "time_budget_hours": 11.0,
+  "modes": [
+    "eval_bfree"
+  ],
+  "output_root": "/kaggle/working/capd_eval_bfree",
+  "dinov3_weights": "/kaggle/input/datasets/hadinho0710/dinov3-weight/dinov3/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth",
+  "dinov3_repo": "/kaggle/input/datasets/hadinho0710/dinov3-weight/dinov3/dinov3_repo",
+  "bfree_root": "/kaggle/input/datasets/baopv051/b-free-training-data",
+  "dataset_root": "/kaggle/input/datasets/yangsangtai/tiny-genimage"
+}

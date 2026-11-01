@@ -1,0 +1,34 @@
+{
+  "evaluator": "gsd_uploaded_best_variants_v1",
+  "checkpoint_sha256": "dab2e8454abf3dc095ea26223ec8afd87f721d2b64752a1db999b1cac811c813",
+  "training_signature": "06c7d714b84425bf3248247cb9c1f686c12e5221f530ae325a454b1f88247046",
+  "epoch": 2,
+  "manifest_identity": "4d6c5fa5142c138ad4140045d965e5eb858b14d22f05a122128264b5c7c99d82",
+  "sample_order_hash": "c544b38bf4276a2fce06fd205fb4dbb86fa772ac26532509679311e7d8a96aa2",
+  "n": 7000,
+  "inference_config": {
+    "input_mode": "center_crop_max_edge_pad14",
+    "crop_max_side": 560,
+    "test_batch": 8,
+    "micro_batch": 1,
+    "anchor_micro_batch": 1,
+    "precision": "fp16",
+    "basis_method": "gram_eigh",
+    "attention": "sdpa",
+    "pooling": "patch_mean_post_ln",
+    "k": 64,
+    "lambda_max": 1.0,
+    "a_init": 2.0,
+    "b_init": 1.0,
+    "jpeg_subsampling": 0,
+    "threshold": 0.5
+  },
+  "transform_version": "original_rgb_before_crop560_v1",
+  "pretrained_anchor": "openai/clip-vit-large-patch14",
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.46.3",
+    "pillow": "13.0.0",
+    "gpu": "Tesla T4"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "dataset": "hoangha071005/gsd-train-bfree-test-tiny",
+  "version": 1,
+  "listed_files": 1661,
+  "downloads": [
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/case_plan.json",
+      "bytes": 617,
+      "sha256": "91a4d598719d1cfa7429ba242677a937b25bbca67f0367a2471a25b6680493c9"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/checkpoint_inspection.json",
+      "bytes": 6695,
+      "sha256": "7f59587bf00ca9c0da69e4673eca00419683ba9bffa1dc72618111988489cf4c"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/completion.json",
+      "bytes": 971,
+      "sha256": "de57b3dbae2fe068291163003a78bc3423e21d07c212e4ff8ed42761ba162f17"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/delta_from_native.csv",
+      "bytes": 26977,
+      "sha256": "1ef1956f7dfc4343ceceae1d6c2a542ff58881b53e10196c117c74b14e1e994a"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/evaluation_config.json",
+      "bytes": 1141,
+      "sha256": "5acb152d7d57efea866572cc794a67c782596c99bb951d355d0687252d77ab91"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/evaluation_state.json",
+      "bytes": 971,
+      "sha256": "de57b3dbae2fe068291163003a78bc3423e21d07c212e4ff8ed42761ba162f17"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/macro_all.csv",
+      "bytes": 1156,
+      "sha256": "3826d17f9381bcd0f84e9e0e7ee86c60f6cb20b3dacb29c4da719373a7e0d267"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/metrics.csv",
+      "bytes": 10149,
+      "sha256": "0884f0b712a10b7caeb3089c100b40d6dbb6aa02879918400e264fa52bbe0144"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/paired_summary.csv",
+      "bytes": 6861,
+      "sha256": "432a081af0390c9e214534ec89ade6534103d0097e334fbc2a629ae45e700cff"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/predictions.csv",
+      "bytes": 17626786,
+      "sha256": "3611092f5eb6e988ee59138d81dbd045af249839ec78ce54e3960f02e1089fed"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/run_fingerprint.json",
+      "bytes": 1101,
+      "sha256": "96c3686ac72f370da487c6104c6e224049afe46cab7bfb15a0d6947ab28f3fb0"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_tiny9_v1/source_paths.json",
+      "bytes": 329,
+      "sha256": "b1773fad1fc9bd643c29d2ee7a2e515702fa993c900ea1b439a9bc24bdbb0eec"
+    }
+  ]
+}

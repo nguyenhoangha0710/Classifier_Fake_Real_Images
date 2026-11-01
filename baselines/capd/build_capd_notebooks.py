@@ -171,7 +171,7 @@ for run in RUNS:
 '''
 
 
-NOTEBOOK_VERSION = '2026-10-31 17:50 (TN2 B-Free DINOv3 only)'
+NOTEBOOK_VERSION = '2026-11-01 08:40 (eval TN2 b2_dinov3)'
 BANNER = f'print("=" * 60)\nprint("Nguyen Hoang Ha")\nprint("CAPD notebook version: {NOTEBOOK_VERSION}")\nprint("=" * 60)\n'
 
 
@@ -256,15 +256,16 @@ Chỉ copy `best.pt` (bỏ qua epoch_*.pt / last_state.pt); checkpoint cũ 1,2 G
         md('## Cấu hình — CHỈ SỬA Ở ĐÂY'),
         code('''
 SMOKE = False
-EVAL_RUN = 'r2_dinov3'            # 'r2_dinov3' / 'r1_clip' (TN1) hoặc 'b2_dinov3' / 'b1_clip' (TN2, điền TRAIN_OUTPUT = .../capd_tn2)
+EVAL_RUN = 'b2_dinov3'            # 'b2_dinov3' (TN2 B-Free) hoặc 'r2_dinov3' / 'r1_clip' (TN1 Tiny)
 BACKBONE = {'r1_clip': 'clip', 'r2_dinov3': 'dinov3', 'b1_clip': 'clip', 'b2_dinov3': 'dinov3'}[EVAL_RUN]  # r*: TN1 (Tiny), b*: TN2 (B-Free)
 TRAIN_OUTPUT = None               # None = tự tìm thư mục chứa <EVAL_RUN>/seed42/best.pt trong /kaggle/input
 MANIFEST_ROOT = '/kaggle/input/datasets/hadinho0710/mainfest-train-genimage'   # None = tự tìm
 
 from pathlib import Path
-_ck = Path('/kaggle/input/datasets/hadinho0710/checkpoin-capd-train-tiny/capd_tn1')
-if TRAIN_OUTPUT is None and (_ck / EVAL_RUN / 'seed42' / 'best.pt').is_file():
-    TRAIN_OUTPUT = str(_ck)
+for _ck in (Path('/kaggle/input/datasets/hadinho0710/checkpoin-capd-train-tiny/capd_tn1'),      # TN1 (r*)
+            Path('/kaggle/input/datasets/hadinho0710/check-point-train-capd-bfree/capd_tn2')):  # TN2 (b*)
+    if TRAIN_OUTPUT is None and (_ck / EVAL_RUN / 'seed42' / 'best.pt').is_file():
+        TRAIN_OUTPUT = str(_ck)
 if TRAIN_OUTPUT is None:
     hits = sorted({p.parent.parent.parent for p in Path('/kaggle/input').rglob('best.pt')
                    if p.parent.name == 'seed42' and p.parent.parent.name == EVAL_RUN})

@@ -1,0 +1,10 @@
+{
+  "gsd_dir": "/kaggle/input/datasets/hoangha071005/check-point-gsd-train-bfee-samecat-ori/gsd_bfree_samecat_origbg_v1",
+  "identical": {
+    "validation_order_hash": true,
+    "train_order_hash": true,
+    "eligible": true,
+    "virtual_epochs": true,
+    "ids_per_virtual_epoch": true
+  }
+}

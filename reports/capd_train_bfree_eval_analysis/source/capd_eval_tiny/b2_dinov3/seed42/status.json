@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "ve": 4,
+  "phase": "train",
+  "step": 0,
+  "global_step": 9450,
+  "images_seen": 75600,
+  "hours": 8.011255563119166,
+  "best_ve": 2,
+  "early_stopping": {
+    "reference_loss": 0.017913148447802087,
+    "bad_epochs": 1,
+    "stopped": false
+  }
+}
