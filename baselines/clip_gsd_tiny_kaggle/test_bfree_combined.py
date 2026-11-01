@@ -80,3 +80,17 @@ class LocatorTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+
+
+class TinyOnlyNotebookTest(unittest.TestCase):
+    def test_tiny_only_reuses_original_tiny_runtime(self):
+        nb = b.build_tiny_only()
+        code = [''.join(c['source']) for c in nb['cells'] if c['cell_type'] == 'code']
+        orig = json.loads((b.HERE / 'test_gsd_uploaded_best_variants_kaggle.ipynb').read_text(encoding='utf-8'))
+        runtime = max((''.join(c['source']) for c in orig['cells'] if c['cell_type'] == 'code'), key=len).strip('\n')
+        self.assertIn(runtime, code)
+        joined = '\n'.join(code)
+        self.assertNotIn('run_bfree_valid_evaluation', joined)
+        order = [code.index(runtime), code.index(b.COMPAT_CELL.strip('\n')), code.index(b.LOCATOR_CELL.strip('\n')),
+                 code.index(b.TINY_ONLY_RUN.strip('\n'))]
+        self.assertEqual(order, sorted(order))

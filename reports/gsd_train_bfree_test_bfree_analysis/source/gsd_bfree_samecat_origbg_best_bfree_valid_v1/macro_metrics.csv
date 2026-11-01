@@ -1,0 +1,2 @@
+completed_branches,expected_branches,all_branches_complete,accuracy,balanced_accuracy,real_recall,fake_recall,fake_precision,fake_f1,auc,ap
+5,6,False,0.896574145962733,0.896574145962733,0.9973020186335404,0.7958462732919256,0.9961674300685693,0.8681974208956555,0.9888895887986576,0.9898371327633712

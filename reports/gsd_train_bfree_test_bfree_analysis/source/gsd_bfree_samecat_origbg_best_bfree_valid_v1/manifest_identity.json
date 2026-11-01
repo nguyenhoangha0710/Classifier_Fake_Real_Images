@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "dataset": "baopv051/b-free-training-data",
+    "split": "official_validation_ids",
+    "source_train_list_count": 51517,
+    "source_valid_list_count": 10304,
+    "valid_contained_in_train_list": true,
+    "train_list_md5": "06581da53bf81741501396d71eb7ec5f",
+    "valid_list_md5": "72e7b4be2d049029dbedca7e75af91b0",
+    "selected_id_count": 10304,
+    "id_order_hash": "ff9b3602f53999339bbb5c500407b03b4f4f6175c3807941ed16b896fea04ab1",
+    "smoke": false,
+    "unique_images": 72128,
+    "predictions_per_branch": 20608,
+    "total_branch_predictions": 123648,
+    "branches": [
+      "SD2.1_selfconditioned",
+      "SD2.1_selfconditioned_origBG",
+      "SD2.1_inpainted_samecat",
+      "SD2.1_inpainted_samecat_origBG",
+      "SD2.1_inpainted_diffcat",
+      "SD2.1_inpainted_diffcat_origBG"
+    ],
+    "audit": "PNG headers + file sizes; RGB decode checked at inference. No full image/pixel hash audit; resume assumes identical dataset contents/version, same-size content edits are not detected by provenance."
+  },
+  "records_hash": "c39e220bd0d9b952a8f08d8cede9d524be4cca5fd1ff140825f5ae76440353e0"
+}

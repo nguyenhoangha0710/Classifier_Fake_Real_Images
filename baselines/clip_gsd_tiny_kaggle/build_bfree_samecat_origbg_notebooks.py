@@ -571,3 +571,124 @@ if __name__ == '__main__':
     nb = build_combined()
     (HERE / COMBINED_NB).write_text(json.dumps(nb, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print('wrote', COMBINED_NB)
+
+
+# ============================================================================ Tiny-only test notebook
+TINY_ONLY_NB = 'test_gsd_bfree_samecat_origbg_tiny9_only_kaggle.ipynb'
+
+TINY_ONLY_INTRO = '''
+# Test checkpoint GSD train trên B-Free `samecat_origBG` — **CHỈ Tiny-GenImage 9 case**
+
+Dùng **đúng evaluator Tiny đã chấm GSD-aug-Tiny** (runtime byte-identical với
+`test_gsd_uploaded_best_variants_kaggle.ipynb`), chỉ thêm cell nhận checkpoint B-Free.
+Cùng 7.000 ảnh test, cùng thứ tự, batch 8, threshold 0.5, cùng 9 case → so trực tiếp được.
+Cuối notebook tự in bảng so sánh với GSD-aug-Tiny. **Không chấm B-Free.**
+
+## Input cần Add (3 dataset) + GPU T4 + Internet
+1. `hoangha071005/check-point-gsd-train-bfee-samecat-ori` (mặc định đọc `best.pt` = VE2).
+2. `yangsangtai/tiny-genimage`.
+3. `hadinho0710/mainfest-train-genimage` (cần `seed42/test_manifest.csv`).
+KHÔNG cần B-Free. Rồi **Save Version → Save & Run All**.
+
+## Case (biến đổi trên RGB gốc, trước crop/pad)
+`native`, `fake_jpeg96` (chỉ fake nén), `all_jpeg96/90/80`, `resize_square256/560`, `blur_sigma1`, `resize256_jpeg96`.
+
+## Thời gian / resume
+Ước lượng ~3–4 giờ trên T4 (chưa đo trực tiếp). Nếu hết giờ: Add Input Output phiên này, Save & Run All lại
+→ tiếp tục từ batch đã lưu (cùng GPU/thư viện). Chấm `checkpoint_ve1.pt`: đổi `CHECKPOINT_NAME`, output tách riêng.
+Với checkpoint này Tiny là **cross-dataset** (GSD-aug-Tiny được train trên Tiny).
+'''
+
+TINY_ONLY_CONFIG = '''
+SMOKE_ONLY = False              # True = thử nhanh 16 ảnh/case, output smoke riêng (KHÔNG phải kết quả)
+CHECKPOINT_NAME = 'best.pt'     # 'best.pt' (VE2) hoặc 'checkpoint_ve1.pt' / 'checkpoint_ve2.pt'
+TOTAL_BUDGET_HOURS = 11.3
+
+# None = tự tìm (giới hạn độ sâu). Điền tay nếu báo lỗi:
+CHECKPOINT_PATH = None          # '/kaggle/input/datasets/hoangha071005/check-point-gsd-train-bfee-samecat-ori/gsd_bfree_samecat_origbg_v1/best.pt'
+TINY_TEST_MANIFEST = None       # '/kaggle/input/datasets/hadinho0710/mainfest-train-genimage/seed42/test_manifest.csv'
+TINY_ROOT = None                # '/kaggle/input/datasets/yangsangtai/tiny-genimage'
+
+CHECKPOINT_PATH = Path(CHECKPOINT_PATH) if CHECKPOINT_PATH else locate_checkpoint(CHECKPOINT_NAME)
+TAG = Path(CHECKPOINT_NAME).stem.replace('checkpoint_', '')
+TINY_OUT = f'/kaggle/working/gsd_bfree_samecat_origbg_{TAG}_tiny9_v1'
+TINY_TEST_MANIFEST = Path(TINY_TEST_MANIFEST) if TINY_TEST_MANIFEST else locate_test_manifest()
+TINY_ROOT = Path(TINY_ROOT) if TINY_ROOT else locate_tiny_root(TINY_TEST_MANIFEST)
+print('checkpoint :', CHECKPOINT_PATH)
+print('manifest   :', TINY_TEST_MANIFEST)
+print('tiny root  :', TINY_ROOT)
+print('output     :', TINY_OUT)
+'''
+
+TINY_ONLY_RUN = '''
+budget = min(10.5, TOTAL_BUDGET_HOURS - (time.time() - COMBINED_T0) / 3600 - 0.15)
+EVAL_CONFIG = dict(UPLOAD_DEFAULTS)
+EVAL_CONFIG.update(checkpoint_path=str(CHECKPOINT_PATH), test_manifest_path=str(TINY_TEST_MANIFEST),
+                   dataset_root=str(TINY_ROOT), output_root=TINY_OUT, resume_from='auto',
+                   expected_signature=None, expected_epoch=None, time_budget_hours=round(budget, 3),
+                   micro_batch=1, anchor_micro_batch=1, num_workers=0)
+EVAL_CONFIG = finalize_uploaded_notebook_config(EVAL_CONFIG, smoke_only=SMOKE_ONLY)
+print(f'[Tiny] budget {EVAL_CONFIG["time_budget_hours"]:.2f} h', flush=True)
+metrics = run_uploaded_evaluation(EVAL_CONFIG)
+'''
+
+TINY_ONLY_SUMMARY = '''
+# GSD-aug-Tiny (train TRÊN Tiny, checkpoint epoch1) trên CÙNG evaluator, pooled 7.000 ảnh/case.
+BASE_TINY = {  # case: (BA, AUC, real_recall, fake_recall)
+    'native': (0.998571, 0.999986, 0.997429, 0.999714), 'fake_jpeg96': (0.996714, 0.999932, 0.997429, 0.996000),
+    'all_jpeg96': (0.996286, 0.999918, 0.996571, 0.996000), 'all_jpeg90': (0.994857, 0.999906, 0.995714, 0.994000),
+    'all_jpeg80': (0.994714, 0.999843, 0.996000, 0.993429), 'resize_square256': (0.922000, 0.975754, 0.917143, 0.926857),
+    'resize_square560': (0.947571, 0.994563, 0.990286, 0.904857), 'blur_sigma1': (0.996714, 0.999947, 0.997143, 0.996286),
+    'resize256_jpeg96': (0.900857, 0.960380, 0.969429, 0.832286)}
+out = Path(EVAL_CONFIG['output_root'])
+state = json.loads((out / 'evaluation_state.json').read_text())
+print('STATUS:', state['status'], '| completed:', state['completed_cases'], '| remaining:', state.get('remaining_cases'))
+if (out / 'metrics.csv').is_file():
+    m = pd.read_csv(out / 'metrics.csv')
+    rows = []
+    for _, r in m[m.generator == 'pooled'].iterrows():
+        b = BASE_TINY.get(r.case)
+        if b:
+            rows.append(dict(case=r.case, BA_new=r.balanced_accuracy, BA_gsdaug_tiny=b[0], dBA=r.balanced_accuracy - b[0],
+                             AUC_new=r.auc, AUC_base=b[1], real_recall_new=r.real_recall, real_recall_base=b[2],
+                             fake_recall_new=r.fake_recall, fake_recall_base=b[3]))
+    display(pd.DataFrame(rows))
+    print('Theo generator (native):')
+    display(m[(m.case == 'native') & (m.generator != 'pooled')]
+            [['generator', 'n', 'balanced_accuracy', 'auc', 'real_recall', 'fake_recall']])
+if (out / 'partial_metrics.csv').is_file():
+    print('PARTIAL (chưa đủ ảnh, không dùng làm kết quả):'); display(pd.read_csv(out / 'partial_metrics.csv'))
+
+archive_path = out.parent / (out.name + '_results.zip')
+with zipfile.ZipFile(archive_path, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
+    for path in sorted(out.rglob('*')):
+        if path.is_file() and path.suffix in ('.csv', '.json'):
+            archive.write(path, (Path(out.name) / path.relative_to(out)).as_posix())
+from IPython.display import FileLink
+display(FileLink(str(archive_path)))
+'''
+
+
+def build_tiny_only():
+    tiny = json.loads((HERE / 'test_gsd_uploaded_best_variants_kaggle.ipynb').read_text(encoding='utf-8'))
+    runtime = max((''.join(c['source']) for c in tiny['cells'] if c['cell_type'] == 'code'), key=len)
+    for needed in ('def run_uploaded_evaluation', 'def finalize_uploaded_notebook_config',
+                   'def restore_uploaded_progress', 'UPLOAD_EVALUATOR', 'def validate_uploaded_payload'):
+        if needed not in runtime:
+            raise ValueError(f'runtime lacks {needed}')
+    cells = [md(TINY_ONLY_INTRO), code(PIP),
+             md('## Runtime evaluator Tiny (byte-identical với notebook đã chấm GSD-aug-Tiny)'), code(runtime),
+             md('## Nhận checkpoint train trên B-Free'), code(COMPAT_CELL),
+             md('## Tìm input (giới hạn độ sâu) và resume'), code(LOCATOR_CELL),
+             md('## Cấu hình'), code(TINY_ONLY_CONFIG),
+             md('## Chạy Tiny 9 case'), code(TINY_ONLY_RUN),
+             md('## So sánh với GSD-aug-Tiny'), code(TINY_ONLY_SUMMARY)]
+    for c in cells:
+        if c['cell_type'] == 'code' and not ''.join(c['source']).startswith('%'):
+            ast.parse(''.join(c['source']))
+    return notebook(cells)
+
+
+if __name__ == '__main__':
+    (HERE / TINY_ONLY_NB).write_text(json.dumps(build_tiny_only(), ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+    print('wrote', TINY_ONLY_NB)

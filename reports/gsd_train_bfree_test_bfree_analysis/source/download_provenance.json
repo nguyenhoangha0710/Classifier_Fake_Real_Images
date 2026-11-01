@@ -1,0 +1,62 @@
+{
+  "dataset": "hoangha071005/test-gsd-train-bfree-test-bfree",
+  "version": 1,
+  "listed_files": 1493,
+  "downloads": [
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/bfree_manifest_summary.json",
+      "bytes": 980,
+      "sha256": "c668823c34891adea7394bb340a938baaed042e5dc28d2b335de35a771dde28e"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/checkpoint_inspection.json",
+      "bytes": 4828,
+      "sha256": "bd113edbe8f2702f080a7f0d783e600d3266c595648bfbad62e3442123271bef"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/completion.json",
+      "bytes": 1184,
+      "sha256": "c1242804477481226301cc382a637de57f75242c3ac7b56d52c827ba52e9539a"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/evaluation_config.json",
+      "bytes": 658,
+      "sha256": "70c087d0ea530b9b6aa0b9aff1426ed1122ca00f2568ebdc9040cba095632fa9"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/evaluation_state.json",
+      "bytes": 1184,
+      "sha256": "c1242804477481226301cc382a637de57f75242c3ac7b56d52c827ba52e9539a"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/macro_metrics.csv",
+      "bytes": 300,
+      "sha256": "e4a6f5ea4694f1e59edad9ecfb1bda38520cc7fc1be7237b90657b5bb7fbbb55"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/manifest_identity.json",
+      "bytes": 1130,
+      "sha256": "2bbd46abc183099ab256efbfae01df52b4ad5767fdb71c9fc6929434ec37c24c"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/metrics.csv",
+      "bytes": 1141,
+      "sha256": "a56e393d6c0885183585c1daf6b9d4ecd74916f8566db2e8175aca4c493667e3"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/partial_metrics.csv",
+      "bytes": 323,
+      "sha256": "cf5ce8b7412596de1399760bdc65f49e0a6fb3229c0862b5e1feb2b44226da3f"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/predictions.csv",
+      "bytes": 29693764,
+      "sha256": "1e1f343a7f064da6b17579dc6568901c3bc607617613f2f3d53a46637d86452a"
+    },
+    {
+      "name": "gsd_bfree_samecat_origbg_best_bfree_valid_v1/predictions_SD2.1_inpainted_diffcat_origBG.partial.csv",
+      "bytes": 4285276,
+      "sha256": "51d67d841c86d8894ef10fed5fb16d3e2304d8a484aee73193e2655b7a1ca268"
+    }
+  ]
+}
