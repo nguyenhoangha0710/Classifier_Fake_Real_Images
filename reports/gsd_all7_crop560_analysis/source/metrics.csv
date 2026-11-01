@@ -1,9 +1,0 @@
-seed,model,case,generator,seen,n,auc,ap,balanced_accuracy,accuracy,fake_recall,real_recall,tn,fp,fn,tp
-42,clip_gsd,native,pooled,False,7000,0.9999989387755102,0.9999989385185303,0.9997142857142858,0.9997142857142857,1.0,0.9994285714285714,3498,2,0,3500
-42,clip_gsd,native,adm,True,1000,1.0,1.0,1.0,1.0,1.0,1.0,500,0,0,500
-42,clip_gsd,native,biggan,True,1000,1.0,1.0,1.0,1.0,1.0,1.0,500,0,0,500
-42,clip_gsd,native,glide,True,1000,1.0,1.0,1.0,1.0,1.0,1.0,500,0,0,500
-42,clip_gsd,native,midjourney,True,1000,1.0,1.0,1.0,1.0,1.0,1.0,500,0,0,500
-42,clip_gsd,native,sd15,True,1000,0.9999999999999999,1.0,0.999,0.999,1.0,0.998,499,1,0,500
-42,clip_gsd,native,vqdm,True,1000,1.0,1.0,1.0,1.0,1.0,1.0,500,0,0,500
-42,clip_gsd,native,wukong,True,1000,0.9999920000000001,0.999992007984032,0.999,0.999,1.0,0.998,499,1,0,500

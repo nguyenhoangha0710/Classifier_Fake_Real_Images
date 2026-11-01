@@ -1,1 +1,0 @@
-{"repos": [{"repoId": "openai/clip-vit-large-patch14", "repoType": "model", "commitHash": "32bd64288804d66eefd0ccbe215aa642df71cc41", "filePaths": ["model.safetensors", "config.json"]}]}

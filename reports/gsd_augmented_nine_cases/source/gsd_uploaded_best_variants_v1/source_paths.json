@@ -1,6 +1,0 @@
-{
-  "manifest": "/kaggle/input/datasets/hadinho0710/mainfest-train-genimage/seed42/test_manifest.csv",
-  "dataset_root": "/kaggle/input/datasets/yangsangtai/tiny-genimage",
-  "checkpoint": "/kaggle/input/datasets/hadinho0710/checkpoint-augmented-gsd-train-tinigenimage/best",
-  "restored_from": null
-}

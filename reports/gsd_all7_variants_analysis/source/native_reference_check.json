@@ -1,8 +1,0 @@
-{
-  "status": "match",
-  "n": 7000,
-  "max_abs_probability_delta": 1.1102230246251565e-16,
-  "mean_abs_probability_delta": 2.756269653316257e-17,
-  "prediction_flips": 0,
-  "note": "GPU eigensolver/precision can differ slightly; investigate material native mismatch before interpreting variants"
-}

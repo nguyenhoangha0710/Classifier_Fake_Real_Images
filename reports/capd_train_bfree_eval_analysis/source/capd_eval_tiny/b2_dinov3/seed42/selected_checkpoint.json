@@ -1,7 +1,0 @@
-{
-  "best_ve": 2,
-  "val_loss": 0.017913148447802087,
-  "criterion": "0.5 CE native + 0.5 CE processed (GSD-P2)",
-  "signature": "8f7af0497b1d55fbee7b390ed34ef973e7ecf1853ffb49b9914d4b40af672b5e",
-  "stop_reason": "all_virtual_epochs_done"
-}

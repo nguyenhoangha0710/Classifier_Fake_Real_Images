@@ -1,6 +1,0 @@
-{
-  "best_epoch": 3,
-  "val_loss": 0.006938914767611715,
-  "criterion": "mean_native_fixed_processed_cross_entropy",
-  "signature": "32d624fbecf1d487ef8d34ee732dc27b67f865bbacefabe4a49387631ae7d61f"
-}

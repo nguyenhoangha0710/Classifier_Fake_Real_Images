@@ -1,9 +1,0 @@
-{
-  "epoch": 4,
-  "max_epochs": 50,
-  "early_stopping": {
-    "reference_loss": 0.0019312790556416123,
-    "bad_epochs": 3,
-    "stopped": true
-  }
-}

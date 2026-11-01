@@ -30,6 +30,10 @@ mlruns/
 tensorboard/
 modal_results/
 
+# Generated CAPD heatmap images, galleries and render summaries
+/baselines/capd/heatmap/rendered/
+/baselines/capd/heatmap/rendered_*/
+
 # Model-local experiment artifacts (canonical local organization)
 baselines/**/artifacts/
 benchmarks/**/artifacts/
